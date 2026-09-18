@@ -43,6 +43,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const contactForm = document.getElementById('contact-form');
   const formSuccess = document.getElementById('form-success');
 
+  // Class Selector
+  const classSelect = document.getElementById('class-select');
+  const importantQuestionsBtn = document.getElementById('important-questions-btn');
+
   let currentLightboxIndex = 0;
   let currentTestimonialIndex = 0;
   let testimonialInterval = null;
@@ -366,6 +370,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (eventModalClose) eventModalClose.addEventListener('click', closeEventModal);
   if (eventModalDismiss) eventModalDismiss.addEventListener('click', closeEventModal);
+
+  // ==========================================================================
+  // 6b. CLASS SELECTOR
+  // ==========================================================================
+
+  if (classSelect && importantQuestionsBtn) {
+    classSelect.addEventListener('change', () => {
+      if (classSelect.value === '10') {
+        importantQuestionsBtn.style.display = 'inline-flex';
+      } else {
+        importantQuestionsBtn.style.display = 'none';
+      }
+    });
+  }
 
   // ==========================================================================
   // 7. FAQ ACCORDION
