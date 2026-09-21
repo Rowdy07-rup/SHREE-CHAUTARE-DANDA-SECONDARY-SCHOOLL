@@ -1,52 +1,1010 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nepal ko Itihas - History Quiz</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shree Chautare Danda Secondary School | Ba.Na.10 Bhakunde, Baglung</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,300&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind Custom Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            DEFAULT: '#0F2C59',
+                            dark: '#0A1D3C',
+                            light: '#1D3D6F',
+                        },
+                        gold: {
+                            DEFAULT: '#D4AF37',
+                            hover: '#C19B2E',
+                            light: '#FAF3DD',
+                        },
+                        neutralBg: '#F8F9FA'
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        .text-shadow {
+            text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+        .page-view {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .page-view.active {
+            display: block;
+            opacity: 1;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #0F2C59;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #D4AF37;
+        }
+    </style>
 </head>
-<body>
+<body class="bg-neutralBg text-gray-800 font-sans flex flex-col min-h-screen">
 
-  <div class="quiz-card">
-    <!-- Welcome Screen -->
-    <div id="screen-welcome" class="screen active">
-      <h2>Nepal ko Itihas</h2>
-      <p>Test your knowledge of key milestones in Nepali history.</p>
-      <button class="btn-primary" onclick="startQuiz()">Start Quiz</button>
-    </div>
-
-    <!-- Quiz Screen -->
-    <div id="screen-quiz" class="screen">
-      <div class="progress-bar">
-        <span id="question-progress">Question 1 of 5</span>
-        <div class="progress-bar-track">
-          <div id="progress-bar-fill"></div>
+    <!-- Top Utility Bar -->
+    <div class="bg-navy-dark text-white text-xs py-2 px-4 border-b border-navy-light hidden sm:block">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-6">
+                <span><i class="fas fa-map-marker-alt text-gold mr-2"></i>Ba.Na.10 Bhakunde, Baglung District, Nepal</span>
+                <span><i class="fas fa-phone-alt text-gold mr-2"></i>+977 068-XXXXXX</span>
+                <span><i class="fas fa-envelope text-gold mr-2"></i>info@chautaredanda.edu.np</span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <span class="bg-gold text-navy-dark px-2 py-0.5 rounded font-bold text-[10px]">ESTD. 2038 BS</span>
+                <a href="#contact" onclick="navigateTo('contact')" class="hover:text-gold transition">Location Map</a>
+                <a href="#admissions" onclick="navigateTo('admissions')" class="hover:text-gold transition">Affiliations</a>
+            </div>
         </div>
-      </div>
-      
-      <h3 id="question-text"></h3>
-      <div id="options-container"></div>
-      
-      <div id="explanation-box" style="display:none;">
-        <span id="explanation-text"></span>
-      </div>
-      
-      <button id="btn-next" class="btn-primary" onclick="nextQuestion()" style="display:none;">Next Question</button>
     </div>
 
-    <!-- Results Screen -->
-    <div id="screen-results" class="screen">
-      <h2>Quiz Completed!</h2>
-      <div id="final-score"></div>
-      <div id="review-container"></div>
-      <button class="btn-primary" onclick="startQuiz()">Play Again</button>
-    </div>
-  </div>
+    <!-- Main Navigation Bar -->
+    <header class="bg-navy sticky top-0 z-40 shadow-lg border-b-2 border-gold">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- School Badge & Title -->
+                <a href="#home" onclick="navigateTo('home')" class="flex items-center space-x-3 group">
+                    <div class="w-12 h-12 rounded-full bg-white border-2 border-gold flex items-center justify-center shadow-md text-navy group-hover:scale-105 transition transform">
+                        <i class="fas fa-graduation-cap text-2xl text-navy"></i>
+                    </div>
+                    <div>
+                        <span class="block text-lg sm:text-xl font-extrabold text-white tracking-wide uppercase font-serif leading-tight">
+                            SHREE CHAUTARE DANDA
+                        </span>
+                        <span class="block text-xs sm:text-sm text-gold font-medium tracking-wider">
+                            SECONDARY SCHOOL &bull; BHAKUNDE, BAGLUNG
+                        </span>
+                    </div>
+                </a>
 
-  <script src="script.js"></script>
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden lg:flex space-x-1 items-center">
+                    <button onclick="navigateTo('home')" id="nav-home" class="nav-btn px-3 py-2 text-sm font-semibold text-white hover:text-gold hover:bg-navy-light rounded-md transition">Home</button>
+                    <button onclick="navigateTo('about')" id="nav-about" class="nav-btn px-3 py-2 text-sm font-semibold text-white hover:text-gold hover:bg-navy-light rounded-md transition">About Us</button>
+                    <button onclick="navigateTo('admissions')" id="nav-admissions" class="nav-btn px-3 py-2 text-sm font-semibold text-white hover:text-gold hover:bg-navy-light rounded-md transition">Admissions</button>
+                    <button onclick="navigateTo('academics')" id="nav-academics" class="nav-btn px-3 py-2 text-sm font-semibold text-white hover:text-gold hover:bg-navy-light rounded-md transition">Academics</button>
+                    <button onclick="navigateTo('news')" id="nav-news" class="nav-btn px-3 py-2 text-sm font-semibold text-white hover:text-gold hover:bg-navy-light rounded-md transition">News & Events</button>
+                    <button onclick="navigateTo('contact')" id="nav-contact" class="nav-btn px-3 py-2 text-sm font-semibold text-white hover:text-gold hover:bg-navy-light rounded-md transition">Contact</button>
+                    
+                    <button onclick="openTourModal()" class="ml-3 px-4 py-2 text-xs font-bold uppercase tracking-wider text-navy bg-gold hover:bg-gold-hover rounded-md shadow-md transition transform active:scale-95">
+                        <i class="fas fa-calendar-check mr-1.5"></i>Book Tour
+                    </button>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <div class="flex lg:hidden items-center">
+                    <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="text-white hover:text-gold focus:outline-none p-2" aria-label="Toggle menu">
+                        <i class="fas fa-bars text-2xl" id="menu-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer Navigation -->
+        <div id="mobile-drawer" class="hidden lg:hidden bg-navy-dark border-t border-navy-light transition-all duration-300">
+            <div class="px-4 pt-3 pb-6 space-y-2">
+                <button onclick="navigateTo('home')" class="mobile-nav-btn block w-full text-left px-3 py-2.5 rounded-md text-base font-medium text-white hover:bg-navy-light hover:text-gold">Home</button>
+                <button onclick="navigateTo('about')" class="mobile-nav-btn block w-full text-left px-3 py-2.5 rounded-md text-base font-medium text-white hover:bg-navy-light hover:text-gold">About Us</button>
+                <button onclick="navigateTo('admissions')" class="mobile-nav-btn block w-full text-left px-3 py-2.5 rounded-md text-base font-medium text-white hover:bg-navy-light hover:text-gold">Admissions</button>
+                <button onclick="navigateTo('academics')" class="mobile-nav-btn block w-full text-left px-3 py-2.5 rounded-md text-base font-medium text-white hover:bg-navy-light hover:text-gold">Academics & Programs</button>
+                <button onclick="navigateTo('news')" class="mobile-nav-btn block w-full text-left px-3 py-2.5 rounded-md text-base font-medium text-white hover:bg-navy-light hover:text-gold">News & Notices</button>
+                <button onclick="navigateTo('contact')" class="mobile-nav-btn block w-full text-left px-3 py-2.5 rounded-md text-base font-medium text-white hover:bg-navy-light hover:text-gold">Contact</button>
+                
+                <div class="pt-4 border-t border-navy-light">
+                    <button onclick="openTourModal(); toggleMobileMenu();" class="w-full text-center py-3 px-4 rounded-md font-bold text-navy bg-gold hover:bg-gold-hover shadow">
+                        <i class="fas fa-calendar-check mr-2"></i>Book a Campus Tour
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Announcement Ticker -->
+    <div class="bg-gold-light border-b border-gold/30 text-navy py-2 px-4 shadow-inner">
+        <div class="max-w-7xl mx-auto flex items-center">
+            <span class="bg-navy text-gold text-xs uppercase font-extrabold px-3 py-1 rounded-full flex items-center shrink-0 mr-3">
+                <i class="fas fa-bullhorn mr-1.5 animate-pulse"></i> Notice
+            </span>
+            <div class="overflow-hidden whitespace-nowrap w-full text-sm font-medium">
+                <div class="inline-block animate-marquee pl-4">
+                    📢 Admissions now open for Academic Year 2083 B.S. (Grades Nursery to 11) &nbsp;&bull;&nbsp; 
+                    🎓 Annual Parent-Teacher Meeting scheduled for next Friday &nbsp;&bull;&nbsp; 
+                    🏆 School Eco-Club wins Baglung District Environmental Excellence Award!
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT CONTAINER WITH SPA VIEWS -->
+    <main class="flex-grow">
+
+        <!-- 1. HOMEPAGE VIEW -->
+        <section id="view-home" class="page-view active">
+            <!-- Hero Banner -->
+            <div class="relative bg-navy text-white overflow-hidden py-20 lg:py-28">
+                <!-- Background decorative overlay -->
+                <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#D4AF37_1px,transparent_1px)] [background-size:16px_16px]"></div>
+                
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div class="grid md:grid-cols-12 gap-8 items-center">
+                        <div class="md:col-span-7 space-y-6 text-center md:text-left">
+                            <span class="inline-block bg-gold/20 text-gold border border-gold/40 text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full">
+                                Welcome to Bhakunde's Premier Educational Institute
+                            </span>
+                            <h1 class="text-3xl sm:text-5xl font-extrabold font-serif leading-tight text-white">
+                                Empowering Minds, <br>
+                                <span class="text-gold">Nurturing Values,</span> <br>
+                                Building Futures.
+                            </h1>
+                            <p class="text-gray-300 text-base sm:text-lg max-w-2xl leading-relaxed">
+                                Shree Chautare Danda Secondary School provides a holistic education combining academic rigor, modern digital learning, traditional Nepalese cultural values, and community leadership in Baglung District.
+                            </p>
+                            <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start pt-2">
+                                <button onclick="navigateTo('admissions')" class="px-6 py-3.5 bg-gold hover:bg-gold-hover text-navy font-bold rounded-lg shadow-lg hover:shadow-xl transition transform hover:-translate-y-0.5">
+                                    <i class="fas fa-file-signature mr-2"></i>Apply for Admission
+                                </button>
+                                <button onclick="openTourModal()" class="px-6 py-3.5 bg-transparent border-2 border-white hover:bg-white/10 text-white font-semibold rounded-lg transition">
+                                    <i class="fas fa-compass mr-2 text-gold"></i>Book a School Tour
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Hero Graphic / Quick Stats Card -->
+                        <div class="md:col-span-5 mt-8 md:mt-0">
+                            <div class="bg-white/10 backdrop-blur-md p-6 sm:p-8 rounded-2xl border border-white/20 shadow-2xl relative">
+                                <h3 class="text-xl font-bold font-serif text-white mb-6 border-b border-white/20 pb-3 flex items-center">
+                                    <i class="fas fa-award text-gold mr-3"></i>Excellence in Numbers
+                                </h3>
+                                <div class="grid grid-cols-2 gap-4 text-center">
+                                    <div class="p-4 bg-navy-dark/60 rounded-xl border border-gold/20">
+                                        <div class="text-3xl font-extrabold text-gold font-serif">40+</div>
+                                        <div class="text-xs text-gray-300 mt-1 uppercase font-semibold">Years of Legacy</div>
+                                    </div>
+                                    <div class="p-4 bg-navy-dark/60 rounded-xl border border-gold/20">
+                                        <div class="text-3xl font-extrabold text-gold font-serif">K-12</div>
+                                        <div class="text-xs text-gray-300 mt-1 uppercase font-semibold">Comprehensive Grades</div>
+                                    </div>
+                                    <div class="p-4 bg-navy-dark/60 rounded-xl border border-gold/20">
+                                        <div class="text-3xl font-extrabold text-gold font-serif">100%</div>
+                                        <div class="text-xs text-gray-300 mt-1 uppercase font-semibold">SEE Pass Rate</div>
+                                    </div>
+                                    <div class="p-4 bg-navy-dark/60 rounded-xl border border-gold/20">
+                                        <div class="text-3xl font-extrabold text-gold font-serif">25+</div>
+                                        <div class="text-xs text-gray-300 mt-1 uppercase font-semibold">Expert Teachers</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Action Links -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 relative z-20">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <button onclick="navigateTo('academics')" class="bg-white p-5 rounded-xl shadow-md border-t-4 border-gold hover:shadow-xl transition text-left group">
+                        <i class="fas fa-calendar-alt text-2xl text-navy group-hover:text-gold transition mb-2 block"></i>
+                        <h4 class="font-bold text-navy text-base">Academic Calendar</h4>
+                        <p class="text-xs text-gray-500 mt-1">Key exam dates & events</p>
+                    </button>
+                    <button onclick="navigateTo('academics')" class="bg-white p-5 rounded-xl shadow-md border-t-4 border-navy hover:shadow-xl transition text-left group">
+                        <i class="fas fa-clock text-2xl text-navy group-hover:text-gold transition mb-2 block"></i>
+                        <h4 class="font-bold text-navy text-base">Class Routines</h4>
+                        <p class="text-xs text-gray-500 mt-1">Daily schedules & periods</p>
+                    </button>
+                    <button onclick="navigateTo('admissions')" class="bg-white p-5 rounded-xl shadow-md border-t-4 border-gold hover:shadow-xl transition text-left group">
+                        <i class="fas fa-download text-2xl text-navy group-hover:text-gold transition mb-2 block"></i>
+                        <h4 class="font-bold text-navy text-base">Downloads</h4>
+                        <p class="text-xs text-gray-500 mt-1">Forms, Syllabi & Notices</p>
+                    </button>
+                    <button onclick="navigateTo('news')" class="bg-white p-5 rounded-xl shadow-md border-t-4 border-navy hover:shadow-xl transition text-left group">
+                        <i class="fas fa-newspaper text-2xl text-navy group-hover:text-gold transition mb-2 block"></i>
+                        <h4 class="font-bold text-navy text-base">Notice Board</h4>
+                        <p class="text-xs text-gray-500 mt-1">Latest school updates</p>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Principal's Message -->
+            <div class="py-16 bg-white my-12 shadow-sm border-y border-gray-100">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid md:grid-cols-12 gap-10 items-center">
+                        <div class="md:col-span-4 text-center">
+                            <div class="relative inline-block">
+                                <div class="w-56 h-64 mx-auto rounded-2xl bg-gray-200 border-4 border-gold overflow-hidden shadow-lg flex items-center justify-center">
+                                    <i class="fas fa-user-tie text-7xl text-navy/40"></i>
+                                </div>
+                                <div class="bg-navy text-white text-xs px-4 py-1.5 rounded-full font-bold absolute -bottom-3 left-1/2 transform -translate-x-1/2 shadow">
+                                    Principal
+                                </div>
+                            </div>
+                            <h3 class="font-serif font-bold text-xl text-navy mt-4">Mr. Ram Prasad Sharma</h3>
+                            <p class="text-xs text-gold font-semibold uppercase tracking-wider">M.Ed, Educational Leadership</p>
+                        </div>
+                        <div class="md:col-span-8 space-y-4">
+                            <span class="text-gold font-bold text-sm uppercase tracking-widest">A Message from Leadership</span>
+                            <h2 class="text-2xl sm:text-3xl font-bold font-serif text-navy">Welcome to Shree Chautare Danda Secondary School</h2>
+                            <p class="text-gray-600 leading-relaxed italic border-l-4 border-gold pl-4">
+                                "Namaste and a warm welcome to all students, parents, and community members. At Shree Chautare Danda, we believe every child in Bhakunde possesses unique potential. Our goal is to provide quality, value-based education right here in Baglung, bridging traditional wisdom with modern technological readiness."
+                            </p>
+                            <p class="text-gray-600 leading-relaxed">
+                                We are deeply committed to fostering critical thinking, discipline, and creative expression. With our dedicated faculty, modern computer facilities, and active sports programs, we prepare students not just for examinations, but for life.
+                            </p>
+                            <button onclick="navigateTo('about')" class="text-navy font-bold hover:text-gold transition inline-flex items-center text-sm pt-2">
+                                Read More About Our Heritage <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Home Inquiry Form Section -->
+            <div class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-navy rounded-2xl p-8 sm:p-12 shadow-2xl text-white relative overflow-hidden">
+                    <div class="grid md:grid-cols-2 gap-8 items-center">
+                        <div>
+                            <span class="text-gold font-bold text-xs uppercase tracking-widest">Get In Touch</span>
+                            <h2 class="text-2xl sm:text-3xl font-serif font-bold mt-1 mb-4">Have Questions About Admissions?</h2>
+                            <p class="text-gray-300 text-sm leading-relaxed mb-6">
+                                Submit your inquiry below and our administrative office in Ba.Na.10 Bhakunde will contact you within 24 hours.
+                            </p>
+                            <div class="space-y-3 text-sm text-gray-300">
+                                <div class="flex items-center"><i class="fas fa-phone text-gold w-6"></i> +977 068-XXXXXX</div>
+                                <div class="flex items-center"><i class="fas fa-envelope text-gold w-6"></i> admissions@chautaredanda.edu.np</div>
+                                <div class="flex items-center"><i class="fas fa-clock text-gold w-6"></i> Sun - Fri: 10:00 AM - 4:00 PM</div>
+                            </div>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl text-gray-800 shadow-lg">
+                            <form id="homeInquiryForm" onsubmit="handleInquirySubmit(event)" class="space-y-4">
+                                <div>
+                                    <label class="block text-xs font-bold uppercase text-navy mb-1">Parent / Guardian Name *</label>
+                                    <input type="text" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-navy focus:outline-none text-sm" placeholder="e.g. Hari Bahadur Thapa">
+                                </div>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label class="block text-xs font-bold uppercase text-navy mb-1">Phone Number *</label>
+                                        <input type="tel" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-navy focus:outline-none text-sm" placeholder="98XXXXXXXX">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold uppercase text-navy mb-1">Grade Seeking</label>
+                                        <select class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-navy focus:outline-none text-sm bg-white">
+                                            <option>Nursery - UKG</option>
+                                            <option>Grade 1 - 5</option>
+                                            <option>Grade 6 - 8</option>
+                                            <option>Grade 9 - 10 (SEE)</option>
+                                            <option>Grade 11 - 12</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold uppercase text-navy mb-1">Your Message / Query</label>
+                                    <textarea rows="3" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-navy focus:outline-none text-sm" placeholder="Ask about fees, transport, or syllabus..."></textarea>
+                                </div>
+                                <button type="submit" class="w-full py-3 bg-gold hover:bg-gold-hover text-navy font-bold rounded-md shadow transition">
+                                    Submit Inquiry
+                                </button>
+                            </form>
+                            <div id="inquiryAlert" class="hidden mt-3 p-3 bg-green-100 text-green-800 rounded-md text-xs font-semibold text-center">
+                                <i class="fas fa-check-circle mr-1"></i> Inquiry sent successfully! We will get back to you soon.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. ABOUT US VIEW -->
+        <section id="view-about" class="page-view py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-gold font-bold text-xs uppercase tracking-widest">Our Identity</span>
+                <h1 class="text-3xl sm:text-4xl font-serif font-bold text-navy mt-1">About Shree Chautare Danda</h1>
+                <p class="text-gray-600 mt-2 text-sm sm:text-base">Rooted in Baglung District, dedicated to providing accessible, top-tier secondary education to the community of Bhakunde.</p>
+            </div>
+
+            <!-- History & Vision Cards -->
+            <div class="grid md:grid-cols-2 gap-8 mb-16">
+                <div class="bg-white p-8 rounded-2xl shadow-md border-t-4 border-gold space-y-4">
+                    <div class="w-12 h-12 bg-gold/20 text-gold rounded-full flex items-center justify-center text-xl font-bold">
+                        <i class="fas fa-landmark"></i>
+                    </div>
+                    <h3 class="text-xl font-serif font-bold text-navy">History & Heritage</h3>
+                    <p class="text-gray-600 leading-relaxed text-sm">
+                        Established in 2038 B.S. by visionary local leaders and educators, Shree Chautare Danda Secondary School began as a modest community learning center in Ward No. 10 Bhakunde. Over four decades, through public support and government partnership, it has transformed into a comprehensive secondary educational institution serving hundreds of young minds annually across Baglung.
+                    </p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-md border-t-4 border-navy space-y-4">
+                    <div class="w-12 h-12 bg-navy/10 text-navy rounded-full flex items-center justify-center text-xl font-bold">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3 class="text-xl font-serif font-bold text-navy">Vision & Mission</h3>
+                    <p class="text-gray-600 leading-relaxed text-sm">
+                        <strong>Vision:</strong> To be a beacon of academic excellence, innovation, and ethical leadership in Gandaki Province.<br>
+                        <strong>Mission:</strong> To foster an inclusive learning environment that combines academic fundamentals with digital technology, sports, and civic responsibility, empowering students to succeed locally and globally.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Faculty Directory Section -->
+            <div class="bg-white p-8 rounded-2xl shadow-md mb-12">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-gray-200 pb-6 mb-6 gap-4">
+                    <div>
+                        <h2 class="text-2xl font-serif font-bold text-navy">Faculty & Administration</h2>
+                        <p class="text-xs text-gray-500 mt-1">Meet our dedicated team of educators and administrative staff</p>
+                    </div>
+                    <!-- Faculty Filter Tags -->
+                    <div class="flex flex-wrap gap-2" id="faculty-filters">
+                        <button onclick="filterFaculty('all')" class="faculty-filter-btn px-3 py-1.5 text-xs font-bold rounded-full bg-navy text-white">All Staff</button>
+                        <button onclick="filterFaculty('admin')" class="faculty-filter-btn px-3 py-1.5 text-xs font-bold rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200">Administration</button>
+                        <button onclick="filterFaculty('secondary')" class="faculty-filter-btn px-3 py-1.5 text-xs font-bold rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200">Secondary (9-12)</button>
+                        <button onclick="filterFaculty('basic')" class="faculty-filter-btn px-3 py-1.5 text-xs font-bold rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200">Basic (6-8)</button>
+                        <button onclick="filterFaculty('primary')" class="faculty-filter-btn px-3 py-1.5 text-xs font-bold rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200">Primary (K-5)</button>
+                    </div>
+                </div>
+
+                <!-- Faculty Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6" id="faculty-grid">
+                    <!-- Faculty item 1 -->
+                    <div class="faculty-card admin bg-neutralBg p-4 rounded-xl text-center border border-gray-200">
+                        <div class="w-20 h-20 mx-auto rounded-full bg-gray-300 flex items-center justify-center text-navy text-2xl font-bold mb-3">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <h4 class="font-bold text-navy">Ram Prasad Sharma</h4>
+                        <p class="text-xs text-gold font-bold">Principal</p>
+                        <p class="text-[11px] text-gray-500 mt-1">M.Ed Educational Mgmt</p>
+                    </div>
+                    <!-- Faculty item 2 -->
+                    <div class="faculty-card secondary bg-neutralBg p-4 rounded-xl text-center border border-gray-200">
+                        <div class="w-20 h-20 mx-auto rounded-full bg-gray-300 flex items-center justify-center text-navy text-2xl font-bold mb-3">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                        </div>
+                        <h4 class="font-bold text-navy">Sita Karki</h4>
+                        <p class="text-xs text-gold font-bold">Science Lead (Gr. 9-10)</p>
+                        <p class="text-[11px] text-gray-500 mt-1">M.Sc Physics</p>
+                    </div>
+                    <!-- Faculty item 3 -->
+                    <div class="faculty-card basic bg-neutralBg p-4 rounded-xl text-center border border-gray-200">
+                        <div class="w-20 h-20 mx-auto rounded-full bg-gray-300 flex items-center justify-center text-navy text-2xl font-bold mb-3">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <h4 class="font-bold text-navy">Bishnu Bahadur Thapa</h4>
+                        <p class="text-xs text-gold font-bold">Mathematics Teacher</p>
+                        <p class="text-[11px] text-gray-500 mt-1">B.Ed Mathematics</p>
+                    </div>
+                    <!-- Faculty item 4 -->
+                    <div class="faculty-card primary bg-neutralBg p-4 rounded-xl text-center border border-gray-200">
+                        <div class="w-20 h-20 mx-auto rounded-full bg-gray-300 flex items-center justify-center text-navy text-2xl font-bold mb-3">
+                            <i class="fas fa-child"></i>
+                        </div>
+                        <h4 class="font-bold text-navy">Gita Kumari Poude</h4>
+                        <p class="text-xs text-gold font-bold">Primary Coordinator</p>
+                        <p class="text-[11px] text-gray-500 mt-1">B.Ed Primary Education</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. ADMISSIONS VIEW -->
+        <section id="view-admissions" class="page-view py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-gold font-bold text-xs uppercase tracking-widest">Join Our Family</span>
+                <h1 class="text-3xl sm:text-4xl font-serif font-bold text-navy mt-1">Admissions Process & Criteria</h1>
+                <p class="text-gray-600 mt-2 text-sm sm:text-base">Simple, transparent enrollment steps for prospective parents and students for the upcoming academic session.</p>
+            </div>
+
+            <!-- Enrollment Steps Timeline -->
+            <div class="grid md:grid-cols-4 gap-6 mb-16">
+                <div class="bg-white p-6 rounded-xl shadow border-t-4 border-gold relative">
+                    <span class="text-3xl font-extrabold text-gold/30 absolute top-4 right-4">01</span>
+                    <h3 class="font-bold text-navy mb-2">Form Submission</h3>
+                    <p class="text-xs text-gray-600">Obtain and fill out the official application form online or at the school office.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow border-t-4 border-navy relative">
+                    <span class="text-3xl font-extrabold text-navy/20 absolute top-4 right-4">02</span>
+                    <h3 class="font-bold text-navy mb-2">Document Verification</h3>
+                    <p class="text-xs text-gray-600">Submit previous marksheets, birth certificate, and transfer certificate.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow border-t-4 border-gold relative">
+                    <span class="text-3xl font-extrabold text-gold/30 absolute top-4 right-4">03</span>
+                    <h3 class="font-bold text-navy mb-2">Interaction / Test</h3>
+                    <p class="text-xs text-gray-600">Basic placement assessment to understand the student's learning readiness.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow border-t-4 border-navy relative">
+                    <span class="text-3xl font-extrabold text-navy/20 absolute top-4 right-4">04</span>
+                    <h3 class="font-bold text-navy mb-2">Final Enrollment</h3>
+                    <p class="text-xs text-gray-600">Fee payment, textbook distribution, and orientation session attendance.</p>
+                </div>
+            </div>
+
+            <!-- Downloadable Application Forms & Fee Info -->
+            <div class="grid md:grid-cols-12 gap-8 mb-12">
+                <div class="md:col-span-7 bg-white p-8 rounded-2xl shadow-md">
+                    <h3 class="text-xl font-serif font-bold text-navy mb-4 flex items-center">
+                        <i class="fas fa-file-pdf text-red-600 mr-2"></i> Downloadable Resources
+                    </h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between p-3 bg-neutralBg rounded-lg border border-gray-200">
+                            <div class="flex items-center space-x-3">
+                                <i class="fas fa-file-alt text-navy text-xl"></i>
+                                <div>
+                                    <div class="font-bold text-xs text-navy">Official Admission Form (PDF)</div>
+                                    <div class="text-[10px] text-gray-500">Size: 1.2 MB &bull; Academic Year 2083</div>
+                                </div>
+                            </div>
+                            <button onclick="downloadSimulatedFile('Admission_Form_2083.pdf')" class="px-3 py-1.5 bg-navy text-gold text-xs font-bold rounded hover:bg-navy-light transition">
+                                <i class="fas fa-download mr-1"></i> Download
+                            </button>
+                        </div>
+                        <div class="flex items-center justify-between p-3 bg-neutralBg rounded-lg border border-gray-200">
+                            <div class="flex items-center space-x-3">
+                                <i class="fas fa-book text-navy text-xl"></i>
+                                <div>
+                                    <div class="font-bold text-xs text-navy">School Prospectus & Curriculum Guidelines</div>
+                                    <div class="text-[10px] text-gray-500">Size: 3.4 MB &bull; Comprehensive Brochure</div>
+                                </div>
+                            </div>
+                            <button onclick="downloadSimulatedFile('School_Prospectus_Baglung.pdf')" class="px-3 py-1.5 bg-navy text-gold text-xs font-bold rounded hover:bg-navy-light transition">
+                                <i class="fas fa-download mr-1"></i> Download
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fee Structure & Scholarships -->
+                <div class="md:col-span-5 bg-gold-light/40 p-8 rounded-2xl border border-gold/30">
+                    <h3 class="text-xl font-serif font-bold text-navy mb-2">Scholarships & Support</h3>
+                    <p class="text-xs text-gray-600 leading-relaxed mb-4">
+                        As a community-committed secondary school, we offer multiple scholarship quotas under Government of Nepal guidelines and local philanthropic funds:
+                    </p>
+                    <ul class="text-xs space-y-2 text-navy font-semibold">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-gold mr-2"></i> Merit Scholarship for Top District Performers</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-gold mr-2"></i> Marginalized & Underrepresented Group Quotas</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-gold mr-2"></i> Special Assistance for Bhakunde Residents</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. ACADEMICS VIEW -->
+        <section id="view-academics" class="page-view py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-gold font-bold text-xs uppercase tracking-widest">Educational Standards</span>
+                <h1 class="text-3xl sm:text-4xl font-serif font-bold text-navy mt-1">Curriculum & Extracurriculars</h1>
+                <p class="text-gray-600 mt-2 text-sm sm:text-base">Aligned with Nepal's National Curriculum Framework while fostering sports, technology, and leadership skills.</p>
+            </div>
+
+            <!-- Grade Tracks -->
+            <div class="grid md:grid-cols-3 gap-8 mb-16">
+                <div class="bg-white p-6 rounded-2xl shadow border-b-4 border-gold">
+                    <div class="w-12 h-12 bg-navy/10 text-navy rounded-full flex items-center justify-center text-xl font-bold mb-4">
+                        <i class="fas fa-shapes"></i>
+                    </div>
+                    <h3 class="text-lg font-serif font-bold text-navy mb-2">Primary Level (K-5)</h3>
+                    <p class="text-xs text-gray-600 leading-relaxed">
+                        Activity-based learning focusing on literacy, numeracy, social values, and creative play in a safe environment.
+                    </p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow border-b-4 border-navy">
+                    <div class="w-12 h-12 bg-gold/20 text-gold rounded-full flex items-center justify-center text-xl font-bold mb-4">
+                        <i class="fas fa-atom"></i>
+                    </div>
+                    <h3 class="text-lg font-serif font-bold text-navy mb-2">Basic Level (6-8)</h3>
+                    <p class="text-xs text-gray-600 leading-relaxed">
+                        Integrated science, mathematics, social studies, English, and Nepali, introducing practical lab work and computer education.
+                    </p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow border-b-4 border-gold">
+                    <div class="w-12 h-12 bg-navy/10 text-navy rounded-full flex items-center justify-center text-xl font-bold mb-4">
+                        <i class="fas fa-microscope"></i>
+                    </div>
+                    <h3 class="text-lg font-serif font-bold text-navy mb-2">Secondary Level (9-12)</h3>
+                    <p class="text-xs text-gray-600 leading-relaxed">
+                        Specialized SEE preparation and Higher Secondary streams (Management, Humanities, Science foundational tracks).
+                    </p>
+                </div>
+            </div>
+
+            <!-- ECA Activities Grid -->
+            <div class="bg-navy text-white p-8 rounded-2xl shadow-xl">
+                <h3 class="text-2xl font-serif font-bold mb-6 text-center text-gold">Extracurricular Activities (ECA)</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                    <div class="p-4 bg-navy-light/50 rounded-xl border border-white/10">
+                        <i class="fas fa-futbol text-3xl text-gold mb-2 block"></i>
+                        <h4 class="font-bold text-sm">Sports & Athletics</h4>
+                        <p class="text-[11px] text-gray-300 mt-1">Volleyball, Badminton, Football</p>
+                    </div>
+                    <div class="p-4 bg-navy-light/50 rounded-xl border border-white/10">
+                        <i class="fas fa-leaf text-3xl text-gold mb-2 block"></i>
+                        <h4 class="font-bold text-sm">Eco-Club & Environment</h4>
+                        <p class="text-[11px] text-gray-300 mt-1">Tree plantation & Baglung cleanup</p>
+                    </div>
+                    <div class="p-4 bg-navy-light/50 rounded-xl border border-white/10">
+                        <i class="fas fa-laptop-code text-3xl text-gold mb-2 block"></i>
+                        <h4 class="font-bold text-sm">Computer Lab</h4>
+                        <p class="text-[11px] text-gray-300 mt-1">Basic programming & digital skills</p>
+                    </div>
+                    <div class="p-4 bg-navy-light/50 rounded-xl border border-white/10">
+                        <i class="fas fa-music text-3xl text-gold mb-2 block"></i>
+                        <h4 class="font-bold text-sm">Cultural & Arts</h4>
+                        <p class="text-[11px] text-gray-300 mt-1">Folk dance, quiz & debate contests</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. NEWS & EVENTS VIEW -->
+        <section id="view-news" class="page-view py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-gold font-bold text-xs uppercase tracking-widest">Notice Board</span>
+                <h1 class="text-3xl sm:text-4xl font-serif font-bold text-navy mt-1">News, Notices & Events</h1>
+                <p class="text-gray-600 mt-2 text-sm sm:text-base">Stay updated with official announcements, exam schedules, and extracurricular activities.</p>
+            </div>
+
+            <!-- Filter Categories -->
+            <div class="flex justify-center flex-wrap gap-2 mb-8">
+                <button onclick="filterNews('all')" class="news-filter-btn active-news-btn px-4 py-2 text-xs font-bold rounded-full bg-navy text-white shadow">All Notices</button>
+                <button onclick="filterNews('academic')" class="news-filter-btn px-4 py-2 text-xs font-bold rounded-full bg-white text-navy border border-gray-300 hover:bg-gray-100">Academic</button>
+                <button onclick="filterNews('sports')" class="news-filter-btn px-4 py-2 text-xs font-bold rounded-full bg-white text-navy border border-gray-300 hover:bg-gray-100">Sports & ECA</button>
+                <button onclick="filterNews('admin')" class="news-filter-btn px-4 py-2 text-xs font-bold rounded-full bg-white text-navy border border-gray-300 hover:bg-gray-100">Administrative</button>
+            </div>
+
+            <!-- Notices Grid -->
+            <div class="grid md:grid-cols-3 gap-6" id="news-grid">
+                <!-- Notice 1 -->
+                <div class="news-card academic bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden flex flex-col">
+                    <div class="bg-navy p-4 text-gold text-xs font-bold flex justify-between items-center">
+                        <span><i class="fas fa-graduation-cap mr-1"></i> Academic</span>
+                        <span>Falgun 15, 2082</span>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-serif font-bold text-navy text-lg mb-2">Annual Examination Schedule Published</h3>
+                            <p class="text-xs text-gray-600 leading-relaxed mb-4">
+                                The routine for the final annual examinations for Grades 1 through 9 has been published. Exams commence on Chaitra 5.
+                            </p>
+                        </div>
+                        <button onclick="openNoticeModal('Annual Examination Schedule Published', 'The official examination routine for all grades (1-9) has been finalized by the examination board. Students can collect printed routines from their class teachers or check the school notice board.', 'Falgun 15, 2082')" class="text-xs font-bold text-navy hover:text-gold transition text-left">
+                            Read Full Notice <i class="fas fa-chevron-right ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Notice 2 -->
+                <div class="news-card sports bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden flex flex-col">
+                    <div class="bg-gold p-4 text-navy text-xs font-bold flex justify-between items-center">
+                        <span><i class="fas fa-trophy mr-1"></i> Sports</span>
+                        <span>Magh 28, 2082</span>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-serif font-bold text-navy text-lg mb-2">Inter-House Volleyball Championship</h3>
+                            <p class="text-xs text-gray-600 leading-relaxed mb-4">
+                                Congratulations to Sagarmatha House for winning the annual volleyball trophy at the Bhakunde Sports Ground!
+                            </p>
+                        </div>
+                        <button onclick="openNoticeModal('Inter-House Volleyball Championship', 'The annual sports week concluded with a thrilling volleyball final match between Sagarmatha and Annapurna house. Medals and certificates were awarded by the School Management Committee.', 'Magh 28, 2082')" class="text-xs font-bold text-navy hover:text-gold transition text-left">
+                            Read Full Notice <i class="fas fa-chevron-right ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Notice 3 -->
+                <div class="news-card admin bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden flex flex-col">
+                    <div class="bg-navy p-4 text-gold text-xs font-bold flex justify-between items-center">
+                        <span><i class="fas fa-building mr-1"></i> Administrative</span>
+                        <span>Magh 10, 2082</span>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-serif font-bold text-navy text-lg mb-2">Admissions Open for New Session 2083 BS</h3>
+                            <p class="text-xs text-gray-600 leading-relaxed mb-4">
+                                Application forms for Nursery through Grade 11 are now available at the main office and downloadable on our website.
+                            </p>
+                        </div>
+                        <button onclick="openNoticeModal('Admissions Open for New Session 2083 BS', 'Parents interested in enrolling their children for the upcoming academic session 2083 B.S. are requested to complete the registration process early as seats are limited in each grade section.', 'Magh 10, 2082')" class="text-xs font-bold text-navy hover:text-gold transition text-left">
+                            Read Full Notice <i class="fas fa-chevron-right ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. CONTACT VIEW -->
+        <section id="view-contact" class="page-view py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-gold font-bold text-xs uppercase tracking-widest">Connect With Us</span>
+                <h1 class="text-3xl sm:text-4xl font-serif font-bold text-navy mt-1">Contact & Location</h1>
+                <p class="text-gray-600 mt-2 text-sm sm:text-base">We welcome parents, visitors, and alumni to visit our campus in Bhakunde, Baglung.</p>
+            </div>
+
+            <div class="grid md:grid-cols-12 gap-8">
+                <!-- Location & Contact Info -->
+                <div class="md:col-span-5 bg-white p-8 rounded-2xl shadow-md space-y-6">
+                    <h3 class="text-xl font-serif font-bold text-navy border-b pb-3">School Office Information</h3>
+                    <div class="space-y-4 text-sm text-gray-600">
+                        <div class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-gold text-lg mt-1 w-8"></i>
+                            <div>
+                                <strong class="text-navy block">Address</strong>
+                                Shree Chautare Danda Secondary School<br>
+                                Ward No. 10 Bhakunde, Baglung Municipality<br>
+                                Gandaki Province, Nepal
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-phone-alt text-gold text-lg mt-1 w-8"></i>
+                            <div>
+                                <strong class="text-navy block">Phone & Helpline</strong>
+                                Main Office: +977 068-XXXXXX<br>
+                                Admissions Desk: +977 98XXXXXXXX
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-envelope text-gold text-lg mt-1 w-8"></i>
+                            <div>
+                                <strong class="text-navy block">Email Correspondence</strong>
+                                General Inquiry: info@chautaredanda.edu.np<br>
+                                Admissions: admissions@chautaredanda.edu.np
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="md:col-span-7 bg-white p-8 rounded-2xl shadow-md border-t-4 border-navy">
+                    <h3 class="text-xl font-serif font-bold text-navy mb-4">Send Us a Direct Message</h3>
+                    <form onsubmit="handleDirectContact(event)" class="space-y-4">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-navy mb-1">Full Name *</label>
+                                <input type="text" required class="w-full px-3 py-2 border rounded-md text-sm focus:ring-2 focus:ring-navy focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-navy mb-1">Email Address</label>
+                                <input type="email" class="w-full px-3 py-2 border rounded-md text-sm focus:ring-2 focus:ring-navy focus:outline-none">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-navy mb-1">Subject</label>
+                            <input type="text" required class="w-full px-3 py-2 border rounded-md text-sm focus:ring-2 focus:ring-navy focus:outline-none" placeholder="e.g. Admission Inquiry / Marksheet Transfer">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-navy mb-1">Message *</label>
+                            <textarea rows="4" required class="w-full px-3 py-2 border rounded-md text-sm focus:ring-2 focus:ring-navy focus:outline-none"></textarea>
+                        </div>
+                        <button type="submit" class="px-6 py-3 bg-navy hover:bg-navy-light text-gold font-bold text-sm rounded-md shadow transition">
+                            Send Message
+                        </button>
+                    </form>
+                    <div id="contactAlert" class="hidden mt-3 p-3 bg-green-100 text-green-800 rounded-md text-xs font-semibold">
+                        <i class="fas fa-check-circle mr-1"></i> Message sent successfully! Our administrative team will respond shortly.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- TOUR BOOKING MODAL -->
+    <div id="tourModal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl relative transform transition-all">
+            <button onclick="closeTourModal()" class="absolute top-4 right-4 text-gray-400 hover:text-navy text-lg">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="text-center mb-6">
+                <div class="w-12 h-12 bg-gold/20 text-gold rounded-full flex items-center justify-center mx-auto mb-2 text-xl">
+                    <i class="fas fa-walking"></i>
+                </div>
+                <h3 class="font-serif font-bold text-xl text-navy">Book a Campus Tour</h3>
+                <p class="text-xs text-gray-500">Visit our Bhakunde campus and meet our teaching faculty.</p>
+            </div>
+            <form onsubmit="handleTourBooking(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-navy mb-1">Your Full Name *</label>
+                    <input type="text" required class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-navy focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-navy mb-1">Phone Number *</label>
+                    <input type="tel" required class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-navy focus:outline-none">
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-navy mb-1">Preferred Date *</label>
+                        <input type="date" required class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-navy focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-navy mb-1">Time Slot *</label>
+                        <select class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-navy focus:outline-none bg-white">
+                            <option>10:30 AM</option>
+                            <option>01:00 PM</option>
+                            <option>03:00 PM</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="w-full py-3 bg-navy hover:bg-navy-light text-gold font-bold text-sm rounded-md shadow transition">
+                    Confirm Tour Booking
+                </button>
+            </form>
+            <div id="tourSuccessAlert" class="hidden mt-3 p-3 bg-green-100 text-green-800 rounded-md text-xs font-semibold text-center">
+                <i class="fas fa-check-circle mr-1"></i> Tour booked! We look forward to meeting you.
+            </div>
+        </div>
+    </div>
+
+    <!-- NOTICE DETAIL MODAL -->
+    <div id="noticeModal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl relative">
+            <button onclick="closeNoticeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-navy text-lg">
+                <i class="fas fa-times"></i>
+            </button>
+            <span id="modalNoticeDate" class="text-xs text-gold font-bold uppercase tracking-wider block mb-1"></span>
+            <h3 id="modalNoticeTitle" class="font-serif font-bold text-xl text-navy mb-4"></h3>
+            <p id="modalNoticeBody" class="text-xs text-gray-600 leading-relaxed mb-6"></p>
+            <button onclick="closeNoticeModal()" class="w-full py-2 bg-navy text-white text-xs font-bold rounded hover:bg-navy-light">
+                Close Window
+            </button>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-navy-dark text-white border-t-4 border-gold pt-12 pb-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-8 border-b border-navy-light">
+                <div class="space-y-3">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-navy font-bold">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <span class="font-serif font-bold text-base text-gold">SHREE CHAUTARE DANDA</span>
+                    </div>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        Dedicated to academic excellence, sportsmanship, and character development in Ba.Na.10 Bhakunde, Baglung District.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-gold font-bold text-sm uppercase mb-3 font-serif">Quick Navigation</h4>
+                    <ul class="text-xs space-y-2 text-gray-300">
+                        <li><a href="#about" onclick="navigateTo('about')" class="hover:text-gold transition">About School</a></li>
+                        <li><a href="#admissions" onclick="navigateTo('admissions')" class="hover:text-gold transition">Admissions 2083</a></li>
+                        <li><a href="#academics" onclick="navigateTo('academics')" class="hover:text-gold transition">Curriculum Tracks</a></li>
+                        <li><a href="#news" onclick="navigateTo('news')" class="hover:text-gold transition">School Notice Board</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-gold font-bold text-sm uppercase mb-3 font-serif">Academics & Extra</h4>
+                    <ul class="text-xs space-y-2 text-gray-300">
+                        <li><span class="text-gray-400">Primary Education (K-5)</span></li>
+                        <li><span class="text-gray-400">Basic Level (6-8)</span></li>
+                        <li><span class="text-gray-400">Secondary SEE & +2</span></li>
+                        <li><span class="text-gray-400">Computer & Science Labs</span></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-gold font-bold text-sm uppercase mb-3 font-serif">Contact Details</h4>
+                    <p class="text-xs text-gray-300 leading-relaxed">
+                        Ba.Na.10 Bhakunde, Baglung District<br>
+                        Gandaki Province, Nepal<br><br>
+                        Phone: +977 068-XXXXXX<br>
+                        Email: info@chautaredanda.edu.np
+                    </p>
+                </div>
+            </div>
+            <div class="pt-6 flex flex-col sm:flex-row justify-between items-center text-xs text-gray-400">
+                <p>&copy; <span id="currentYear"></span> Shree Chautare Danda Secondary School. All rights reserved.</p>
+                <p class="mt-2 sm:mt-0">Designed for Baglung Municipality & Community</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Set dynamic current year
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Single Page Navigation Functionality
+        function navigateTo(viewId) {
+            // Hide all page views
+            const views = document.querySelectorAll('.page-view');
+            views.forEach(v => v.classList.remove('active'));
+
+            // Show selected view
+            const target = document.getElementById('view-' + viewId);
+            if (target) {
+                target.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            // Update Desktop Nav styles
+            const navBtns = document.querySelectorAll('.nav-btn');
+            navBtns.forEach(btn => {
+                btn.classList.remove('bg-navy-light', 'text-gold');
+            });
+            const activeNavBtn = document.getElementById('nav-' + viewId);
+            if (activeNavBtn) {
+                activeNavBtn.classList.add('bg-navy-light', 'text-gold');
+            }
+
+            // Close Mobile Menu Drawer if open
+            const drawer = document.getElementById('mobile-drawer');
+            if (drawer && !drawer.classList.contains('hidden')) {
+                drawer.classList.add('hidden');
+            }
+
+            // Update URL Hash
+            window.location.hash = viewId;
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const drawer = document.getElementById('mobile-drawer');
+            drawer.classList.toggle('hidden');
+        }
+
+        // Handle Hash Routing on Load
+        window.addEventListener('load', () => {
+            const hash = window.location.hash.replace('#', '');
+            if (hash && ['home', 'about', 'admissions', 'academics', 'news', 'contact'].includes(hash)) {
+                navigateTo(hash);
+            } else {
+                navigateTo('home');
+            }
+        });
+
+        // Faculty Filter Function
+        function filterFaculty(category) {
+            const cards = document.querySelectorAll('.faculty-card');
+            cards.forEach(card => {
+                if (category === 'all' || card.classList.contains(category)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Update button styles
+            const buttons = document.querySelectorAll('.faculty-filter-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-navy', 'text-white');
+                btn.classList.add('bg-gray-100', 'text-gray-600');
+            });
+            event.currentTarget.classList.remove('bg-gray-100', 'text-gray-600');
+            event.currentTarget.classList.add('bg-navy', 'text-white');
+        }
+
+        // News & Notices Filter Function
+        function filterNews(category) {
+            const cards = document.querySelectorAll('.news-card');
+            cards.forEach(card => {
+                if (category === 'all' || card.classList.contains(category)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Update filter button styles
+            const buttons = document.querySelectorAll('.news-filter-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-navy', 'text-white', 'shadow');
+                btn.classList.add('bg-white', 'text-navy', 'border', 'border-gray-300');
+            });
+            event.currentTarget.classList.remove('bg-white', 'border', 'border-gray-300');
+            event.currentTarget.classList.add('bg-navy', 'text-white', 'shadow');
+        }
+
+        // Interactive Tour Modal Handling
+        function openTourModal() {
+            document.getElementById('tourModal').classList.remove('hidden');
+        }
+
+        function closeTourModal() {
+            document.getElementById('tourModal').classList.add('hidden');
+            document.getElementById('tourSuccessAlert').classList.add('hidden');
+        }
+
+        function handleTourBooking(e) {
+            e.preventDefault();
+            document.getElementById('tourSuccessAlert').classList.remove('hidden');
+            setTimeout(() => {
+                closeTourModal();
+            }, 2500);
+        }
+
+        // Inquiry Form Handler
+        function handleInquirySubmit(e) {
+            e.preventDefault();
+            document.getElementById('inquiryAlert').classList.remove('hidden');
+            e.target.reset();
+            setTimeout(() => {
+                document.getElementById('inquiryAlert').classList.add('hidden');
+            }, 4000);
+        }
+
+        // Direct Contact Form Handler
+        function handleDirectContact(e) {
+            e.preventDefault();
+            document.getElementById('contactAlert').classList.remove('hidden');
+            e.target.reset();
+            setTimeout(() => {
+                document.getElementById('contactAlert').classList.add('hidden');
+            }, 4000);
+        }
+
+        // Notice Modal Handling
+        function openNoticeModal(title, body, date) {
+            document.getElementById('modalNoticeTitle').textContent = title;
+            document.getElementById('modalNoticeBody').textContent = body;
+            document.getElementById('modalNoticeDate').textContent = date;
+            document.getElementById('noticeModal').classList.remove('hidden');
+        }
+
+        function closeNoticeModal() {
+            document.getElementById('noticeModal').classList.add('hidden');
+        }
+
+        // Simulated PDF Download feedback
+        function downloadSimulatedFile(filename) {
+            const tempBox = document.createElement('div');
+            tempBox.className = 'fixed bottom-4 right-4 bg-navy text-gold px-4 py-3 rounded-lg shadow-xl text-xs font-bold z-50 flex items-center space-x-2';
+            tempBox.innerHTML = `<i class="fas fa-file-download text-lg"></i> <span>Downloading ${filename}...</span>`;
+            document.body.appendChild(tempBox);
+            setTimeout(() => {
+                tempBox.remove();
+            }, 2500);
+        }
+    </script>
 </body>
 </html>
