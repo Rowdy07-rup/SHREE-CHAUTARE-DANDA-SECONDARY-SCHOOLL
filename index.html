@@ -73,12 +73,27 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #D4AF37;
         }
+        /* Fixed Background Watermark */
+        .watermark-bg {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50vw;
+            max-width: 600px;
+            opacity: 0.04;
+            pointer-events: none;
+            z-index: 0;
+        }
     </style>
 </head>
-<body class="bg-neutralBg text-gray-800 font-sans flex flex-col min-h-screen">
+<body class="bg-neutralBg text-gray-800 font-sans flex flex-col min-h-screen relative">
+
+    <!-- Center Background Watermark Photo -->
+    <img src="school%20photo%201.jpg" alt="Watermark" class="watermark-bg">
 
     <!-- Top Utility Bar -->
-    <div class="bg-navy-dark text-white text-xs py-2 px-4 border-b border-navy-light hidden sm:block">
+    <div class="bg-navy-dark text-white text-xs py-2 px-4 border-b border-navy-light hidden sm:block relative z-10">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <div class="flex items-center space-x-6">
                 <span><i class="fas fa-map-marker-alt text-gold mr-2"></i>बा.नं. १० भकुण्डे, बागलुङ जिल्ला, नेपाल</span>
@@ -134,15 +149,7 @@
                 </div>
             </div>
         </div>
-<!-- Hero Graphic / School Photo -->
-<div class="md:col-span-5 mt-8 md:mt-0">
-    <div class="bg-white/10 backdrop-blur-md p-3 rounded-2xl border border-white/20 shadow-2xl relative overflow-hidden">
-        <!-- YOUR PHOTO CODE HERE -->
-        <img src="school%20photo%201.jpg" 
-             alt="श्री चौतारे डाँडा माध्यमिक विद्यालय" 
-             class="w-full h-64 sm:h-80 object-cover rounded-xl shadow-md border-2 border-gold/40">
-    </div>
-</div>
+
         <!-- Mobile Drawer Navigation -->
         <div id="mobile-drawer" class="hidden lg:hidden bg-navy-dark border-t border-navy-light transition-all duration-300">
             <div class="px-4 pt-3 pb-6 space-y-2">
@@ -163,7 +170,7 @@
     </header>
 
     <!-- Announcement Ticker -->
-    <div class="bg-gold-light border-b border-gold/30 text-navy py-2 px-4 shadow-inner">
+    <div class="bg-gold-light border-b border-gold/30 text-navy py-2 px-4 shadow-inner relative z-10">
         <div class="max-w-7xl mx-auto flex items-center">
             <span class="bg-navy text-gold text-xs uppercase font-extrabold px-3 py-1 rounded-full flex items-center shrink-0 mr-3">
                 <i class="fas fa-bullhorn mr-1.5 animate-pulse"></i> सूचना
@@ -179,14 +186,12 @@
     </div>
 
     <!-- MAIN CONTENT CONTAINER WITH SPA VIEWS -->
-    <main class="flex-grow">
+    <main class="flex-grow relative z-10">
 
         <!-- 1. HOMEPAGE VIEW -->
         <section id="view-home" class="page-view active">
-            <!-- Hero Banner -->
-            <div class="relative bg-navy text-white overflow-hidden py-20 lg:py-28">
-                <!-- Background decorative overlay -->
-                <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#D4AF37_1px,transparent_1px)] [background-size:16px_16px]"></div>
+            <!-- Hero Banner with Background Image Overlay (Watermark) -->
+            <div class="relative bg-navy text-white overflow-hidden py-20 lg:py-28 bg-no-repeat bg-center bg-cover" style="background-image: linear-gradient(rgba(15, 44, 89, 0.88), rgba(15, 44, 89, 0.88)), url('school%20photo%201.jpg');">
                 
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                     <div class="grid md:grid-cols-12 gap-8 items-center">
@@ -212,7 +217,7 @@
                             </div>
                         </div>
 
-                        <!-- Hero Graphic / Quick Stats Card -->
+                        <!-- Quick Stats Card -->
                         <div class="md:col-span-5 mt-8 md:mt-0">
                             <div class="bg-white/10 backdrop-blur-md p-6 sm:p-8 rounded-2xl border border-white/20 shadow-2xl relative">
                                 <h3 class="text-xl font-bold font-serif text-white mb-6 border-b border-white/20 pb-3 flex items-center">
@@ -245,22 +250,22 @@
             <!-- Quick Action Links -->
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 relative z-20">
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <button onclick="navigateTo('academics')" class="bg-white p-5 rounded-xl shadow-md border-t-4 border-gold hover:shadow-xl transition text-left group">
+                    <button onclick="navigateTo('academics')" class="bg-white/90 backdrop-blur p-5 rounded-xl shadow-md border-t-4 border-gold hover:shadow-xl transition text-left group">
                         <i class="fas fa-calendar-alt text-2xl text-navy group-hover:text-gold transition mb-2 block"></i>
                         <h4 class="font-bold text-navy text-base">शैक्षिक क्यालेन्डर</h4>
                         <p class="text-xs text-gray-500 mt-1">परीक्षा तथा कार्यक्रम तालिका</p>
                     </button>
-                    <button onclick="navigateTo('academics')" class="bg-white p-5 rounded-xl shadow-md border-t-4 border-navy hover:shadow-xl transition text-left group">
+                    <button onclick="navigateTo('academics')" class="bg-white/90 backdrop-blur p-5 rounded-xl shadow-md border-t-4 border-navy hover:shadow-xl transition text-left group">
                         <i class="fas fa-clock text-2xl text-navy group-hover:text-gold transition mb-2 block"></i>
                         <h4 class="font-bold text-navy text-base">कक्षा कार्यतालिका</h4>
                         <p class="text-xs text-gray-500 mt-1">दैनिक रुटिन तथा पिरियडहरू</p>
                     </button>
-                    <button onclick="navigateTo('admissions')" class="bg-white p-5 rounded-xl shadow-md border-t-4 border-gold hover:shadow-xl transition text-left group">
+                    <button onclick="navigateTo('admissions')" class="bg-white/90 backdrop-blur p-5 rounded-xl shadow-md border-t-4 border-gold hover:shadow-xl transition text-left group">
                         <i class="fas fa-download text-2xl text-navy group-hover:text-gold transition mb-2 block"></i>
                         <h4 class="font-bold text-navy text-base">डाउनलोडहरू</h4>
                         <p class="text-xs text-gray-500 mt-1">फारम, पाठ्यक्रम र सूचनाहरू</p>
                     </button>
-                    <button onclick="navigateTo('news')" class="bg-white p-5 rounded-xl shadow-md border-t-4 border-navy hover:shadow-xl transition text-left group">
+                    <button onclick="navigateTo('news')" class="bg-white/90 backdrop-blur p-5 rounded-xl shadow-md border-t-4 border-navy hover:shadow-xl transition text-left group">
                         <i class="fas fa-newspaper text-2xl text-navy group-hover:text-gold transition mb-2 block"></i>
                         <h4 class="font-bold text-navy text-base">सूचना पाटी</h4>
                         <p class="text-xs text-gray-500 mt-1">ताजा समाचार तथा सूचनाहरू</p>
@@ -269,7 +274,7 @@
             </div>
 
             <!-- Principal's Message -->
-            <div class="py-16 bg-white my-12 shadow-sm border-y border-gray-100">
+            <div class="py-16 bg-white/90 backdrop-blur my-12 shadow-sm border-y border-gray-100">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="grid md:grid-cols-12 gap-10 items-center">
                         <div class="md:col-span-4 text-center">
@@ -365,7 +370,7 @@
 
             <!-- History & Vision Cards -->
             <div class="grid md:grid-cols-2 gap-8 mb-16">
-                <div class="bg-white p-8 rounded-2xl shadow-md border-t-4 border-gold space-y-4">
+                <div class="bg-white/90 backdrop-blur p-8 rounded-2xl shadow-md border-t-4 border-gold space-y-4">
                     <div class="w-12 h-12 bg-gold/20 text-gold rounded-full flex items-center justify-center text-xl font-bold">
                         <i class="fas fa-landmark"></i>
                     </div>
@@ -374,7 +379,7 @@
                         वि.सं. २०३८ सालमा स्थानीय शिक्षाप्रेमी तथा समाजसेवीहरूको योगदानबाट स्थापित श्री चौतारे डाँडा माध्यमिक विद्यालयले बागलुङ जिल्लाको वडा नं. १० भकुण्डेबाट आफ्नो सेवा यात्रा सुरु गरेको थियो। चार दशकको यस यात्रामा सरकार र समुदायको सहकार्यमा यो एक प्रतिष्ठित माध्यमिक विद्यालयको रूपमा विकसित भएको छ।
                     </p>
                 </div>
-                <div class="bg-white p-8 rounded-2xl shadow-md border-t-4 border-navy space-y-4">
+                <div class="bg-white/90 backdrop-blur p-8 rounded-2xl shadow-md border-t-4 border-navy space-y-4">
                     <div class="w-12 h-12 bg-navy/10 text-navy rounded-full flex items-center justify-center text-xl font-bold">
                         <i class="fas fa-eye"></i>
                     </div>
@@ -387,7 +392,7 @@
             </div>
 
             <!-- Faculty Directory Section -->
-            <div class="bg-white p-8 rounded-2xl shadow-md mb-12">
+            <div class="bg-white/90 backdrop-blur p-8 rounded-2xl shadow-md mb-12">
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-gray-200 pb-6 mb-6 gap-4">
                     <div>
                         <h2 class="text-2xl font-serif font-bold text-navy">शिक्षक तथा कर्मचारी विवरण</h2>
@@ -405,8 +410,7 @@
 
                 <!-- Faculty Grid -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6" id="faculty-grid">
-                    <!-- Faculty item 1 -->
-                    <div class="faculty-card admin bg-neutralBg p-4 rounded-xl text-center border border-gray-200">
+                    <div class="faculty-card admin bg-neutralBg/80 p-4 rounded-xl text-center border border-gray-200">
                         <div class="w-20 h-20 mx-auto rounded-full bg-gray-300 flex items-center justify-center text-navy text-2xl font-bold mb-3">
                             <i class="fas fa-user-tie"></i>
                         </div>
@@ -414,8 +418,7 @@
                         <p class="text-xs text-gold font-bold">प्रधानाध्यापक</p>
                         <p class="text-[11px] text-gray-500 mt-1">एम.एड. शैक्षिक व्यवस्थापन</p>
                     </div>
-                    <!-- Faculty item 2 -->
-                    <div class="faculty-card secondary bg-neutralBg p-4 rounded-xl text-center border border-gray-200">
+                    <div class="faculty-card secondary bg-neutralBg/80 p-4 rounded-xl text-center border border-gray-200">
                         <div class="w-20 h-20 mx-auto rounded-full bg-gray-300 flex items-center justify-center text-navy text-2xl font-bold mb-3">
                             <i class="fas fa-chalkboard-teacher"></i>
                         </div>
@@ -423,8 +426,7 @@
                         <p class="text-xs text-gold font-bold">विज्ञान संयोजक (कक्षा ९-१०)</p>
                         <p class="text-[11px] text-gray-500 mt-1">एम.एससी. भौतिकशास्त्र</p>
                     </div>
-                    <!-- Faculty item 3 -->
-                    <div class="faculty-card basic bg-neutralBg p-4 rounded-xl text-center border border-gray-200">
+                    <div class="faculty-card basic bg-neutralBg/80 p-4 rounded-xl text-center border border-gray-200">
                         <div class="w-20 h-20 mx-auto rounded-full bg-gray-300 flex items-center justify-center text-navy text-2xl font-bold mb-3">
                             <i class="fas fa-user-graduate"></i>
                         </div>
@@ -432,8 +434,7 @@
                         <p class="text-xs text-gold font-bold">गणित शिक्षक</p>
                         <p class="text-[11px] text-gray-500 mt-1">बी.एड. गणित</p>
                     </div>
-                    <!-- Faculty item 4 -->
-                    <div class="faculty-card primary bg-neutralBg p-4 rounded-xl text-center border border-gray-200">
+                    <div class="faculty-card primary bg-neutralBg/80 p-4 rounded-xl text-center border border-gray-200">
                         <div class="w-20 h-20 mx-auto rounded-full bg-gray-300 flex items-center justify-center text-navy text-2xl font-bold mb-3">
                             <i class="fas fa-child"></i>
                         </div>
@@ -455,22 +456,22 @@
 
             <!-- Enrollment Steps Timeline -->
             <div class="grid md:grid-cols-4 gap-6 mb-16">
-                <div class="bg-white p-6 rounded-xl shadow border-t-4 border-gold relative">
+                <div class="bg-white/90 backdrop-blur p-6 rounded-xl shadow border-t-4 border-gold relative">
                     <span class="text-3xl font-extrabold text-gold/30 absolute top-4 right-4">०१</span>
                     <h3 class="font-bold text-navy mb-2">फारम बुझाउने</h3>
                     <p class="text-xs text-gray-600">विद्यालयको वेबसाइट वा प्रशासन शाखाबाट आवेदन फारम प्राप्त गरी भर्नुहोस्।</p>
                 </div>
-                <div class="bg-white p-6 rounded-xl shadow border-t-4 border-navy relative">
+                <div class="bg-white/90 backdrop-blur p-6 rounded-xl shadow border-t-4 border-navy relative">
                     <span class="text-3xl font-extrabold text-navy/20 absolute top-4 right-4">०२</span>
                     <h3 class="font-bold text-navy mb-2">कागजात रुजु</h3>
                     <p class="text-xs text-gray-600">अघिल्लो कक्षाको लब्धाङ्क पत्र, जन्मदर्ता र स्थानान्तरण प्रमाणपत्र बुझाउनुहोस्।</p>
                 </div>
-                <div class="bg-white p-6 rounded-xl shadow border-t-4 border-gold relative">
+                <div class="bg-white/90 backdrop-blur p-6 rounded-xl shadow border-t-4 border-gold relative">
                     <span class="text-3xl font-extrabold text-gold/30 absolute top-4 right-4">०३</span>
                     <h3 class="font-bold text-navy mb-2">प्रवेश परीक्षा / अन्तर्वार्ता</h3>
                     <p class="text-xs text-gray-600">विद्यार्थीको सिकाइ स्तर पहिचानका लागि सामान्य प्रवेश परीक्षा सञ्चालन गरिनेछ।</p>
                 </div>
-                <div class="bg-white p-6 rounded-xl shadow border-t-4 border-navy relative">
+                <div class="bg-white/90 backdrop-blur p-6 rounded-xl shadow border-t-4 border-navy relative">
                     <span class="text-3xl font-extrabold text-navy/20 absolute top-4 right-4">०४</span>
                     <h3 class="font-bold text-navy mb-2">अन्तिम भर्ना</h3>
                     <p class="text-xs text-gray-600">आवश्यक प्रक्रिया पुरा गरी पाठ्यपुस्तक र अभिमुखीकरण कार्यक्रममा सहभागी हुनुहोस्।</p>
@@ -479,7 +480,7 @@
 
             <!-- Downloadable Application Forms & Fee Info -->
             <div class="grid md:grid-cols-12 gap-8 mb-12">
-                <div class="md:col-span-7 bg-white p-8 rounded-2xl shadow-md">
+                <div class="md:col-span-7 bg-white/90 backdrop-blur p-8 rounded-2xl shadow-md">
                     <h3 class="text-xl font-serif font-bold text-navy mb-4 flex items-center">
                         <i class="fas fa-file-pdf text-red-600 mr-2"></i> डाउनलोड गर्न सकिने कागजातहरू
                     </h3>
@@ -512,7 +513,7 @@
                 </div>
 
                 <!-- Fee Structure & Scholarships -->
-                <div class="md:col-span-5 bg-gold-light/40 p-8 rounded-2xl border border-gold/30">
+                <div class="md:col-span-5 bg-gold-light/60 backdrop-blur p-8 rounded-2xl border border-gold/30">
                     <h3 class="text-xl font-serif font-bold text-navy mb-2">छात्रवृत्ति तथा सहयोग</h3>
                     <p class="text-xs text-gray-600 leading-relaxed mb-4">
                         नेपाल सरकारको नियमानुसार तथा स्थानीय अक्षयकोषबाट जेहेन्दार तथा विपन्न विद्यार्थीहरूका लागि विभिन्न छात्रवृत्तिको व्यवस्था गरिएको छ:
@@ -536,7 +537,7 @@
 
             <!-- Grade Tracks -->
             <div class="grid md:grid-cols-3 gap-8 mb-16">
-                <div class="bg-white p-6 rounded-2xl shadow border-b-4 border-gold">
+                <div class="bg-white/90 backdrop-blur p-6 rounded-2xl shadow border-b-4 border-gold">
                     <div class="w-12 h-12 bg-navy/10 text-navy rounded-full flex items-center justify-center text-xl font-bold mb-4">
                         <i class="fas fa-shapes"></i>
                     </div>
@@ -545,7 +546,7 @@
                         अक्षर ज्ञान, सङ्ख्यात्मक ज्ञान र सिर्जनात्मक खेलहरूमार्फत बालबालिकाको आधारभूत विकासमा जोड।
                     </p>
                 </div>
-                <div class="bg-white p-6 rounded-2xl shadow border-b-4 border-navy">
+                <div class="bg-white/90 backdrop-blur p-6 rounded-2xl shadow border-b-4 border-navy">
                     <div class="w-12 h-12 bg-gold/20 text-gold rounded-full flex items-center justify-center text-xl font-bold mb-4">
                         <i class="fas fa-atom"></i>
                     </div>
@@ -554,7 +555,7 @@
                         विज्ञान, गणित, सामाजिक अध्ययन, अंग्रेजी र नेपाली विषयसँगै कम्प्युटर शिक्षाको व्यावहारिक अभ्यास।
                     </p>
                 </div>
-                <div class="bg-white p-6 rounded-2xl shadow border-b-4 border-gold">
+                <div class="bg-white/90 backdrop-blur p-6 rounded-2xl shadow border-b-4 border-gold">
                     <div class="w-12 h-12 bg-navy/10 text-navy rounded-full flex items-center justify-center text-xl font-bold mb-4">
                         <i class="fas fa-microscope"></i>
                     </div>
@@ -611,8 +612,7 @@
 
             <!-- Notices Grid -->
             <div class="grid md:grid-cols-3 gap-6" id="news-grid">
-                <!-- Notice 1 -->
-                <div class="news-card academic bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden flex flex-col">
+                <div class="news-card academic bg-white/90 backdrop-blur rounded-2xl shadow-md border border-gray-100 overflow-hidden flex flex-col">
                     <div class="bg-navy p-4 text-gold text-xs font-bold flex justify-between items-center">
                         <span><i class="fas fa-graduation-cap mr-1"></i> शैक्षिक</span>
                         <span>फागुन १५, २०८२</span>
@@ -630,8 +630,7 @@
                     </div>
                 </div>
 
-                <!-- Notice 2 -->
-                <div class="news-card sports bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden flex flex-col">
+                <div class="news-card sports bg-white/90 backdrop-blur rounded-2xl shadow-md border border-gray-100 overflow-hidden flex flex-col">
                     <div class="bg-gold p-4 text-navy text-xs font-bold flex justify-between items-center">
                         <span><i class="fas fa-trophy mr-1"></i> खेलकुद</span>
                         <span>माघ २८, २०८२</span>
@@ -649,8 +648,7 @@
                     </div>
                 </div>
 
-                <!-- Notice 3 -->
-                <div class="news-card admin bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden flex flex-col">
+                <div class="news-card admin bg-white/90 backdrop-blur rounded-2xl shadow-md border border-gray-100 overflow-hidden flex flex-col">
                     <div class="bg-navy p-4 text-gold text-xs font-bold flex justify-between items-center">
                         <span><i class="fas fa-building mr-1"></i> प्रशासनिक</span>
                         <span>माघ १०, २०८२</span>
@@ -679,8 +677,7 @@
             </div>
 
             <div class="grid md:grid-cols-12 gap-8">
-                <!-- Location & Contact Info -->
-                <div class="md:col-span-5 bg-white p-8 rounded-2xl shadow-md space-y-6">
+                <div class="md:col-span-5 bg-white/90 backdrop-blur p-8 rounded-2xl shadow-md space-y-6">
                     <h3 class="text-xl font-serif font-bold text-navy border-b pb-3">विद्यालय कार्यालय विवरण</h3>
                     <div class="space-y-4 text-sm text-gray-600">
                         <div class="flex items-start">
@@ -711,8 +708,7 @@
                     </div>
                 </div>
 
-                <!-- Contact Form -->
-                <div class="md:col-span-7 bg-white p-8 rounded-2xl shadow-md border-t-4 border-navy">
+                <div class="md:col-span-7 bg-white/90 backdrop-blur p-8 rounded-2xl shadow-md border-t-4 border-navy">
                     <h3 class="text-xl font-serif font-bold text-navy mb-4">हामीलाई प्रत्यक्ष सन्देश पठाउनुहोस्</h3>
                     <form onsubmit="handleDirectContact(event)" class="space-y-4">
                         <div class="grid grid-cols-2 gap-4">
@@ -808,7 +804,7 @@
     </div>
 
     <!-- FOOTER -->
-    <footer class="bg-navy-dark text-white border-t-4 border-gold pt-12 pb-6">
+    <footer class="bg-navy-dark text-white border-t-4 border-gold pt-12 pb-6 relative z-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-8 border-b border-navy-light">
                 <div class="space-y-3">
@@ -863,18 +859,15 @@
 
         // Single Page Navigation Functionality
         function navigateTo(viewId) {
-            // Hide all page views
             const views = document.querySelectorAll('.page-view');
             views.forEach(v => v.classList.remove('active'));
 
-            // Show selected view
             const target = document.getElementById('view-' + viewId);
             if (target) {
                 target.classList.add('active');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
 
-            // Update Desktop Nav styles
             const navBtns = document.querySelectorAll('.nav-btn');
             navBtns.forEach(btn => {
                 btn.classList.remove('bg-navy-light', 'text-gold');
@@ -884,13 +877,11 @@
                 activeNavBtn.classList.add('bg-navy-light', 'text-gold');
             }
 
-            // Close Mobile Menu Drawer if open
             const drawer = document.getElementById('mobile-drawer');
             if (drawer && !drawer.classList.contains('hidden')) {
                 drawer.classList.add('hidden');
             }
 
-            // Update URL Hash
             window.location.hash = viewId;
         }
 
@@ -921,7 +912,6 @@
                 }
             });
 
-            // Update button styles
             const buttons = document.querySelectorAll('.faculty-filter-btn');
             buttons.forEach(btn => {
                 btn.classList.remove('bg-navy', 'text-white');
@@ -942,7 +932,6 @@
                 }
             });
 
-            // Update filter button styles
             const buttons = document.querySelectorAll('.news-filter-btn');
             buttons.forEach(btn => {
                 btn.classList.remove('bg-navy', 'text-white', 'shadow');
