@@ -610,7 +610,43 @@
                 <button onclick="filterNews('sports')" class="news-filter-btn px-4 py-2 text-xs font-bold rounded-full bg-white text-navy border border-gray-300 hover:bg-gray-100">खेलकुद</button>
                 <button onclick="filterNews('admin')" class="news-filter-btn px-4 py-2 text-xs font-bold rounded-full bg-white text-navy border border-gray-300 hover:bg-gray-100">प्रशासनिक</button>
             </div>
+<!-- 1. URGENT NOTICE BUTTON (Hero Section के बटन ग्रुप के अंदर रखने के लिए) -->
+<a href="#exam-routine" class="px-6 py-3.5 bg-red-600 hover:bg-red-700 text-white font-bold rounded-lg shadow-lg hover:shadow-xl transition transform hover:-translate-y-0.5 flex items-center justify-center animate-pulse">
+    <i class="fas fa-exclamation-circle mr-2"></i>अत्यावश्यक सूचना: दोस्रो त्रैमासिक परीक्षा रूटीन
+</a>
 
+
+<!-- 2. EXAM ROUTINE SECTION (इमेज डिस्प्ले और डाउनलोड बटन के साथ) -->
+<div id="exam-routine" class="py-12 bg-gray-50 my-8">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
+            
+            <!-- Header with Download Option -->
+            <div class="bg-navy p-4 sm:p-6 text-white flex justify-between items-center flex-wrap gap-4">
+                <div class="flex items-center space-x-3">
+                    <span class="bg-red-600 text-white text-xs uppercase font-extrabold px-3 py-1 rounded-full animate-bounce">
+                        अत्यावश्यक
+                    </span>
+                    <h3 class="text-xl sm:text-2xl font-bold font-serif">दोस्रो त्रैमासिक परीक्षा तालिकासम्बन्धी सूचना</h3>
+                </div>
+                <a href="examroutine.png" download class="px-4 py-2 bg-gold hover:bg-gold-hover text-navy font-bold rounded-lg text-sm transition flex items-center shadow">
+                    <i class="fas fa-download mr-2"></i> रूटीन डाउनलोड गर्नुहोस्
+                </a>
+            </div>
+
+            <!-- Routine Image Container -->
+            <div class="p-6 text-center">
+                <p class="text-gray-700 text-base mb-6">
+                    आदरणीय अभिभावक तथा विद्यार्थी वर्ग, दोस्रो त्रैमासिक परीक्षा मिति <strong>२०८३/०६/१६</strong> गतेदेखि सञ्चालन हुन गइरहेकाले परीक्षा कार्यतालिका नीचे प्रदान गरिएको छ[cite: 2]।
+                </p>
+                <div class="max-w-3xl mx-auto border-2 border-gold/40 rounded-xl overflow-hidden shadow-md">
+                    <img src="examroutine.png" alt="दोस्रो त्रैमासिक परीक्षा रूटीन" class="w-full h-auto object-contain">
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
             <!-- Notices Grid -->
             <div class="grid md:grid-cols-3 gap-6" id="news-grid">
                 <div class="news-card academic bg-white/90 backdrop-blur rounded-2xl shadow-md border border-gray-100 overflow-hidden flex flex-col">
