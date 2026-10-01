@@ -719,7 +719,7 @@
                             <div>
                                 <strong class="text-pine block">ठेगाना</strong>
                                 श्री चौतारे डाँडा माध्यमिक विद्यालय<br>
-                                वडा नं. १० भकुण्डे, बागलुङ नगरपालिका<br>
+                                बा.नं. १० भकुण्डे, बागलुङ नगरपालिका<br>
                                 गण्डकी प्रदेश, नेपाल
                             </div>
                         </div>
@@ -739,8 +739,59 @@
                                 भर्ना सोधपुछ: chautaredanda98@gmail.com
                             </div>
                         </div>
+                        <div class="pt-2">
+                            <a href="https://maps.app.goo.gl/3PNiN4z8Ztz6M78p9" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-xs font-bold text-pine bg-marigold hover:bg-marigold-hover px-4 py-2 rounded-lg transition shadow">
+                                <i class="fas fa-directions mr-2"></i> गूगल म्यापमा दिशा हेर्नुहोस्
+                            </a>
+                        </div>
                     </div>
                 </div>
+
+                <div class="md:col-span-7 bg-white/90 backdrop-blur p-8 rounded-2xl shadow-md border-t-4 border-pine">
+                    <h3 class="text-xl font-serif font-bold text-pine mb-4">हामीलाई प्रत्यक्ष सन्देश पठाउनुहोस्</h3>
+                    <form onsubmit="handleDirectContact(event)" class="space-y-4">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-pine mb-1">पूरा नाम *</label>
+                                <input type="text" required class="w-full px-3 py-2 border rounded-md text-sm focus:ring-2 focus:ring-pine focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-pine mb-1">इमेल ठेगाना</label>
+                                <input type="email" class="w-full px-3 py-2 border rounded-md text-sm focus:ring-2 focus:ring-pine focus:outline-none">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-pine mb-1">विषय</label>
+                            <input type="text" required class="w-full px-3 py-2 border rounded-md text-sm focus:ring-2 focus:ring-pine focus:outline-none" placeholder="उदा: भर्नासम्बन्धी सोधपुछ / ट्रान्सफर">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-pine mb-1">सन्देश *</label>
+                            <textarea rows="4" required class="w-full px-3 py-2 border rounded-md text-sm focus:ring-2 focus:ring-pine focus:outline-none"></textarea>
+                        </div>
+                        <button type="submit" class="px-6 py-3 bg-pine hover:bg-pine-light text-marigold font-bold text-sm rounded-md shadow transition">
+                            सन्देश पठाउनुहोस्
+                        </button>
+                    </form>
+                    <div id="contactAlert" class="hidden mt-3 p-3 bg-green-100 text-green-800 rounded-md text-xs font-semibold">
+                        <i class="fas fa-check-circle mr-1"></i> सन्देश सफलतापूर्वक पठाइयो! हाम्रो टोलीले शीघ्र प्रतिक्रिया दिनेछ।
+                    </div>
+                </div>
+            </div>
+
+            <!-- Embedded Map Section -->
+            <div class="mt-8 rounded-2xl overflow-hidden shadow-md border border-gray-200">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3514.805886981881!2d83.5855008!3d28.2435741!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3995eb00171ff76b%3A0x3344b1c784dd4d52!2sShree%20Chautare%20Danda%20Secondary%20School!5e0!3m2!1sen!2snp!4v1710000000000!5m2!1sen!2snp" 
+                    width="100%" 
+                    height="380" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade"
+                    title="श्री चौतारे डाँडा माध्यमिक विद्यालय Google Map">
+                </iframe>
+            </div>
+        </section>
 
                 <div class="md:col-span-7 bg-white/90 backdrop-blur p-8 rounded-2xl shadow-md border-t-4 border-pine">
                     <h3 class="text-xl font-serif font-bold text-pine mb-4">हामीलाई प्रत्यक्ष सन्देश पठाउनुहोस्</h3>
