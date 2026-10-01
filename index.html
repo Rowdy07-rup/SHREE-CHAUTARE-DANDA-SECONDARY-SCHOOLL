@@ -22,17 +22,10 @@
             theme: {
                 extend: {
                     colors: {
-                        navy: {
-                            DEFAULT: '#0F2C59',
-                            dark: '#0A1D3C',
-                            light: '#1D3D6F',
-                        },
-                        gold: {
-                            DEFAULT: '#D4AF37',
-                            hover: '#C19B2E',
-                            light: '#FAF3DD',
-                        },
-                        neutralBg: '#F8F9FA'
+                        pine: { DEFAULT: '#1E4D3B', dark: '#12342A', light: '#2D6A52' },
+                        marigold: { DEFAULT: '#E9A412', hover: '#CF900A', light: '#FFF3D1' },
+                        crimson: { DEFAULT: '#B3261E', dark: '#8F1D17' },
+                        neutralBg: '#F3F6EF'
                     },
                     fontFamily: {
                         sans: ['Mukta', 'sans-serif'],
@@ -65,14 +58,14 @@
             width: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: #f1f1f1;
+            background: #E6EDE0;
         }
         ::-webkit-scrollbar-thumb {
-            background: #0F2C59;
+            background: #1E4D3B;
             border-radius: 4px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #D4AF37;
+            background: #E9A412;
         }
         /* Fixed Background Watermark */
         .watermark-bg {
@@ -86,65 +79,77 @@
             pointer-events: none;
             z-index: 0;
         }
+
+        /* ---- Natural theme: pine, marigold, rhododendron ---- */
+        html body .rounded-2xl { border-radius: 1.75rem 0.5rem 1.75rem 0.5rem; }
+        main .text-marigold { color: #8A5A00; }
+        main .bg-pine .text-marigold, main .bg-pine-dark .text-marigold, main .bg-pine-light\/50 .text-marigold, main .bg-pine.text-marigold { color: #F4B93A; }
+        .ticker-wrap { overflow: hidden; width: 100%; }
+        .ticker-track { display: inline-flex; white-space: nowrap; animation: tick 45s linear infinite; }
+        .ticker-wrap:hover .ticker-track { animation-play-state: paused; }
+        .ticker-track span { padding-right: 3rem; }
+        @keyframes tick { to { transform: translateX(-50%); } }
+        @media (prefers-reduced-motion: reduce) { .ticker-track { animation: none; } .ticker-wrap { overflow-x: auto; } }
+        .urgent-bar { background: repeating-linear-gradient(135deg, #B3261E 0 18px, #A3201A 18px 36px); }
+        :focus-visible { outline: 3px solid #E9A412; outline-offset: 2px; }
     </style>
 </head>
 <body class="bg-neutralBg text-gray-800 font-sans flex flex-col min-h-screen relative">
 
     <!-- Center Background Watermark Photo -->
-    <img src="school%20photo%201.jpg" alt="Watermark" class="watermark-bg">
+    <img src="school%20photo%201.png" alt="Watermark" class="watermark-bg">
 
     <!-- Top Utility Bar -->
-    <div class="bg-navy-dark text-white text-xs py-2 px-4 border-b border-navy-light hidden sm:block relative z-10">
+    <div class="bg-pine-dark text-white text-xs py-2 px-4 border-b border-pine-light hidden sm:block relative z-10">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <div class="flex items-center space-x-6">
-                <span><i class="fas fa-map-marker-alt text-gold mr-2"></i>बा.नं. १० भकुण्डे, बागलुङ जिल्ला, नेपाल</span>
-                <span><i class="fas fa-phone-alt text-gold mr-2"></i>+९७७ ०६८-XXXXXX</span>
-                <span><i class="fas fa-envelope text-gold mr-2"></i>info@chautaredanda.edu.np</span>
+                <span><i class="fas fa-map-marker-alt text-marigold mr-2"></i>बा.नं. १० भकुण्डे, बागलुङ जिल्ला, नेपाल</span>
+                <span><i class="fas fa-phone-alt text-marigold mr-2"></i>+९७७ ०६८-XXXXXX</span>
+                <span><i class="fas fa-envelope text-marigold mr-2"></i>info@chautaredanda.edu.np</span>
             </div>
             <div class="flex items-center space-x-4">
-                <span class="bg-gold text-navy-dark px-2 py-0.5 rounded font-bold text-[10px]">स्था. २०३८ B.S.</span>
-                <a href="#contact" onclick="navigateTo('contact')" class="hover:text-gold transition">नक्सा र स्थान</a>
-                <a href="#admissions" onclick="navigateTo('admissions')" class="hover:text-gold transition">सम्बन्धन</a>
+                <span class="bg-marigold text-pine-dark px-2 py-0.5 rounded font-bold text-[10px]">स्था. २०३८ B.S.</span>
+                <a href="#contact" onclick="navigateTo('contact')" class="hover:text-marigold transition">नक्सा र स्थान</a>
+                <a href="#admissions" onclick="navigateTo('admissions')" class="hover:text-marigold transition">सम्बन्धन</a>
             </div>
         </div>
     </div>
 
     <!-- Main Navigation Bar -->
-    <header class="bg-navy sticky top-0 z-40 shadow-lg border-b-2 border-gold">
+    <header class="bg-pine sticky top-0 z-40 shadow-lg border-b-2 border-marigold">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <!-- School Badge & Title -->
                 <a href="#home" onclick="navigateTo('home')" class="flex items-center space-x-3 group">
-                    <div class="w-12 h-12 rounded-full bg-white border-2 border-gold flex items-center justify-center shadow-md text-navy group-hover:scale-105 transition transform">
-                        <i class="fas fa-graduation-cap text-2xl text-navy"></i>
+                    <div class="w-12 h-12 rounded-full bg-white border-2 border-marigold flex items-center justify-center shadow-md text-pine group-hover:scale-105 transition transform">
+                        <i class="fas fa-graduation-cap text-2xl text-pine"></i>
                     </div>
                     <div>
                         <span class="block text-lg sm:text-xl font-extrabold text-white tracking-wide uppercase font-serif leading-tight">
                             श्री चौतारे डाँडा माध्यमिक विद्यालय
                         </span>
-                        <span class="block text-xs sm:text-sm text-gold font-medium tracking-wider">
+                        <span class="block text-xs sm:text-sm text-marigold font-medium tracking-wider">
                              &bull; भकुण्डे, बागलुङ
                         </span>
                     </div>
                 </a>
-
-                <!-- Desktop Navigation Links -->
+                 <!-- Desktop Navigation Links -->
                 <nav class="hidden lg:flex space-x-1 items-center">
-                    <button onclick="navigateTo('home')" id="nav-home" class="nav-btn px-3 py-2 text-sm font-semibold text-white hover:text-gold hover:bg-navy-light rounded-md transition">गृहपृष्ठ</button>
-                    <button onclick="navigateTo('about')" id="nav-about" class="nav-btn px-3 py-2 text-sm font-semibold text-white hover:text-gold hover:bg-navy-light rounded-md transition">हाम्रो बारेमा</button>
-                    <button onclick="navigateTo('admissions')" id="nav-admissions" class="nav-btn px-3 py-2 text-sm font-semibold text-white hover:text-gold hover:bg-navy-light rounded-md transition">भर्ना सूचना</button>
-                    <button onclick="navigateTo('academics')" id="nav-academics" class="nav-btn px-3 py-2 text-sm font-semibold text-white hover:text-gold hover:bg-navy-light rounded-md transition">शैक्षिक कार्यक्रम</button>
-                    <button onclick="navigateTo('news')" id="nav-news" class="nav-btn px-3 py-2 text-sm font-semibold text-white hover:text-gold hover:bg-navy-light rounded-md transition">समाचार तथा सूचना</button>
-                    <button onclick="navigateTo('contact')" id="nav-contact" class="nav-btn px-3 py-2 text-sm font-semibold text-white hover:text-gold hover:bg-navy-light rounded-md transition">सम्पर्क</button>
+                    <button onclick="navigateTo('home')" id="nav-home" class="nav-btn px-3 py-2 text-sm font-semibold text-white hover:text-marigold hover:bg-pine-light rounded-md transition">गृहपृष्ठ</button>
+                    <button onclick="navigateTo('about')" id="nav-about" class="nav-btn px-3 py-2 text-sm font-semibold text-white hover:text-marigold hover:bg-pine-light rounded-md transition">हाम्रो बारेमा</button>
+                    <button onclick="navigateTo('admissions')" id="nav-admissions" class="nav-btn px-3 py-2 text-sm font-semibold text-white hover:text-marigold hover:bg-pine-light rounded-md transition">भर्ना सूचना</button>
+                    <button onclick="navigateTo('academics')" id="nav-academics" class="nav-btn px-3 py-2 text-sm font-semibold text-white hover:text-marigold hover:bg-pine-light rounded-md transition">शैक्षिक कार्यक्रम</button>
+                    <button onclick="navigateTo('news')" id="nav-news" class="nav-btn px-3 py-2 text-sm font-semibold text-white hover:text-marigold hover:bg-pine-light rounded-md transition">समाचार तथा सूचना</button>
+                    <button onclick="navigateTo('contact')" id="nav-contact" class="nav-btn px-3 py-2 text-sm font-semibold text-white hover:text-marigold hover:bg-pine-light rounded-md transition">सम्पर्क</button>
                     
-                    <button onclick="openTourModal()" class="ml-3 px-4 py-2 text-xs font-bold uppercase tracking-wider text-navy bg-gold hover:bg-gold-hover rounded-md shadow-md transition transform active:scale-95">
+                    <button onclick="openTourModal()" class="ml-3 px-4 py-2 text-xs font-bold uppercase tracking-wider text-pine bg-marigold hover:bg-marigold-hover rounded-md shadow-md transition transform active:scale-95">
                         <i class="fas fa-calendar-check mr-1.5"></i>विद्यालय अवलोकन
                     </button>
                 </nav>
 
                 <!-- Mobile Menu Button -->
                 <div class="flex lg:hidden items-center">
-                    <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="text-white hover:text-gold focus:outline-none p-2" aria-label="नेभिगेसन खोल्नुहोस्">
+                    <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="text-white hover:text-marigold focus:outline-none p-2" aria-label="नेभिगेसन खोल्नुहोस्">
                         <i class="fas fa-bars text-2xl" id="menu-icon"></i>
                     </button>
                 </div>
@@ -152,17 +157,17 @@
         </div>
 
         <!-- Mobile Drawer Navigation -->
-        <div id="mobile-drawer" class="hidden lg:hidden bg-navy-dark border-t border-navy-light transition-all duration-300">
+        <div id="mobile-drawer" class="hidden lg:hidden bg-pine-dark border-t border-pine-light transition-all duration-300">
             <div class="px-4 pt-3 pb-6 space-y-2">
-                <button onclick="navigateTo('home')" class="mobile-nav-btn block w-full text-left px-3 py-2.5 rounded-md text-base font-medium text-white hover:bg-navy-light hover:text-gold">गृहपृष्ठ</button>
-                <button onclick="navigateTo('about')" class="mobile-nav-btn block w-full text-left px-3 py-2.5 rounded-md text-base font-medium text-white hover:bg-navy-light hover:text-gold">हाम्रो बारेमा</button>
-                <button onclick="navigateTo('admissions')" class="mobile-nav-btn block w-full text-left px-3 py-2.5 rounded-md text-base font-medium text-white hover:bg-navy-light hover:text-gold">भर्ना सूचना</button>
-                <button onclick="navigateTo('academics')" class="mobile-nav-btn block w-full text-left px-3 py-2.5 rounded-md text-base font-medium text-white hover:bg-navy-light hover:text-gold">शैक्षिक कार्यक्रम</button>
-                <button onclick="navigateTo('news')" class="mobile-nav-btn block w-full text-left px-3 py-2.5 rounded-md text-base font-medium text-white hover:bg-navy-light hover:text-gold">समाचार तथा सूचना</button>
-                <button onclick="navigateTo('contact')" class="mobile-nav-btn block w-full text-left px-3 py-2.5 rounded-md text-base font-medium text-white hover:bg-navy-light hover:text-gold">सम्पर्क</button>
+                <button onclick="navigateTo('home')" class="mobile-nav-btn block w-full text-left px-3 py-2.5 rounded-md text-base font-medium text-white hover:bg-pine-light hover:text-marigold">गृहपृष्ठ</button>
+                <button onclick="navigateTo('about')" class="mobile-nav-btn block w-full text-left px-3 py-2.5 rounded-md text-base font-medium text-white hover:bg-pine-light hover:text-marigold">हाम्रो बारेमा</button>
+                <button onclick="navigateTo('admissions')" class="mobile-nav-btn block w-full text-left px-3 py-2.5 rounded-md text-base font-medium text-white hover:bg-pine-light hover:text-marigold">भर्ना सूचना</button>
+                <button onclick="navigateTo('academics')" class="mobile-nav-btn block w-full text-left px-3 py-2.5 rounded-md text-base font-medium text-white hover:bg-pine-light hover:text-marigold">शैक्षिक कार्यक्रम</button>
+                <button onclick="navigateTo('news')" class="mobile-nav-btn block w-full text-left px-3 py-2.5 rounded-md text-base font-medium text-white hover:bg-pine-light hover:text-marigold">समाचार तथा सूचना</button>
+                <button onclick="navigateTo('contact')" class="mobile-nav-btn block w-full text-left px-3 py-2.5 rounded-md text-base font-medium text-white hover:bg-pine-light hover:text-marigold">सम्पर्क</button>
                 
-                <div class="pt-4 border-t border-navy-light">
-                    <button onclick="openTourModal(); toggleMobileMenu();" class="w-full text-center py-3 px-4 rounded-md font-bold text-navy bg-gold hover:bg-gold-hover shadow">
+                <div class="pt-4 border-t border-pine-light">
+                    <button onclick="openTourModal(); toggleMobileMenu();" class="w-full text-center py-3 px-4 rounded-md font-bold text-pine bg-marigold hover:bg-marigold-hover shadow">
                         <i class="fas fa-calendar-check mr-2"></i>विद्यालय अवलोकनको समय लिनुहोस्
                     </button>
                 </div>
@@ -170,19 +175,18 @@
         </div>
     </header>
 
-   <!-- Announcement Ticker -->
-    <div class="bg-gold-light border-b border-gold/30 text-navy py-2 px-4 shadow-inner relative z-10">
+   <!-- URGENT NOTICE BAR -->
+    <button onclick="openRoutineModal()" class="urgent-bar block w-full text-white py-2.5 px-4 relative z-10 text-center text-sm sm:text-base font-bold hover:brightness-110 transition">
+        <i class="fas fa-exclamation-triangle mr-2 animate-pulse"></i>अत्यावश्यक सूचना: दोस्रो त्रैमासिक परीक्षा २०८३/०६/१६ गतेदेखि — परीक्षा रूटीन हेर्नुहोस् <i class="fas fa-chevron-right ml-2 text-xs"></i>
+    </button>
+
+    <!-- Announcement Ticker -->
+    <div class="bg-marigold-light border-b border-marigold/30 text-pine py-2 px-4 relative z-10">
         <div class="max-w-7xl mx-auto flex items-center">
-            <span class="bg-navy text-gold text-xs uppercase font-extrabold px-3 py-1 rounded-full flex items-center shrink-0 mr-3">
-                <i class="fas fa-bullhorn mr-1.5 animate-pulse"></i> सूचना
+            <span class="bg-pine text-marigold text-xs font-extrabold px-3 py-1 rounded-full flex items-center shrink-0 mr-3">
+                <i class="fas fa-bullhorn mr-1.5"></i> सूचना
             </span>
-            <div class="overflow-hidden whitespace-nowrap w-full text-sm font-medium">
-                <marquee behavior="scroll" direction="left" scrollamount="5" onmouseover="this.stop();" onmouseout="this.start();">
-                    📢 दोस्रो त्रैमासिक परीक्षा २०८३/०६/१६ गते देखि हुँदैछ, अभिभावकहरूलाई बाबु नानीको पढाइ घरमा पनि हेरिदिन अनुरोध गरिन्छ। &nbsp;&bull;&nbsp; 
-                    👨‍🏫 आगामी शुक्रबार वार्षिक अभिभावक-शिक्षक भेला हुने सूचना &nbsp;&bull;&nbsp; 
-                    🏆 विद्यालय इको-क्लबद्वारा बागलुङ जिल्लास्तरीय वातावरणीय पुरस्कार प्राप्त!
-                </marquee>
-            </div>
+            <div class="ticker-wrap text-sm font-medium"><div class="ticker-track"><span>📢 दोस्रो त्रैमासिक परीक्षा २०८३/०६/१६ गते देखि हुँदैछ, अभिभावकहरूलाई बाबु नानीको पढाइ घरमा पनि हेरिदिन अनुरोध गरिन्छ।</span><span>👨‍🏫 आगामी शुक्रबार वार्षिक अभिभावक-शिक्षक भेला हुने सूचना</span><span>🏆 विद्यालय इको-क्लबद्वारा बागलुङ जिल्लास्तरीय वातावरणीय पुरस्कार प्राप्त!</span><span>📢 दोस्रो त्रैमासिक परीक्षा २०८३/०६/१६ गते देखि हुँदैछ, अभिभावकहरूलाई बाबु नानीको पढाइ घरमा पनि हेरिदिन अनुरोध गरिन्छ।</span><span>👨‍🏫 आगामी शुक्रबार वार्षिक अभिभावक-शिक्षक भेला हुने सूचना</span><span>🏆 विद्यालय इको-क्लबद्वारा बागलुङ जिल्लास्तरीय वातावरणीय पुरस्कार प्राप्त!</span></div></div>
         </div>
     </div>
 
@@ -191,84 +195,100 @@
 
         <!-- 1. HOMEPAGE VIEW -->
         <section id="view-home" class="page-view active">
-            <!-- Hero Banner with Background Image Overlay (Watermark) -->
-            <div class="relative bg-navy text-white overflow-hidden py-20 lg:py-28 bg-no-repeat bg-center bg-cover" style="background-image: linear-gradient(rgba(15, 44, 89, 0.88), rgba(15, 44, 89, 0.88)), url('school%20photo%201.jpg');">
-                
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                    <div class="grid md:grid-cols-12 gap-8 items-center">
+            <!-- Hero -->
+            <div class="relative overflow-hidden" style="background:linear-gradient(180deg,#DCE8D4 0%,#F3F6EF 100%)">
+                <svg class="absolute bottom-0 inset-x-0 w-full h-24 text-pine opacity-10" viewBox="0 0 1200 100" preserveAspectRatio="none" aria-hidden="true"><path fill="currentColor" d="M0 100V60C120 20 200 70 320 45S520 0 640 35s240 50 360 10 140-20 200-5v35z"/></svg>
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-20 relative z-10">
+                    <div class="grid md:grid-cols-12 gap-12 items-center">
                         <div class="md:col-span-7 space-y-6 text-center md:text-left">
-                            <span class="inline-block bg-gold/20 text-gold border border-gold/40 text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full">
-                                भकुण्डेको उत्कृष्ट सामुदायिक शैक्षिक संस्था
+                            <span class="inline-block bg-white text-pine border border-pine/20 text-xs font-bold px-3 py-1.5 rounded-full shadow-sm">
+                                <i class="fas fa-seedling text-marigold mr-1.5"></i>भकुण्डेको उत्कृष्ट सामुदायिक शैक्षिक संस्था
                             </span>
-                            <h1 class="text-3xl sm:text-5xl font-extrabold font-serif leading-tight text-white">
+                            <h1 class="text-3xl sm:text-5xl font-extrabold font-serif leading-tight text-pine">
                                 ज्ञान र क्षमताको विकास, <br>
-                                <span class="text-gold">संस्कारयुक्त शिक्षा,</span> <br>
+                                <span class="text-marigold">संस्कारयुक्त शिक्षा,</span> <br>
                                 उज्यालो भविष्यको निर्माण।
                             </h1>
-                            <p class="text-gray-300 text-base sm:text-lg max-w-2xl leading-relaxed">
+                            <p class="text-gray-700 text-base sm:text-lg max-w-xl leading-relaxed">
                                 श्री चौतारे डाँडा माध्यमिक विद्यालयले बागलुङ जिल्लामा गुणस्तरीय शिक्षा, डिजिटल प्रविधि, मौलिक नेपाली संस्कार र नेतृत्व विकासको संयोजनसहित समग्र शैक्षिक वातावरण प्रदान गर्दै आएको छ।
                             </p>
                             <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start pt-2">
-                                <button onclick="navigateTo('admissions')" class="px-6 py-3.5 bg-gold hover:bg-gold-hover text-navy font-bold rounded-lg shadow-lg hover:shadow-xl transition transform hover:-translate-y-0.5">
-                                    <i class="fas fa-file-signature mr-2"></i>भर्ना आवेदन दिनुहोस्
+                                <button onclick="navigateTo('admissions')" class="px-6 py-3.5 bg-pine hover:bg-pine-light text-white font-bold rounded-lg shadow-lg transition">
+                                    <i class="fas fa-file-signature mr-2 text-marigold"></i>भर्ना आवेदन दिनुहोस्
                                 </button>
-                                <button onclick="openTourModal()" class="px-6 py-3.5 bg-transparent border-2 border-white hover:bg-white/10 text-white font-semibold rounded-lg transition">
-                                    <i class="fas fa-compass mr-2 text-gold"></i>विद्यालय अवलोकन 
+                                <button onclick="openTourModal()" class="px-6 py-3.5 bg-white border-2 border-pine text-pine hover:bg-pine/5 font-semibold rounded-lg transition">
+                                    <i class="fas fa-compass mr-2 text-marigold"></i>विद्यालय अवलोकन
                                 </button>
                             </div>
                         </div>
-
-                        <!-- Quick Stats Card -->
-                        <div class="md:col-span-5 mt-8 md:mt-0">
-                            <div class="bg-white/10 backdrop-blur-md p-6 sm:p-8 rounded-2xl border border-white/20 shadow-2xl relative">
-                                <h3 class="text-xl font-bold font-serif text-white mb-6 border-b border-white/20 pb-3 flex items-center">
-                                    <i class="fas fa-award text-gold mr-3"></i>हाम्रा मुख्य उपलब्धिहरू
-                                </h3>
-                                <div class="grid grid-cols-2 gap-4 text-center">
-                                    <div class="p-4 bg-navy-dark/60 rounded-xl border border-gold/20">
-                                        <div class="text-3xl font-extrabold text-gold font-serif">४०+</div>
-                                        <div class="text-xs text-gray-300 mt-1 uppercase font-semibold"> ५४ वर्षको गौरवशाली इतिहास</div>
-                                    </div>
-                                    <div class="p-4 bg-navy-dark/60 rounded-xl border border-gold/20">
-                                        <div class="text-3xl font-extrabold text-gold font-serif">K-12</div>
-                                        <div class="text-xs text-gray-300 mt-1 uppercase font-semibold">शिशु देखि १० सम्म</div>
-                                    </div>
-                                    <div class="p-4 bg-navy-dark/60 rounded-xl border border-gold/20">
-                                        <div class="text-3xl font-extrabold text-gold font-serif">१००%</div>
-                                        <div class="text-xs text-gray-300 mt-1 uppercase font-semibold">SEE उत्कृष्ट सफलता</div>
-                                    </div>
-                                    <div class="p-4 bg-navy-dark/60 rounded-xl border border-gold/20">
-                                        <div class="text-3xl font-extrabold text-gold font-serif">२५+</div>
-                                        <div class="text-xs text-gray-300 mt-1 uppercase font-semibold">दक्ष तथा अनुभवी शिक्षक</div>
-                                    </div>
-                                </div>
+                        <div class="md:col-span-5">
+                            <div class="relative max-w-sm mx-auto">
+                                <div class="absolute inset-0 border-2 border-marigold translate-x-3 translate-y-3" style="border-radius:999px 999px 1.25rem 1.25rem"></div>
+                                <img src="school%20photo%201.png" alt="श्री चौतारे डाँडा माध्यमिक विद्यालय" class="relative w-full aspect-[4/5] object-cover shadow-2xl bg-pine/10" style="border-radius:999px 999px 1.25rem 1.25rem">
+                                <span class="absolute -bottom-4 left-6 bg-pine text-white text-xs font-bold px-4 py-2 rounded-full shadow-lg">स्था. २०३८ B.S.</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
+            <!-- URGENT: Exam routine -->
+            <div id="exam-routine" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-2 relative z-20">
+                <div class="grid md:grid-cols-12 bg-white shadow-xl overflow-hidden border-l-8 border-crimson rounded-r-2xl">
+                    <div class="md:col-span-7 p-6 sm:p-8 space-y-4">
+                        <span class="inline-flex items-center bg-crimson text-white text-xs font-extrabold px-3 py-1 rounded-full">
+                            <i class="fas fa-exclamation-triangle mr-1.5 animate-pulse"></i> अत्यावश्यक सूचना
+                        </span>
+                        <h2 class="font-serif font-bold text-2xl sm:text-3xl text-pine">दोस्रो त्रैमासिक परीक्षा तालिकासम्बन्धी सूचना</h2>
+                        <p class="text-gray-700 leading-relaxed">
+                            आदरणीय अभिभावक तथा विद्यार्थी वर्ग, दोस्रो त्रैमासिक परीक्षा मिति <strong class="text-crimson">२०८३/०६/१६</strong> गतेदेखि सञ्चालन हुन गइरहेकाले परीक्षा कार्यतालिका यहाँ प्रदान गरिएको छ।
+                        </p>
+                        <div class="flex flex-wrap gap-3 pt-1">
+                            <button onclick="openRoutineModal()" class="px-5 py-2.5 bg-crimson hover:bg-crimson-dark text-white font-bold rounded-lg text-sm shadow transition"><i class="fas fa-eye mr-2"></i>रूटीन हेर्नुहोस्</button>
+                            <a href="examroutine.png" download class="px-5 py-2.5 bg-marigold hover:bg-marigold-hover text-pine-dark font-bold rounded-lg text-sm shadow transition"><i class="fas fa-download mr-2"></i>रूटीन डाउनलोड गर्नुहोस्</a>
+                        </div>
+                    </div>
+                    <button onclick="openRoutineModal()" class="md:col-span-5 relative block h-56 md:h-auto bg-pine/5 group" aria-label="परीक्षा रूटीन ठूलो गरी हेर्नुहोस्">
+                        <img src="examroutine.png" alt="दोस्रो त्रैमासिक परीक्षा रूटीन" class="absolute inset-0 w-full h-full object-cover object-top">
+                        <span class="absolute bottom-3 right-3 bg-pine-dark/85 text-white text-xs font-bold px-3 py-1.5 rounded-full"><i class="fas fa-search-plus mr-1"></i>ठूलो हेर्नुहोस्</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Achievements strip -->
+            <div class="bg-pine text-white mt-12">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                    <h3 class="text-lg font-bold font-serif mb-5 flex items-center"><i class="fas fa-award text-marigold mr-3"></i>हाम्रा मुख्य उपलब्धिहरू</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-y-6 text-center md:divide-x divide-white/15">
+                        <div class="px-2"><div class="text-3xl font-extrabold text-marigold font-serif">४०+</div><div class="text-xs text-gray-200 mt-1 font-semibold">५४ वर्षको गौरवशाली इतिहास</div></div>
+                        <div class="px-2"><div class="text-3xl font-extrabold text-marigold font-serif">K-12</div><div class="text-xs text-gray-200 mt-1 font-semibold">शिशु देखि १० सम्म</div></div>
+                        <div class="px-2"><div class="text-3xl font-extrabold text-marigold font-serif">१००%</div><div class="text-xs text-gray-200 mt-1 font-semibold">SEE उत्कृष्ट सफलता</div></div>
+                        <div class="px-2"><div class="text-3xl font-extrabold text-marigold font-serif">२५+</div><div class="text-xs text-gray-200 mt-1 font-semibold">दक्ष तथा अनुभवी शिक्षक</div></div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Quick Action Links -->
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 relative z-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10 relative z-20">
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <button onclick="navigateTo('academics')" class="bg-white/90 backdrop-blur p-5 rounded-xl shadow-md border-t-4 border-gold hover:shadow-xl transition text-left group">
-                        <i class="fas fa-calendar-alt text-2xl text-navy group-hover:text-gold transition mb-2 block"></i>
-                        <h4 class="font-bold text-navy text-base">शैक्षिक क्यालेन्डर</h4>
+                    <button onclick="navigateTo('academics')" class="bg-white/90 backdrop-blur p-5 rounded-xl shadow-md border-t-4 border-marigold hover:shadow-xl transition text-left group">
+                        <i class="fas fa-calendar-alt text-2xl text-pine group-hover:text-marigold transition mb-2 block"></i>
+                        <h4 class="font-bold text-pine text-base">शैक्षिक क्यालेन्डर</h4>
                         <p class="text-xs text-gray-500 mt-1">परीक्षा तथा कार्यक्रम तालिका</p>
                     </button>
-                    <button onclick="navigateTo('academics')" class="bg-white/90 backdrop-blur p-5 rounded-xl shadow-md border-t-4 border-navy hover:shadow-xl transition text-left group">
-                        <i class="fas fa-clock text-2xl text-navy group-hover:text-gold transition mb-2 block"></i>
-                        <h4 class="font-bold text-navy text-base">कक्षा कार्यतालिका</h4>
+                    <button onclick="navigateTo('academics')" class="bg-white/90 backdrop-blur p-5 rounded-xl shadow-md border-t-4 border-pine hover:shadow-xl transition text-left group">
+                        <i class="fas fa-clock text-2xl text-pine group-hover:text-marigold transition mb-2 block"></i>
+                        <h4 class="font-bold text-pine text-base">कक्षा कार्यतालिका</h4>
                         <p class="text-xs text-gray-500 mt-1">दैनिक रुटिन तथा पिरियडहरू</p>
                     </button>
-                    <button onclick="navigateTo('admissions')" class="bg-white/90 backdrop-blur p-5 rounded-xl shadow-md border-t-4 border-gold hover:shadow-xl transition text-left group">
-                        <i class="fas fa-download text-2xl text-navy group-hover:text-gold transition mb-2 block"></i>
-                        <h4 class="font-bold text-navy text-base">डाउनलोडहरू</h4>
+                    <button onclick="navigateTo('admissions')" class="bg-white/90 backdrop-blur p-5 rounded-xl shadow-md border-t-4 border-marigold hover:shadow-xl transition text-left group">
+                        <i class="fas fa-download text-2xl text-pine group-hover:text-marigold transition mb-2 block"></i>
+                        <h4 class="font-bold text-pine text-base">डाउनलोडहरू</h4>
                         <p class="text-xs text-gray-500 mt-1">फारम, पाठ्यक्रम र सूचनाहरू</p>
                     </button>
-                    <button onclick="navigateTo('news')" class="bg-white/90 backdrop-blur p-5 rounded-xl shadow-md border-t-4 border-navy hover:shadow-xl transition text-left group">
-                        <i class="fas fa-newspaper text-2xl text-navy group-hover:text-gold transition mb-2 block"></i>
-                        <h4 class="font-bold text-navy text-base">सूचना पाटी</h4>
+                    <button onclick="navigateTo('news')" class="bg-white/90 backdrop-blur p-5 rounded-xl shadow-md border-t-4 border-pine hover:shadow-xl transition text-left group">
+                        <i class="fas fa-newspaper text-2xl text-pine group-hover:text-marigold transition mb-2 block"></i>
+                        <h4 class="font-bold text-pine text-base">सूचना पाटी</h4>
                         <p class="text-xs text-gray-500 mt-1">ताजा समाचार तथा सूचनाहरू</p>
                     </button>
                 </div>
@@ -279,20 +299,20 @@
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="grid md:grid-cols-12 gap-10 items-center">
                         <div class="md:col-span-4 text-center">
-                          <div class="relative inline-block"> <div class="w-56 h-64 mx-auto rounded-2xl bg-gray-200 border-4 border-gold overflow-hidden shadow-lg"> <img src="principal.jpeg" alt="प्रधानाध्यापक श्री तिलक आचार्य" class="w-full h-full object-cover object-center"> </div> <div class="bg-navy text-white text-xs px-4 py-1.5 rounded-full font-bold absolute -bottom-3 left-1/2 transform -translate-x-1/2 shadow"> प्रधानाध्यापक
+                          <div class="relative inline-block"> <div class="w-56 h-64 mx-auto rounded-2xl bg-gray-200 border-4 border-marigold overflow-hidden shadow-lg"> <img src="principal.jpeg" alt="प्रधानाध्यापक श्री तिलक आचार्य" class="w-full h-full object-cover object-center"> </div> <div class="bg-pine text-white text-xs px-4 py-1.5 rounded-full font-bold absolute -bottom-3 left-1/2 transform -translate-x-1/2 shadow"> प्रधानाध्यापक
  </div> 
-</div>                            <h3 class="font-serif font-bold text-xl text-navy mt-4">श्री तिलक आचार्य </h3>
-                            <p class="text-xs text-gold font-semibold uppercase tracking-wider">एम.एड., शैक्षिक नेतृत्व</p>
+</div>                            <h3 class="font-serif font-bold text-xl text-pine mt-4">श्री तिलक आचार्य </h3>
+                            <p class="text-xs text-marigold font-semibold uppercase tracking-wider">एम.एड., शैक्षिक नेतृत्व</p>
                         </div>
                         <div class="md:col-span-8 space-y-4">
-                            <span class="text-gold font-bold text-sm uppercase tracking-widest">प्रधानाध्यापकको सन्देश</span>
-                            <h2 class="text-2xl sm:text-3xl font-bold font-serif text-navy">श्री चौतारे डाँडा माध्यमिक विद्यालयमा हार्दिक स्वागत छ</h2>
-                            <p class="text-gray-600 leading-relaxed italic border-l-4 border-gold pl-4">
+                            <span class="text-marigold font-bold text-sm uppercase tracking-widest">प्रधानाध्यापकको सन्देश</span>
+                            <h2 class="text-2xl sm:text-3xl font-bold font-serif text-pine">श्री चौतारे डाँडा माध्यमिक विद्यालयमा हार्दिक स्वागत छ</h2>
+                            <p class="text-gray-600 leading-relaxed italic border-l-4 border-marigold pl-4">
                                 "नमस्ते  सम्पूर्ण शिक्षक , विद्यार्थी, अभिभावक , शुभचिन्तक एवं समुदायका प्रबुद्ध व्यक्तित्वहरूमा हार्दिक स्वागत गर्दछु। श्री चौतारे डाँडा विद्यालयमा हामी प्रत्येक बालबालिकामा विशिष्ट क्षमता हुन्छ भन्ने विश्वास राख्छौँ। आधुनिक प्रविधि र व्यावहारिक ज्ञानको सम्मिश्रणसहित गुणस्तरीय शिक्षा प्रदान गर्नु नै हाम्रो मुख्य उद्देश्य हो।"                  </p>
                             <p class="text-gray-600 leading-relaxed">
                                 हामी विद्यार्थीहरूमा रचनात्मक सोच, अनुशासन र नैतिक मूल्य मान्यताको विकास गर्न प्रतिबद्ध छौँ। दक्ष शिक्षक शिक्षिका, कम्प्युटर प्रयोगशाला र अतिरिक्त क्रियाकलापको माध्यमबाट हामी विद्यार्थीहरूलाई उज्ज्वल भविष्यका लागि तयार पारिरहेका छौँ।
                             </p>
-                            <button onclick="navigateTo('about')" class="text-navy font-bold hover:text-gold transition inline-flex items-center text-sm pt-2">
+                            <button onclick="navigateTo('about')" class="text-pine font-bold hover:text-marigold transition inline-flex items-center text-sm pt-2">
                                 हाम्रो इतिहासको बारेमा थप पढ्नुहोस् <i class="fas fa-arrow-right ml-2 text-xs"></i>
                             </button>
                         </div>
@@ -301,34 +321,34 @@
             </div>
 <!-- Home Inquiry Form Section -->
             <div class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="bg-navy rounded-2xl p-8 sm:p-12 shadow-2xl text-white relative overflow-hidden">
+                <div class="bg-pine rounded-2xl p-8 sm:p-12 shadow-2xl text-white relative overflow-hidden">
                     <div class="grid md:grid-cols-2 gap-8 items-center">
                         <div>
-                            <span class="text-gold font-bold text-xs uppercase tracking-widest">सम्पर्कमा रहनुहोस्</span>
+                            <span class="text-marigold font-bold text-xs uppercase tracking-widest">सम्पर्कमा रहनुहोस्</span>
                             <h2 class="text-2xl sm:text-3xl font-serif font-bold mt-1 mb-4">भर्ना सम्बन्धमा केही सोध्नु छ?</h2>
                             <p class="text-gray-300 text-sm leading-relaxed mb-6">
                                 तल दिइएको फारम भर्नुहोस्, हाम्रो प्रशासन शाखा (बा.नं. १० भकुण्डे) बाट २४ घण्टाभित्र सम्पर्क गरिनेछ।
                             </p>
                             <div class="space-y-3 text-sm text-gray-300">
-                                <div class="flex items-center"><i class="fas fa-phone text-gold w-6"></i> +९७७ ०६८-XXXXXX</div>
-                                <div class="flex items-center"><i class="fas fa-envelope text-gold w-6"></i> admissions@chautaredanda.edu.np</div>
-                                <div class="flex items-center"><i class="fas fa-clock text-gold w-6"></i> आइतबार - शुक्रबार: बिहान १०:०० देखि अपराह्न ४:०० सम्म</div>
+                                <div class="flex items-center"><i class="fas fa-phone text-marigold w-6"></i> +९७७ ०६८-XXXXXX</div>
+                                <div class="flex items-center"><i class="fas fa-envelope text-marigold w-6"></i> admissions@chautaredanda.edu.np</div>
+                                <div class="flex items-center"><i class="fas fa-clock text-marigold w-6"></i> आइतबार - शुक्रबार: बिहान १०:०० देखि अपराह्न ४:०० सम्म</div>
                             </div>
                         </div>
                         <div class="bg-white p-6 rounded-xl text-gray-800 shadow-lg">
                             <form id="homeInquiryForm" onsubmit="handleInquirySubmit(event)" class="space-y-4">
                                 <div>
-                                    <label class="block text-xs font-bold uppercase text-navy mb-1">अभिभावकको पूरा नाम *</label>
-                                    <input type="text" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-navy focus:outline-none text-sm" placeholder="उदा: हरिबहादुर थापा">
+                                    <label class="block text-xs font-bold uppercase text-pine mb-1">अभिभावकको पूरा नाम *</label>
+                                    <input type="text" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-pine focus:outline-none text-sm" placeholder="उदा: हरिबहादुर थापा">
                                 </div>
                                 <div class="grid grid-cols-2 gap-3">
                                     <div>
-                                        <label class="block text-xs font-bold uppercase text-navy mb-1">फोन नम्बर *</label>
-                                        <input type="tel" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-navy focus:outline-none text-sm" placeholder="९८XXXXXXXX">
+                                        <label class="block text-xs font-bold uppercase text-pine mb-1">फोन नम्बर *</label>
+                                        <input type="tel" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-pine focus:outline-none text-sm" placeholder="९८XXXXXXXX">
                                     </div>
                                     <div>
-                                        <label class="block text-xs font-bold uppercase text-navy mb-1">खोजी गरिएको कक्षा</label>
-                                        <select class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-navy focus:outline-none text-sm bg-white">
+                                        <label class="block text-xs font-bold uppercase text-pine mb-1">खोजी गरिएको कक्षा</label>
+                                        <select class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-pine focus:outline-none text-sm bg-white">
                                             <option>नर्सरी - यु.के.जी.</option>
                                             <option>कक्षा १ - ५</option>
                                             <option>कक्षा ६ - ८</option>
@@ -338,10 +358,10 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <label class="block text-xs font-bold uppercase text-navy mb-1">तपाईंको जिज्ञासा / सन्देश</label>
-                                    <textarea rows="3" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-navy focus:outline-none text-sm" placeholder="शुल्क, बस वा पाठ्यक्रम्बारे सोध्नुहोस्..."></textarea>
+                                    <label class="block text-xs font-bold uppercase text-pine mb-1">तपाईंको जिज्ञासा / सन्देश</label>
+                                    <textarea rows="3" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-pine focus:outline-none text-sm" placeholder="शुल्क, बस वा पाठ्यक्रम्बारे सोध्नुहोस्..."></textarea>
                                 </div>
-                                <button type="submit" class="w-full py-3 bg-gold hover:bg-gold-hover text-navy font-bold rounded-md shadow transition">
+                                <button type="submit" class="w-full py-3 bg-marigold hover:bg-marigold-hover text-pine font-bold rounded-md shadow transition">
                                     जिज्ञासा पठाउनुहोस्
                                 </button>
                             </form>
@@ -353,31 +373,30 @@
                 </div>
             </div>
         </section>
-
         <!-- 2. ABOUT US VIEW -->
         <section id="view-about" class="page-view py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-12">
-                <span class="text-gold font-bold text-xs uppercase tracking-widest">हाम्रो पहिचान</span>
-                <h1 class="text-3xl sm:text-4xl font-serif font-bold text-navy mt-1">श्री चौतारे डाँडा विद्यालयको बारेमा</h1>
+                <span class="text-marigold font-bold text-xs uppercase tracking-widest">हाम्रो पहिचान</span>
+                <h1 class="text-3xl sm:text-4xl font-serif font-bold text-pine mt-1">श्री चौतारे डाँडा विद्यालयको बारेमा</h1>
                 <p class="text-gray-600 mt-2 text-sm sm:text-base">बागलुङ जिल्लाको भकुण्डेमा अवस्थित, गुणस्तरीय र सर्वसुलभ माध्यमिक शिक्षा प्रदान गर्न समर्पित संस्था।</p>
             </div>
 
             <!-- History & Vision Cards -->
             <div class="grid md:grid-cols-2 gap-8 mb-16">
-                <div class="bg-white/90 backdrop-blur p-8 rounded-2xl shadow-md border-t-4 border-gold space-y-4">
-                    <div class="w-12 h-12 bg-gold/20 text-gold rounded-full flex items-center justify-center text-xl font-bold">
+                <div class="bg-white/90 backdrop-blur p-8 rounded-2xl shadow-md border-t-4 border-marigold space-y-4">
+                    <div class="w-12 h-12 bg-marigold/20 text-marigold rounded-full flex items-center justify-center text-xl font-bold">
                         <i class="fas fa-landmark"></i>
                     </div>
-                    <h3 class="text-xl font-serif font-bold text-navy">इतिहास र पृष्ठभूमि</h3>
+                    <h3 class="text-xl font-serif font-bold text-pine">इतिहास र पृष्ठभूमि</h3>
                     <p class="text-gray-600 leading-relaxed text-sm">
                         वि.सं. २०३८ सालमा स्थानीय शिक्षाप्रेमी तथा समाजसेवीहरूको योगदानबाट स्थापित श्री चौतारे डाँडा माध्यमिक विद्यालयले बागलुङ जिल्लाको वडा नं. १० भकुण्डेबाट आफ्नो सेवा यात्रा सुरु गरेको थियो। चार दशकको यस यात्रामा सरकार र समुदायको सहकार्यमा यो एक प्रतिष्ठित माध्यमिक विद्यालयको रूपमा विकसित भएको छ।
                     </p>
                 </div>
-                <div class="bg-white/90 backdrop-blur p-8 rounded-2xl shadow-md border-t-4 border-navy space-y-4">
-                    <div class="w-12 h-12 bg-navy/10 text-navy rounded-full flex items-center justify-center text-xl font-bold">
+                <div class="bg-white/90 backdrop-blur p-8 rounded-2xl shadow-md border-t-4 border-pine space-y-4">
+                    <div class="w-12 h-12 bg-pine/10 text-pine rounded-full flex items-center justify-center text-xl font-bold">
                         <i class="fas fa-eye"></i>
                     </div>
-                    <h3 class="text-xl font-serif font-bold text-navy">दूरदृष्टि र लक्ष्य</h3>
+                    <h3 class="text-xl font-serif font-bold text-pine">दूरदृष्टि र लक्ष्य</h3>
                     <p class="text-gray-600 leading-relaxed text-sm">
                         <strong>दूरदृष्टि:</strong> गण्डकी प्रदेशमै उत्कृष्ट, प्रविधियुक्त र नैतिक शिक्षाको केन्द्र बन्नु।<br>
                         <strong>लक्ष्य:</strong> विद्यार्थीहरूलाई आधुनिक प्रविधि, खेलकुद र सामाजिक उत्तरदायित्वसँग जोड्दै शैक्षिक रूपमा सक्षम र सबल नागरिक बनाउनु।
@@ -389,12 +408,12 @@
             <div class="bg-white/90 backdrop-blur p-8 rounded-2xl shadow-md mb-12">
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-gray-200 pb-6 mb-6 gap-4">
                     <div>
-                        <h2 class="text-2xl font-serif font-bold text-navy">शिक्षक तथा कर्मचारी विवरण</h2>
+                        <h2 class="text-2xl font-serif font-bold text-pine">शिक्षक तथा कर्मचारी विवरण</h2>
                         <p class="text-xs text-gray-500 mt-1">हाम्रा समर्पित शिक्षक तथा प्रशासनिक टोलीलाई भेट्नुहोस्</p>
                     </div>
                     <!-- Faculty Filter Tags -->
                     <div class="flex flex-wrap gap-2" id="faculty-filters">
-                        <button onclick="filterFaculty('all')" class="faculty-filter-btn px-3 py-1.5 text-xs font-bold rounded-full bg-navy text-white">सबै</button>
+                        <button onclick="filterFaculty('all')" class="faculty-filter-btn px-3 py-1.5 text-xs font-bold rounded-full bg-pine text-white">सबै</button>
                         <button onclick="filterFaculty('admin')" class="faculty-filter-btn px-3 py-1.5 text-xs font-bold rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200">प्रशासन</button>
                         <button onclick="filterFaculty('secondary')" class="faculty-filter-btn px-3 py-1.5 text-xs font-bold rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200">माध्यमिक (९-१२)</button>
                         <button onclick="filterFaculty('basic')" class="faculty-filter-btn px-3 py-1.5 text-xs font-bold rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200">आधारभूत (६-८)</button>
@@ -409,9 +428,9 @@
     <div class="faculty-card admin bg-neutralBg/80 p-4 rounded-xl text-center border border-gray-200">
         <img src="principal.jpeg" 
              alt="तिलक आचार्य" 
-             class="w-20 h-20 mx-auto rounded-full object-cover border-2 border-gold shadow-sm mb-3">
-        <h4 class="font-bold text-navy">तिलक आचार्य</h4>
-        <p class="text-xs text-gold font-bold">प्रधानाध्यापक</p>
+             onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 80 80%22%3E%3Crect width=%2280%22 height=%2280%22 fill=%22%23DCE8D4%22/%3E%3Ccircle cx=%2240%22 cy=%2232%22 r=%2214%22 fill=%22%231E4D3B%22/%3E%3Cpath d=%22M12 80c4-22 52-22 56 0z%22 fill=%22%231E4D3B%22/%3E%3C/svg%3E'" class="w-20 h-20 mx-auto rounded-full object-cover border-2 border-marigold shadow-sm mb-3">
+        <h4 class="font-bold text-pine">तिलक आचार्य</h4>
+        <p class="text-xs text-marigold font-bold">प्रधानाध्यापक</p>
         <p class="text-[11px] text-gray-500 mt-1">एम.ए. / एम.एड.</p>
     </div>
 
@@ -419,9 +438,9 @@
     <div class="faculty-card secondary bg-neutralBg p-4 rounded-xl text-center border border-gray-200">
         <img src="indraji.jpeg" 
              alt="इन्द्र प्रसाद शर्मा" 
-             class="w-20 h-20 mx-auto rounded-full object-cover border-2 border-gold shadow-sm mb-3">
-        <h4 class="font-bold text-navy">इन्द्र प्रसाद शर्मा</h4>
-        <p class="text-xs text-gold font-bold">विज्ञान संयोजक (कक्षा ९-१०)</p>
+             onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 80 80%22%3E%3Crect width=%2280%22 height=%2280%22 fill=%22%23DCE8D4%22/%3E%3Ccircle cx=%2240%22 cy=%2232%22 r=%2214%22 fill=%22%231E4D3B%22/%3E%3Cpath d=%22M12 80c4-22 52-22 56 0z%22 fill=%22%231E4D3B%22/%3E%3C/svg%3E'" class="w-20 h-20 mx-auto rounded-full object-cover border-2 border-marigold shadow-sm mb-3">
+        <h4 class="font-bold text-pine">इन्द्र प्रसाद शर्मा</h4>
+        <p class="text-xs text-marigold font-bold">विज्ञान संयोजक (कक्षा ९-१०)</p>
         <p class="text-[11px] text-gray-500 mt-1">बी.एससी., बी.एड.</p>
     </div>
 
@@ -429,9 +448,9 @@
     <div class="faculty-card secondary bg-neutralBg p-4 rounded-xl text-center border border-gray-200">
         <img src="oggy (1).jpg" 
              alt="रूपेश बस्याल" 
-             class="w-20 h-20 mx-auto rounded-full object-cover border-2 border-gold shadow-sm mb-3">
-        <h4 class="font-bold text-navy">रूपेश बस्याल</h4>
-        <p class="text-xs text-gold font-bold">गणित संयोजक (कक्षा ९-१०)</p>
+             onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 80 80%22%3E%3Crect width=%2280%22 height=%2280%22 fill=%22%23DCE8D4%22/%3E%3Ccircle cx=%2240%22 cy=%2232%22 r=%2214%22 fill=%22%231E4D3B%22/%3E%3Cpath d=%22M12 80c4-22 52-22 56 0z%22 fill=%22%231E4D3B%22/%3E%3C/svg%3E'" class="w-20 h-20 mx-auto rounded-full object-cover border-2 border-marigold shadow-sm mb-3">
+        <h4 class="font-bold text-pine">रूपेश बस्याल</h4>
+        <p class="text-xs text-marigold font-bold">गणित संयोजक (कक्षा ९-१०)</p>
         <p class="text-[11px] text-gray-500 mt-1">बी.एससी.</p>
     </div>
 
@@ -439,42 +458,44 @@
     <div class="faculty-card primary bg-neutralBg p-4 rounded-xl text-center border border-gray-200">
         <img src="gita-paudel.jpg" 
              alt="गीताकुमारी पौडेल" 
-             class="w-20 h-20 mx-auto rounded-full object-cover border-2 border-gold shadow-sm mb-3">
-        <h4 class="font-bold text-navy">गीताकुमारी पौडेल</h4>
-        <p class="text-xs text-gold font-bold">प्राथमिक तह संयोजक</p>
+             onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 80 80%22%3E%3Crect width=%2280%22 height=%2280%22 fill=%22%23DCE8D4%22/%3E%3Ccircle cx=%2240%22 cy=%2232%22 r=%2214%22 fill=%22%231E4D3B%22/%3E%3Cpath d=%22M12 80c4-22 52-22 56 0z%22 fill=%22%231E4D3B%22/%3E%3C/svg%3E'" class="w-20 h-20 mx-auto rounded-full object-cover border-2 border-marigold shadow-sm mb-3">
+        <h4 class="font-bold text-pine">गीताकुमारी पौडेल</h4>
+        <p class="text-xs text-marigold font-bold">प्राथमिक तह संयोजक</p>
         <p class="text-[11px] text-gray-500 mt-1">बी.एड. प्राथमिक शिक्षा</p>
     </div>
 
 </div>
+            </div>
+        </section>
 
         <!-- 3. ADMISSIONS VIEW -->
         <section id="view-admissions" class="page-view py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-12">
-                <span class="text-gold font-bold text-xs uppercase tracking-widest">हाम्रो परिवारमा जोडिनुहोस्</span>
-                <h1 class="text-3xl sm:text-4xl font-serif font-bold text-navy mt-1">भर्ना प्रक्रिया तथा मापदण्ड</h1>
+                <span class="text-marigold font-bold text-xs uppercase tracking-widest">हाम्रो परिवारमा जोडिनुहोस्</span>
+                <h1 class="text-3xl sm:text-4xl font-serif font-bold text-pine mt-1">भर्ना प्रक्रिया तथा मापदण्ड</h1>
                 <p class="text-gray-600 mt-2 text-sm sm:text-base">आगामी शैक्षिक सत्रका लागि विद्यार्थी तथा अभिभावकहरूका लागि सरल र पारदर्शी भर्ना प्रक्रिया।</p>
             </div>
 
             <!-- Enrollment Steps Timeline -->
             <div class="grid md:grid-cols-4 gap-6 mb-16">
-                <div class="bg-white/90 backdrop-blur p-6 rounded-xl shadow border-t-4 border-gold relative">
-                    <span class="text-3xl font-extrabold text-gold/30 absolute top-4 right-4">०१</span>
-                    <h3 class="font-bold text-navy mb-2">फारम बुझाउने</h3>
+                <div class="bg-white/90 backdrop-blur p-6 rounded-xl shadow border-t-4 border-marigold relative">
+                    <span class="text-3xl font-extrabold text-marigold/30 absolute top-4 right-4">०१</span>
+                    <h3 class="font-bold text-pine mb-2">फारम बुझाउने</h3>
                     <p class="text-xs text-gray-600">विद्यालयको वेबसाइट वा प्रशासन शाखाबाट आवेदन फारम प्राप्त गरी भर्नुहोस्।</p>
                 </div>
-                <div class="bg-white/90 backdrop-blur p-6 rounded-xl shadow border-t-4 border-navy relative">
-                    <span class="text-3xl font-extrabold text-navy/20 absolute top-4 right-4">०२</span>
-                    <h3 class="font-bold text-navy mb-2">कागजात रुजु</h3>
+                <div class="bg-white/90 backdrop-blur p-6 rounded-xl shadow border-t-4 border-pine relative">
+                    <span class="text-3xl font-extrabold text-pine/20 absolute top-4 right-4">०२</span>
+                    <h3 class="font-bold text-pine mb-2">कागजात रुजु</h3>
                     <p class="text-xs text-gray-600">अघिल्लो कक्षाको लब्धाङ्क पत्र, जन्मदर्ता र स्थानान्तरण प्रमाणपत्र बुझाउनुहोस्।</p>
                 </div>
-                <div class="bg-white/90 backdrop-blur p-6 rounded-xl shadow border-t-4 border-gold relative">
-                    <span class="text-3xl font-extrabold text-gold/30 absolute top-4 right-4">०३</span>
-                    <h3 class="font-bold text-navy mb-2">प्रवेश परीक्षा / अन्तर्वार्ता</h3>
+                <div class="bg-white/90 backdrop-blur p-6 rounded-xl shadow border-t-4 border-marigold relative">
+                    <span class="text-3xl font-extrabold text-marigold/30 absolute top-4 right-4">०३</span>
+                    <h3 class="font-bold text-pine mb-2">प्रवेश परीक्षा / अन्तर्वार्ता</h3>
                     <p class="text-xs text-gray-600">विद्यार्थीको सिकाइ स्तर पहिचानका लागि सामान्य प्रवेश परीक्षा सञ्चालन गरिनेछ।</p>
                 </div>
-                <div class="bg-white/90 backdrop-blur p-6 rounded-xl shadow border-t-4 border-navy relative">
-                    <span class="text-3xl font-extrabold text-navy/20 absolute top-4 right-4">०४</span>
-                    <h3 class="font-bold text-navy mb-2">अन्तिम भर्ना</h3>
+                <div class="bg-white/90 backdrop-blur p-6 rounded-xl shadow border-t-4 border-pine relative">
+                    <span class="text-3xl font-extrabold text-pine/20 absolute top-4 right-4">०४</span>
+                    <h3 class="font-bold text-pine mb-2">अन्तिम भर्ना</h3>
                     <p class="text-xs text-gray-600">आवश्यक प्रक्रिया पुरा गरी पाठ्यपुस्तक र अभिमुखीकरण कार्यक्रममा सहभागी हुनुहोस्।</p>
                 </div>
             </div>
@@ -482,31 +503,31 @@
             <!-- Downloadable Application Forms & Fee Info -->
             <div class="grid md:grid-cols-12 gap-8 mb-12">
                 <div class="md:col-span-7 bg-white/90 backdrop-blur p-8 rounded-2xl shadow-md">
-                    <h3 class="text-xl font-serif font-bold text-navy mb-4 flex items-center">
+                    <h3 class="text-xl font-serif font-bold text-pine mb-4 flex items-center">
                         <i class="fas fa-file-pdf text-red-600 mr-2"></i> डाउनलोड गर्न सकिने कागजातहरू
                     </h3>
                     <div class="space-y-3">
                         <div class="flex items-center justify-between p-3 bg-neutralBg rounded-lg border border-gray-200">
                             <div class="flex items-center space-x-3">
-                                <i class="fas fa-file-alt text-navy text-xl"></i>
+                                <i class="fas fa-file-alt text-pine text-xl"></i>
                                 <div>
-                                    <div class="font-bold text-xs text-navy">नयाँ भर्ना फारम (PDF)</div>
+                                    <div class="font-bold text-xs text-pine">नयाँ भर्ना फारम (PDF)</div>
                                     <div class="text-[10px] text-gray-500">साइज: १.२ MB &bull; शैक्षिक सत्र २०८३</div>
                                 </div>
                             </div>
-                            <button onclick="downloadSimulatedFile('Bharna_Form_2083.pdf')" class="px-3 py-1.5 bg-navy text-gold text-xs font-bold rounded hover:bg-navy-light transition">
+                            <button onclick="downloadSimulatedFile('Bharna_Form_2083.pdf')" class="px-3 py-1.5 bg-pine text-marigold text-xs font-bold rounded hover:bg-pine-light transition">
                                 <i class="fas fa-download mr-1"></i> डाउनलोड
                             </button>
                         </div>
                         <div class="flex items-center justify-between p-3 bg-neutralBg rounded-lg border border-gray-200">
                             <div class="flex items-center space-x-3">
-                                <i class="fas fa-book text-navy text-xl"></i>
+                                <i class="fas fa-book text-pine text-xl"></i>
                                 <div>
-                                    <div class="font-bold text-xs text-navy">विद्यालय परिचयपुस्तिका (Prospectus)</div>
+                                    <div class="font-bold text-xs text-pine">विद्यालय परिचयपुस्तिका (Prospectus)</div>
                                     <div class="text-[10px] text-gray-500">साइज: ३.४ MB &bull; विस्तृत विवरण</div>
                                 </div>
                             </div>
-                            <button onclick="downloadSimulatedFile('School_Prospectus_Baglung.pdf')" class="px-3 py-1.5 bg-navy text-gold text-xs font-bold rounded hover:bg-navy-light transition">
+                            <button onclick="downloadSimulatedFile('School_Prospectus_Baglung.pdf')" class="px-3 py-1.5 bg-pine text-marigold text-xs font-bold rounded hover:bg-pine-light transition">
                                 <i class="fas fa-download mr-1"></i> डाउनलोड
                             </button>
                         </div>
@@ -514,15 +535,15 @@
                 </div>
 
                 <!-- Fee Structure & Scholarships -->
-                <div class="md:col-span-5 bg-gold-light/60 backdrop-blur p-8 rounded-2xl border border-gold/30">
-                    <h3 class="text-xl font-serif font-bold text-navy mb-2">छात्रवृत्ति तथा सहयोग</h3>
+                <div class="md:col-span-5 bg-marigold-light/60 backdrop-blur p-8 rounded-2xl border border-marigold/30">
+                    <h3 class="text-xl font-serif font-bold text-pine mb-2">छात्रवृत्ति तथा सहयोग</h3>
                     <p class="text-xs text-gray-600 leading-relaxed mb-4">
                         नेपाल सरकारको नियमानुसार तथा स्थानीय अक्षयकोषबाट जेहेन्दार तथा विपन्न विद्यार्थीहरूका लागि विभिन्न छात्रवृत्तिको व्यवस्था गरिएको छ:
                     </p>
-                    <ul class="text-xs space-y-2 text-navy font-semibold">
-                        <li class="flex items-center"><i class="fas fa-check-circle text-gold mr-2"></i> जेहेन्दार छात्रवृत्ति (जिल्ला उत्कृष्ट)</li>
-                        <li class="flex items-center"><i class="fas fa-check-circle text-gold mr-2"></i> विपन्न, दलित तथा जनजाति छात्रवृत्ति</li>
-                        <li class="flex items-center"><i class="fas fa-check-circle text-gold mr-2"></i> भकुण्डेवासी विद्यार्थीहरूका लागि विशेष सुविधा</li>
+                    <ul class="text-xs space-y-2 text-pine font-semibold">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-marigold mr-2"></i> जेहेन्दार छात्रवृत्ति (जिल्ला उत्कृष्ट)</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-marigold mr-2"></i> विपन्न, दलित तथा जनजाति छात्रवृत्ति</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-marigold mr-2"></i> भकुण्डेवासी विद्यार्थीहरूका लागि विशेष सुविधा</li>
                     </ul>
                 </div>
             </div>
@@ -531,36 +552,36 @@
         <!-- 4. ACADEMICS VIEW -->
 <section id="view-academics" class="page-view py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-12">
-                <span class="text-gold font-bold text-xs uppercase tracking-widest">शैक्षिक स्तर</span>
-                <h1 class="text-3xl sm:text-4xl font-serif font-bold text-navy mt-1">पाठ्यक्रम तथा अतिरिक्त क्रियाकलाप</h1>
+                <span class="text-marigold font-bold text-xs uppercase tracking-widest">शैक्षिक स्तर</span>
+                <h1 class="text-3xl sm:text-4xl font-serif font-bold text-pine mt-1">पाठ्यक्रम तथा अतिरिक्त क्रियाकलाप</h1>
                 <p class="text-gray-600 mt-2 text-sm sm:text-base">नेपाल सरकारको राष्ट्रिय पाठ्यक्रममा आधारित भई कम्प्युटर, खेलकुद र व्यावहारिक शिक्षामा जोड।</p>
             </div>
 
             <!-- Grade Tracks -->
             <div class="grid md:grid-cols-3 gap-8 mb-16">
-                <div class="bg-white/90 backdrop-blur p-6 rounded-2xl shadow border-b-4 border-gold">
-                    <div class="w-12 h-12 bg-navy/10 text-navy rounded-full flex items-center justify-center text-xl font-bold mb-4">
+                <div class="bg-white/90 backdrop-blur p-6 rounded-2xl shadow border-b-4 border-marigold">
+                    <div class="w-12 h-12 bg-pine/10 text-pine rounded-full flex items-center justify-center text-xl font-bold mb-4">
                         <i class="fas fa-shapes"></i>
                     </div>
-                    <h3 class="text-lg font-serif font-bold text-navy mb-2">प्राथमिक तह (कक्षा १-५)</h3>
+                    <h3 class="text-lg font-serif font-bold text-pine mb-2">प्राथमिक तह (कक्षा १-५)</h3>
                     <p class="text-xs text-gray-600 leading-relaxed">
                         अक्षर ज्ञान, सङ्ख्यात्मक ज्ञान र सिर्जनात्मक खेलहरूमार्फत बालबालिकाको आधारभूत विकासमा जोड।
                     </p>
                 </div>
-                <div class="bg-white/90 backdrop-blur p-6 rounded-2xl shadow border-b-4 border-navy">
-                    <div class="w-12 h-12 bg-gold/20 text-gold rounded-full flex items-center justify-center text-xl font-bold mb-4">
+                <div class="bg-white/90 backdrop-blur p-6 rounded-2xl shadow border-b-4 border-pine">
+                    <div class="w-12 h-12 bg-marigold/20 text-marigold rounded-full flex items-center justify-center text-xl font-bold mb-4">
                         <i class="fas fa-atom"></i>
                     </div>
-                    <h3 class="text-lg font-serif font-bold text-navy mb-2">आधारभूत तह (कक्षा ६-८)</h3>
+                    <h3 class="text-lg font-serif font-bold text-pine mb-2">आधारभूत तह (कक्षा ६-८)</h3>
                     <p class="text-xs text-gray-600 leading-relaxed">
                         विज्ञान, गणित, सामाजिक अध्ययन, अंग्रेजी र नेपाली विषयसँगै कम्प्युटर शिक्षाको व्यावहारिक अभ्यास।
                     </p>
                 </div>
-                <div class="bg-white/90 backdrop-blur p-6 rounded-2xl shadow border-b-4 border-gold">
-                    <div class="w-12 h-12 bg-navy/10 text-navy rounded-full flex items-center justify-center text-xl font-bold mb-4">
+                <div class="bg-white/90 backdrop-blur p-6 rounded-2xl shadow border-b-4 border-marigold">
+                    <div class="w-12 h-12 bg-pine/10 text-pine rounded-full flex items-center justify-center text-xl font-bold mb-4">
                         <i class="fas fa-microscope"></i>
                     </div>
-                    <h3 class="text-lg font-serif font-bold text-navy mb-2">माध्यमिक तह (कक्षा ९-१२)</h3>
+                    <h3 class="text-lg font-serif font-bold text-pine mb-2">माध्यमिक तह (कक्षा ९-१२)</h3>
                     <p class="text-xs text-gray-600 leading-relaxed">
                         एस.ई.ई. (SEE) को विशेष तयारी तथा +२ तहका लागि व्यवस्थापन, मानविकी र विज्ञान विधाका कक्षाहरू।
                     </p>
@@ -568,26 +589,26 @@
             </div>
 
             <!-- ECA Activities Grid -->
-            <div class="bg-navy text-white p-8 rounded-2xl shadow-xl">
-                <h3 class="text-2xl font-serif font-bold mb-6 text-center text-gold">अतिरिक्त क्रियाकलाप (ECA)</h3>
+            <div class="bg-pine text-white p-8 rounded-2xl shadow-xl">
+                <h3 class="text-2xl font-serif font-bold mb-6 text-center text-marigold">अतिरिक्त क्रियाकलाप (ECA)</h3>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-                    <div class="p-4 bg-navy-light/50 rounded-xl border border-white/10">
-                        <i class="fas fa-futbol text-3xl text-gold mb-2 block"></i>
+                    <div class="p-4 bg-pine-light/50 rounded-xl border border-white/10">
+                        <i class="fas fa-futbol text-3xl text-marigold mb-2 block"></i>
                         <h4 class="font-bold text-sm">खेलकुद तथा एथलेटिक्स</h4>
                         <p class="text-[11px] text-gray-300 mt-1">भलिबल, ब्याडमिन्टन, फुटबल</p>
                     </div>
-                    <div class="p-4 bg-navy-light/50 rounded-xl border border-white/10">
-                        <i class="fas fa-leaf text-3xl text-gold mb-2 block"></i>
+                    <div class="p-4 bg-pine-light/50 rounded-xl border border-white/10">
+                        <i class="fas fa-leaf text-3xl text-marigold mb-2 block"></i>
                         <h4 class="font-bold text-sm">इको-क्लब तथा वातावरण</h4>
                         <p class="text-[11px] text-gray-300 mt-1">वृक्षारोपण तथा सरसफाइ अभियान</p>
                     </div>
-                    <div class="p-4 bg-navy-light/50 rounded-xl border border-white/10">
-                        <i class="fas fa-laptop-code text-3xl text-gold mb-2 block"></i>
+                    <div class="p-4 bg-pine-light/50 rounded-xl border border-white/10">
+                        <i class="fas fa-laptop-code text-3xl text-marigold mb-2 block"></i>
                         <h4 class="font-bold text-sm">कम्प्युटर ल्याब</h4>
                         <p class="text-[11px] text-gray-300 mt-1">डिजिटल साक्षरता तथा कोडिङ</p>
                     </div>
-                    <div class="p-4 bg-navy-light/50 rounded-xl border border-white/10">
-                        <i class="fas fa-music text-3xl text-gold mb-2 block"></i>
+                    <div class="p-4 bg-pine-light/50 rounded-xl border border-white/10">
+                        <i class="fas fa-music text-3xl text-marigold mb-2 block"></i>
                         <h4 class="font-bold text-sm">साहित्य तथा संस्कृति</h4>
                         <p class="text-[11px] text-gray-300 mt-1">लोक नृत्य, हाजिरीजवाफ, वक्तृत्वकला</p>
                     </div>
@@ -598,146 +619,113 @@
         <!-- 5. NEWS & EVENTS VIEW -->
         <section id="view-news" class="page-view py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-12">
-                <span class="text-gold font-bold text-xs uppercase tracking-widest">सूचना पाटी</span>
-                <h1 class="text-3xl sm:text-4xl font-serif font-bold text-navy mt-1">समाचार, सूचना तथा कार्यक्रमहरू</h1>
+                <span class="text-marigold font-bold text-xs uppercase tracking-widest">सूचना पाटी</span>
+                <h1 class="text-3xl sm:text-4xl font-serif font-bold text-pine mt-1">समाचार, सूचना तथा कार्यक्रमहरू</h1>
                 <p class="text-gray-600 mt-2 text-sm sm:text-base">विद्यालयका आधिकारिक सूचना, परीक्षा तालिका र गतिविधिहरूबारे अपडेट रहनुहोस्।</p>
             </div>
 
             <!-- Filter Categories -->
             <div class="flex justify-center flex-wrap gap-2 mb-8">
-                <button onclick="filterNews('all')" class="news-filter-btn active-news-btn px-4 py-2 text-xs font-bold rounded-full bg-navy text-white shadow">सबै सूचना</button>
-                <button onclick="filterNews('academic')" class="news-filter-btn px-4 py-2 text-xs font-bold rounded-full bg-white text-navy border border-gray-300 hover:bg-gray-100">शैक्षिक</button>
-                <button onclick="filterNews('sports')" class="news-filter-btn px-4 py-2 text-xs font-bold rounded-full bg-white text-navy border border-gray-300 hover:bg-gray-100">खेलकुद</button>
-                <button onclick="filterNews('admin')" class="news-filter-btn px-4 py-2 text-xs font-bold rounded-full bg-white text-navy border border-gray-300 hover:bg-gray-100">प्रशासनिक</button>
+                <button onclick="filterNews('all')" class="news-filter-btn active-news-btn px-4 py-2 text-xs font-bold rounded-full bg-pine text-white shadow">सबै सूचना</button>
+                <button onclick="filterNews('academic')" class="news-filter-btn px-4 py-2 text-xs font-bold rounded-full bg-white text-pine border border-gray-300 hover:bg-gray-100">शैक्षिक</button>
+                <button onclick="filterNews('sports')" class="news-filter-btn px-4 py-2 text-xs font-bold rounded-full bg-white text-pine border border-gray-300 hover:bg-gray-100">खेलकुद</button>
+                <button onclick="filterNews('admin')" class="news-filter-btn px-4 py-2 text-xs font-bold rounded-full bg-white text-pine border border-gray-300 hover:bg-gray-100">प्रशासनिक</button>
             </div>
-<!-- 1. URGENT NOTICE BUTTON (Hero Section के बटन ग्रुप के अंदर रखने के लिए) -->
-<a href="#exam-routine" class="px-6 py-3.5 bg-red-600 hover:bg-red-700 text-white font-bold rounded-lg shadow-lg hover:shadow-xl transition transform hover:-translate-y-0.5 flex items-center justify-center animate-pulse">
-    <i class="fas fa-exclamation-circle mr-2"></i>अत्यावश्यक सूचना: दोस्रो त्रैमासिक परीक्षा रूटीन
-</a>
-
-
-<!-- 2. EXAM ROUTINE SECTION (इमेज डिस्प्ले और डाउनलोड बटन के साथ) -->
-<div id="exam-routine" class="py-12 bg-gray-50 my-8">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
-            
-            <!-- Header with Download Option -->
-            <div class="bg-navy p-4 sm:p-6 text-white flex justify-between items-center flex-wrap gap-4">
-                <div class="flex items-center space-x-3">
-                    <span class="bg-red-600 text-white text-xs uppercase font-extrabold px-3 py-1 rounded-full animate-bounce">
-                        अत्यावश्यक
-                    </span>
-                    <h3 class="text-xl sm:text-2xl font-bold font-serif">दोस्रो त्रैमासिक परीक्षा तालिकासम्बन्धी सूचना</h3>
-                </div>
-                <a href="examroutine.png" download class="px-4 py-2 bg-gold hover:bg-gold-hover text-navy font-bold rounded-lg text-sm transition flex items-center shadow">
-                    <i class="fas fa-download mr-2"></i> रूटीन डाउनलोड गर्नुहोस्
-                </a>
-            </div>
-
-            <!-- Routine Image Container -->
-            <div class="p-6 text-center">
-                <p class="text-gray-700 text-base mb-6">
-                    आदरणीय अभिभावक तथा विद्यार्थी वर्ग, दोस्रो त्रैमासिक परीक्षा मिति <strong>२०८३/०६/१६</strong> गतेदेखि सञ्चालन हुन गइरहेकाले परीक्षा कार्यतालिका नीचे प्रदान गरिएको छ[cite: 2]।
-                </p>
-                <div class="max-w-3xl mx-auto border-2 border-gold/40 rounded-xl overflow-hidden shadow-md">
-                    <img src="examroutine.png" alt="दोस्रो त्रैमासिक परीक्षा रूटीन" class="w-full h-auto object-contain">
-                </div>
-            </div>
-
-        </div>
-    </div>
-</div>
+<button onclick="openRoutineModal()" class="w-full mb-8 flex items-center gap-4 bg-white border-l-8 border-crimson rounded-r-2xl shadow-md p-4 text-left hover:shadow-lg transition">
+                <span class="bg-crimson text-white text-xs font-extrabold px-3 py-1 rounded-full shrink-0"><i class="fas fa-exclamation-triangle mr-1"></i> अत्यावश्यक</span>
+                <span class="font-serif font-bold text-pine">दोस्रो त्रैमासिक परीक्षा तालिकासम्बन्धी सूचना — २०८३/०६/१६ गतेदेखि</span>
+                <i class="fas fa-chevron-right ml-auto text-crimson"></i>
+            </button>
             <!-- Notices Grid -->
             <div class="grid md:grid-cols-3 gap-6" id="news-grid">
                 <div class="news-card academic bg-white/90 backdrop-blur rounded-2xl shadow-md border border-gray-100 overflow-hidden flex flex-col">
-                    <div class="bg-navy p-4 text-gold text-xs font-bold flex justify-between items-center">
+                    <div class="bg-pine p-4 text-marigold text-xs font-bold flex justify-between items-center">
                         <span><i class="fas fa-graduation-cap mr-1"></i> शैक्षिक</span>
                         <span>फागुन १५, २०८२</span>
                     </div>
                     <div class="p-6 flex-grow flex flex-col justify-between">
                         <div>
-                            <h3 class="font-serif font-bold text-navy text-lg mb-2">वार्षिक परीक्षा तालिका प्रकाशित</h3>
+                            <h3 class="font-serif font-bold text-pine text-lg mb-2">वार्षिक परीक्षा तालिका प्रकाशित</h3>
                             <p class="text-xs text-gray-600 leading-relaxed mb-4">
                                 कक्षा १ देखि ९ सम्मको अन्तिम वार्षिक परीक्षाको कार्यतालिका प्रकाशित गरिएको छ। परीक्षा चैत ५ गतेदेखि सुरु हुनेछ।
                             </p>
                         </div>
-                        <button onclick="openNoticeModal('वार्षिक परीक्षा तालिका प्रकाशित', 'कक्षा १ देखि ९ सम्मको वार्षिक परीक्षा तालिका परीक्षा समितिद्वारा प्रकाशित भइसकेको छ। विद्यार्थीहरूले आफ्नो कक्षा शिक्षक वा सूचना पाटीबाट तालिका लिन सक्नुहुनेछ।', 'फागुन १५, २०८२')" class="text-xs font-bold text-navy hover:text-gold transition text-left">
+                        <button onclick="openNoticeModal('वार्षिक परीक्षा तालिका प्रकाशित', 'कक्षा १ देखि ९ सम्मको वार्षिक परीक्षा तालिका परीक्षा समितिद्वारा प्रकाशित भइसकेको छ। विद्यार्थीहरूले आफ्नो कक्षा शिक्षक वा सूचना पाटीबाट तालिका लिन सक्नुहुनेछ।', 'फागुन १५, २०८२')" class="text-xs font-bold text-pine hover:text-marigold transition text-left">
                             विस्तृत हेर्नुहोस् <i class="fas fa-chevron-right ml-1"></i>
                         </button>
                     </div>
                 </div>
 
                 <div class="news-card sports bg-white/90 backdrop-blur rounded-2xl shadow-md border border-gray-100 overflow-hidden flex flex-col">
-                    <div class="bg-gold p-4 text-navy text-xs font-bold flex justify-between items-center">
+                    <div class="bg-marigold p-4 text-pine text-xs font-bold flex justify-between items-center">
                         <span><i class="fas fa-trophy mr-1"></i> खेलकुद</span>
                         <span>माघ २८, २०८२</span>
                     </div>
                     <div class="p-6 flex-grow flex flex-col justify-between">
                         <div>
-                            <h3 class="font-serif font-bold text-navy text-lg mb-2">अन्तर-सदन भलिबल प्रतियोगिता</h3>
+                            <h3 class="font-serif font-bold text-pine text-lg mb-2">अन्तर-सदन भलिबल प्रतियोगिता</h3>
                             <p class="text-xs text-gray-600 leading-relaxed mb-4">
                                 भकुण्डे खेल मैदानमा सम्पन्न वार्षिक भलिबल प्रतियोगितामा सगरमाथा सदन प्रथम हुन सफल भएकोमा बधाई!
                             </p>
                         </div>
-                        <button onclick="openNoticeModal('अन्तर-सदन भलिबल प्रतियोगिता', 'वार्षिक खेलकुद सप्ताह अन्तर्गत भएको रोमाञ्चक फाइनल खेलमा सगरमाथा सदनले अन्नपूर्ण सदनलाई पराजित गर्दै ट्रफी हात पारेको छ।', 'माघ २८, २०८२')" class="text-xs font-bold text-navy hover:text-gold transition text-left">
+                        <button onclick="openNoticeModal('अन्तर-सदन भलिबल प्रतियोगिता', 'वार्षिक खेलकुद सप्ताह अन्तर्गत भएको रोमाञ्चक फाइनल खेलमा सगरमाथा सदनले अन्नपूर्ण सदनलाई पराजित गर्दै ट्रफी हात पारेको छ।', 'माघ २८, २०८२')" class="text-xs font-bold text-pine hover:text-marigold transition text-left">
                             विस्तृत हेर्नुहोस् <i class="fas fa-chevron-right ml-1"></i>
                         </button>
                     </div>
                 </div>
 
                 <div class="news-card admin bg-white/90 backdrop-blur rounded-2xl shadow-md border border-gray-100 overflow-hidden flex flex-col">
-                    <div class="bg-navy p-4 text-gold text-xs font-bold flex justify-between items-center">
+                    <div class="bg-pine p-4 text-marigold text-xs font-bold flex justify-between items-center">
                         <span><i class="fas fa-building mr-1"></i> प्रशासनिक</span>
                         <span>माघ १०, २०८२</span>
                     </div>
                     <div class="p-6 flex-grow flex flex-col justify-between">
                         <div>
-                            <h3 class="font-serif font-bold text-navy text-lg mb-2">नयाँ शैक्षिक सत्र २०८३ को भर्ना खुल्यो</h3>
+                            <h3 class="font-serif font-bold text-pine text-lg mb-2">नयाँ शैक्षिक सत्र २०८३ को भर्ना खुल्यो</h3>
                             <p class="text-xs text-gray-600 leading-relaxed mb-4">
                                 शिशु कक्षा देखि कक्षा ११ सम्मका लागि आवेदन फारमहरू विद्यालयको प्रशासन शाखा तथा वेबसाइटमा उपलब्ध छन्।
                             </p>
                         </div>
-                        <button onclick="openNoticeModal('नयाँ शैक्षिक सत्र २०८३ को भर्ना खुल्यो', 'आगामी शैक्षिक सत्रका लागि आफ्ना बालबालिकालाई भर्ना गराउन चाहनुहुने अभिभावकहरूले यथाशीघ्र आवेदन फारम भरेर बुझाउनुहोला। कोटा सीमित छ।', 'माघ १०, २०८२')" class="text-xs font-bold text-navy hover:text-gold transition text-left">
+                        <button onclick="openNoticeModal('नयाँ शैक्षिक सत्र २०८३ को भर्ना खुल्यो', 'आगामी शैक्षिक सत्रका लागि आफ्ना बालबालिकालाई भर्ना गराउन चाहनुहुने अभिभावकहरूले यथाशीघ्र आवेदन फारम भरेर बुझाउनुहोला। कोटा सीमित छ।', 'माघ १०, २०८२')" class="text-xs font-bold text-pine hover:text-marigold transition text-left">
                             विस्तृत हेर्नुहोस् <i class="fas fa-chevron-right ml-1"></i>
                         </button>
                     </div>
                 </div>
             </div>
         </section>
-
-        <!-- 6. CONTACT VIEW -->
+         <!-- 6. CONTACT VIEW -->
         <section id="view-contact" class="page-view py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-12">
-                <span class="text-gold font-bold text-xs uppercase tracking-widest">हामीसँग जोडिनुहोस्</span>
-                <h1 class="text-3xl sm:text-4xl font-serif font-bold text-navy mt-1">सम्पर्क तथा स्थान</h1>
+                <span class="text-marigold font-bold text-xs uppercase tracking-widest">हामीसँग जोडिनुहोस्</span>
+                <h1 class="text-3xl sm:text-4xl font-serif font-bold text-pine mt-1">सम्पर्क तथा स्थान</h1>
                 <p class="text-gray-600 mt-2 text-sm sm:text-base">अभिभावक, आगन्तुक तथा भुतपूर्व विद्यार्थीहरूलाई भकुण्डेस्थित विद्यालय परिसरमा हार्दिक स्वागत गर्दछौँ।</p>
             </div>
 
             <div class="grid md:grid-cols-12 gap-8">
                 <div class="md:col-span-5 bg-white/90 backdrop-blur p-8 rounded-2xl shadow-md space-y-6">
-                    <h3 class="text-xl font-serif font-bold text-navy border-b pb-3">विद्यालय कार्यालय विवरण</h3>
+                    <h3 class="text-xl font-serif font-bold text-pine border-b pb-3">विद्यालय कार्यालय विवरण</h3>
                     <div class="space-y-4 text-sm text-gray-600">
                         <div class="flex items-start">
-                            <i class="fas fa-map-marker-alt text-gold text-lg mt-1 w-8"></i>
+                            <i class="fas fa-map-marker-alt text-marigold text-lg mt-1 w-8"></i>
                             <div>
-                                <strong class="text-navy block">ठेगाना</strong>
+                                <strong class="text-pine block">ठेगाना</strong>
                                 श्री चौतारे डाँडा माध्यमिक विद्यालय<br>
                                 वडा नं. १० भकुण्डे, बागलुङ नगरपालिका<br>
                                 गण्डकी प्रदेश, नेपाल
                             </div>
                         </div>
                         <div class="flex items-start">
-                            <i class="fas fa-phone-alt text-gold text-lg mt-1 w-8"></i>
+                            <i class="fas fa-phone-alt text-marigold text-lg mt-1 w-8"></i>
                             <div>
-                                <strong class="text-navy block">फोन तथा हेल्पलाइन</strong>
+                                <strong class="text-pine block">फोन तथा हेल्पलाइन</strong>
                                 कार्यालय: +९७७ ९८४७७६७८१०<br>
                                 भर्ना डेस्क: +९७७ ९८४७७६७८१०
                             </div>
                         </div>
                         <div class="flex items-start">
-                            <i class="fas fa-envelope text-gold text-lg mt-1 w-8"></i>
+                            <i class="fas fa-envelope text-marigold text-lg mt-1 w-8"></i>
                             <div>
-                                <strong class="text-navy block">इमेल सम्पर्क</strong>
+                                <strong class="text-pine block">इमेल सम्पर्क</strong>
                                 सामान्य सोधपुछ: chautaredanda98@gmail.com<br>
                                 भर्ना सोधपुछ: chautaredanda98@gmail.com
                             </div>
@@ -745,28 +733,28 @@
                     </div>
                 </div>
 
-                <div class="md:col-span-7 bg-white/90 backdrop-blur p-8 rounded-2xl shadow-md border-t-4 border-navy">
-                    <h3 class="text-xl font-serif font-bold text-navy mb-4">हामीलाई प्रत्यक्ष सन्देश पठाउनुहोस्</h3>
+                <div class="md:col-span-7 bg-white/90 backdrop-blur p-8 rounded-2xl shadow-md border-t-4 border-pine">
+                    <h3 class="text-xl font-serif font-bold text-pine mb-4">हामीलाई प्रत्यक्ष सन्देश पठाउनुहोस्</h3>
                     <form onsubmit="handleDirectContact(event)" class="space-y-4">
                         <div class="grid grid-cols-2 gap-4">
                             <div>
-                                <label class="block text-xs font-bold uppercase text-navy mb-1">पूरा नाम *</label>
-                                <input type="text" required class="w-full px-3 py-2 border rounded-md text-sm focus:ring-2 focus:ring-navy focus:outline-none">
+                                <label class="block text-xs font-bold uppercase text-pine mb-1">पूरा नाम *</label>
+                                <input type="text" required class="w-full px-3 py-2 border rounded-md text-sm focus:ring-2 focus:ring-pine focus:outline-none">
                             </div>
                             <div>
-                                <label class="block text-xs font-bold uppercase text-navy mb-1">इमेल ठेगाना</label>
-                                <input type="email" class="w-full px-3 py-2 border rounded-md text-sm focus:ring-2 focus:ring-navy focus:outline-none">
+                                <label class="block text-xs font-bold uppercase text-pine mb-1">इमेल ठेगाना</label>
+                                <input type="email" class="w-full px-3 py-2 border rounded-md text-sm focus:ring-2 focus:ring-pine focus:outline-none">
                             </div>
                         </div>
                         <div>
-                            <label class="block text-xs font-bold uppercase text-navy mb-1">विषय</label>
-                            <input type="text" required class="w-full px-3 py-2 border rounded-md text-sm focus:ring-2 focus:ring-navy focus:outline-none" placeholder="उदा: भर्नासम्बन्धी सोधपुछ / ट्रान्सफर">
+                            <label class="block text-xs font-bold uppercase text-pine mb-1">विषय</label>
+                            <input type="text" required class="w-full px-3 py-2 border rounded-md text-sm focus:ring-2 focus:ring-pine focus:outline-none" placeholder="उदा: भर्नासम्बन्धी सोधपुछ / ट्रान्सफर">
                         </div>
                         <div>
-                            <label class="block text-xs font-bold uppercase text-navy mb-1">सन्देश *</label>
-                            <textarea rows="4" required class="w-full px-3 py-2 border rounded-md text-sm focus:ring-2 focus:ring-navy focus:outline-none"></textarea>
+                            <label class="block text-xs font-bold uppercase text-pine mb-1">सन्देश *</label>
+                            <textarea rows="4" required class="w-full px-3 py-2 border rounded-md text-sm focus:ring-2 focus:ring-pine focus:outline-none"></textarea>
                         </div>
-                        <button type="submit" class="px-6 py-3 bg-navy hover:bg-navy-light text-gold font-bold text-sm rounded-md shadow transition">
+                        <button type="submit" class="px-6 py-3 bg-pine hover:bg-pine-light text-marigold font-bold text-sm rounded-md shadow transition">
                             सन्देश पठाउनुहोस्
                         </button>
                     </form>
@@ -782,40 +770,40 @@
     <!-- TOUR BOOKING MODAL -->
     <div id="tourModal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm">
         <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl relative transform transition-all">
-            <button onclick="closeTourModal()" class="absolute top-4 right-4 text-gray-400 hover:text-navy text-lg">
+            <button onclick="closeTourModal()" class="absolute top-4 right-4 text-gray-400 hover:text-pine text-lg">
                 <i class="fas fa-times"></i>
             </button>
             <div class="text-center mb-6">
-                <div class="w-12 h-12 bg-gold/20 text-gold rounded-full flex items-center justify-center mx-auto mb-2 text-xl">
+                <div class="w-12 h-12 bg-marigold/20 text-marigold rounded-full flex items-center justify-center mx-auto mb-2 text-xl">
                     <i class="fas fa-walking"></i>
                 </div>
-                <h3 class="font-serif font-bold text-xl text-navy">विद्यालय अवलोकनको समय लिनुहोस्</h3>
+                <h3 class="font-serif font-bold text-xl text-pine">विद्यालय अवलोकनको समय लिनुहोस्</h3>
                 <p class="text-xs text-gray-500">भकुण्डे परिसरको भ्रमण गरी शिक्षकहरूसँग भेटघाट गर्नुहोस्।</p>
             </div>
             <form onsubmit="handleTourBooking(event)" class="space-y-4">
                 <div>
-                    <label class="block text-xs font-bold text-navy mb-1">पूरा नाम *</label>
-                    <input type="text" required class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-navy focus:outline-none">
+                    <label class="block text-xs font-bold text-pine mb-1">पूरा नाम *</label>
+                    <input type="text" required class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-pine focus:outline-none">
                 </div>
                 <div>
-                    <label class="block text-xs font-bold text-navy mb-1">फोन नम्बर *</label>
-                    <input type="tel" required class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-navy focus:outline-none">
+                    <label class="block text-xs font-bold text-pine mb-1">फोन नम्बर *</label>
+                    <input type="tel" required class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-pine focus:outline-none">
                 </div>
                 <div class="grid grid-cols-2 gap-3">
                     <div>
-                        <label class="block text-xs font-bold text-navy mb-1">भ्रमण गर्ने मिति *</label>
-                        <input type="date" required class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-navy focus:outline-none">
+                        <label class="block text-xs font-bold text-pine mb-1">भ्रमण गर्ने मिति *</label>
+                        <input type="date" required class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-pine focus:outline-none">
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-navy mb-1">समय *</label>
-                        <select class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-navy focus:outline-none bg-white">
+                        <label class="block text-xs font-bold text-pine mb-1">समय *</label>
+                        <select class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-pine focus:outline-none bg-white">
                             <option>बिहान १०:३० बजे</option>
                             <option>दिउँसो ०१:०० बजे</option>
                             <option>अपराह्न ०३:०० बजे</option>
                         </select>
                     </div>
                 </div>
-                <button type="submit" class="w-full py-3 bg-navy hover:bg-navy-light text-gold font-bold text-sm rounded-md shadow transition">
+                <button type="submit" class="w-full py-3 bg-pine hover:bg-pine-light text-marigold font-bold text-sm rounded-md shadow transition">
                     अवलोकन निश्चित गर्नुहोस्
                 </button>
             </form>
@@ -825,48 +813,62 @@
         </div>
     </div>
 
+    <!-- EXAM ROUTINE MODAL -->
+    <div id="routineModal" class="fixed inset-0 bg-black/70 z-50 hidden flex items-start justify-center p-4 overflow-y-auto backdrop-blur-sm" onclick="if(event.target===this)closeRoutineModal()">
+        <div class="bg-white rounded-2xl max-w-3xl w-full my-6 shadow-2xl overflow-hidden">
+            <div class="bg-crimson text-white p-4 flex items-center justify-between gap-3 flex-wrap">
+                <h3 class="font-serif font-bold text-lg"><i class="fas fa-exclamation-triangle mr-2"></i>दोस्रो त्रैमासिक परीक्षा रूटीन</h3>
+                <div class="flex gap-2">
+                    <a href="examroutine.png" download class="px-3 py-1.5 bg-marigold text-pine-dark font-bold rounded text-xs"><i class="fas fa-download mr-1"></i>डाउनलोड</a>
+                    <button onclick="closeRoutineModal()" class="px-3 py-1.5 bg-white/20 hover:bg-white/30 rounded text-xs font-bold" aria-label="बन्द गर्नुहोस्"><i class="fas fa-times"></i></button>
+                </div>
+            </div>
+            <img src="examroutine.png" alt="दोस्रो त्रैमासिक परीक्षा रूटीन" class="w-full h-auto">
+        </div>
+    </div>
+
     <!-- NOTICE DETAIL MODAL -->
 
     <div id="noticeModal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm">
         <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl relative">
-            <button onclick="closeNoticeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-navy text-lg">
+            <button onclick="closeNoticeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-pine text-lg">
                 <i class="fas fa-times"></i>
             </button>
-            <span id="modalNoticeDate" class="text-xs text-gold font-bold uppercase tracking-wider block mb-1"></span>
-            <h3 id="modalNoticeTitle" class="font-serif font-bold text-xl text-navy mb-4"></h3>
+            <span id="modalNoticeDate" class="text-xs text-marigold font-bold uppercase tracking-wider block mb-1"></span>
+            <h3 id="modalNoticeTitle" class="font-serif font-bold text-xl text-pine mb-4"></h3>
             <p id="modalNoticeBody" class="text-xs text-gray-600 leading-relaxed mb-6"></p>
-            <button onclick="closeNoticeModal()" class="w-full py-2 bg-navy text-white text-xs font-bold rounded hover:bg-navy-light">
+            <button onclick="closeNoticeModal()" class="w-full py-2 bg-pine text-white text-xs font-bold rounded hover:bg-pine-light">
                 विन्डो बन्द गर्नुहोस्
             </button>
         </div>
     </div>
 
     <!-- FOOTER -->
-<footer class="bg-navy-dark text-white border-t-4 border-gold pt-12 pb-6 relative z-10">
+<footer class="bg-pine-dark text-white border-t-4 border-marigold pt-12 pb-6 relative z-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-8 border-b border-navy-light">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-8 border-b border-pine-light">
                 <div class="space-y-3">
                     <div class="flex items-center space-x-2">
-                        <div class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-navy font-bold">
+                        <div class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-pine font-bold">
                             <i class="fas fa-graduation-cap"></i>
                         </div>
-                        <span class="font-serif font-bold text-base text-gold">श्री चौतारे डाँडा</span>
+                        <span class="font-serif font-bold text-base text-marigold">श्री चौतारे डाँडा</span>
                     </div>
                     <p class="text-xs text-gray-400 leading-relaxed">
                         बागलुङ जिल्लाको बा.नं. १० भकुण्डेमा उत्कृष्ट शिक्षा, अनुशासन र व्यक्तित्व विकासका लागि प्रतिबद्ध संस्था।
                     </p>
                 </div>
                 <div>
-                    <h4 class="text-gold font-bold text-sm uppercase mb-3 font-serif">द्रुत नेभिगेसन</h4>
+                    <h4 class="text-marigold font-bold text-sm uppercase mb-3 font-serif">द्रुत नेभिगेसन</h4>
                     <ul class="text-xs space-y-2 text-gray-300">
-                        <li><a href="#about" onclick="navigateTo('about')" class="hover:text-gold transition">हाम्रो बारेमा</a></li>
-                        <li><a href="#admissions" onclick="navigateTo('admissions')" class="hover:text-gold transition">भर्ना सूचना २०८३</a></li>
-                        <li><a href="#academics" onclick="navigateTo('academics')" class="hover:text-gold transition">शैक्षिक तहहरू</a></li>
-                        <li><a href="#news" onclick="navigateTo('news')" class="hover:text-gold transition">सूचना पाटी</a></li>
+                        <li><a href="#about" onclick="navigateTo('about')" class="hover:text-marigold transition">हाम्रो बारेमा</a></li>
+                        <li><a href="#admissions" onclick="navigateTo('admissions')" class="hover:text-marigold transition">भर्ना सूचना २०८३</a></li>
+                        <li><a href="#academics" onclick="navigateTo('academics')" class="hover:text-marigold transition">शैक्षिक तहहरू</a></li>
+                        <li><a href="#news" onclick="navigateTo('news')" class="hover:text-marigold transition">सूचना पाटी</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="text-gold font-bold text-sm uppercase mb-3 font-serif">शैक्षिक तहहरू</h4>
+                    <h4 class="text-marigold font-bold text-sm uppercase mb-3 font-serif">शैक्षिक तहहरू</h4>
                     <ul class="text-xs space-y-2 text-gray-300">
                         <li><span class="text-gray-400">प्राथमिक शिक्षा (कक्षा १-५)</span></li>
                         <li><span class="text-gray-400">आधारभूत शिक्षा (कक्षा ६-८)</span></li>
@@ -875,7 +877,7 @@
                     </ul>
                 </div>
                 <div>
-                    <h4 class="text-gold font-bold text-sm uppercase mb-3 font-serif">सम्पर्क विवरण</h4>
+                    <h4 class="text-marigold font-bold text-sm uppercase mb-3 font-serif">सम्पर्क विवरण</h4>
                     <p class="text-xs text-gray-300 leading-relaxed">
                         बा.नं. १० भकुण्डे, बागलुङ जिल्ला<br>
                         गण्डकी प्रदेश, नेपाल<br><br>
@@ -908,11 +910,11 @@
 
             const navBtns = document.querySelectorAll('.nav-btn');
             navBtns.forEach(btn => {
-                btn.classList.remove('bg-navy-light', 'text-gold');
+                btn.classList.remove('bg-pine-light', 'text-marigold');
             });
             const activeNavBtn = document.getElementById('nav-' + viewId);
             if (activeNavBtn) {
-                activeNavBtn.classList.add('bg-navy-light', 'text-gold');
+                activeNavBtn.classList.add('bg-pine-light', 'text-marigold');
             }
 
             const drawer = document.getElementById('mobile-drawer');
@@ -952,11 +954,11 @@
 
             const buttons = document.querySelectorAll('.faculty-filter-btn');
             buttons.forEach(btn => {
-                btn.classList.remove('bg-navy', 'text-white');
+                btn.classList.remove('bg-pine', 'text-white');
                 btn.classList.add('bg-gray-100', 'text-gray-600');
             });
             event.currentTarget.classList.remove('bg-gray-100', 'text-gray-600');
-            event.currentTarget.classList.add('bg-navy', 'text-white');
+            event.currentTarget.classList.add('bg-pine', 'text-white');
         }
 
         // News & Notices Filter Function
@@ -972,11 +974,11 @@
 
             const buttons = document.querySelectorAll('.news-filter-btn');
             buttons.forEach(btn => {
-                btn.classList.remove('bg-navy', 'text-white', 'shadow');
-                btn.classList.add('bg-white', 'text-navy', 'border', 'border-gray-300');
+                btn.classList.remove('bg-pine', 'text-white', 'shadow');
+                btn.classList.add('bg-white', 'text-pine', 'border', 'border-gray-300');
             });
             event.currentTarget.classList.remove('bg-white', 'border', 'border-gray-300');
-            event.currentTarget.classList.add('bg-navy', 'text-white', 'shadow');
+            event.currentTarget.classList.add('bg-pine', 'text-white', 'shadow');
         }
 
         // Interactive Tour Modal Handling
@@ -1029,10 +1031,15 @@
             document.getElementById('noticeModal').classList.add('hidden');
         }
 
+        // Exam routine modal
+        function openRoutineModal() { document.getElementById('routineModal').classList.remove('hidden'); }
+        function closeRoutineModal() { document.getElementById('routineModal').classList.add('hidden'); }
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeRoutineModal(); closeNoticeModal(); closeTourModal(); } });
+
         // Simulated PDF Download feedback
         function downloadSimulatedFile(filename) {
             const tempBox = document.createElement('div');
-            tempBox.className = 'fixed bottom-4 right-4 bg-navy text-gold px-4 py-3 rounded-lg shadow-xl text-xs font-bold z-50 flex items-center space-x-2';
+            tempBox.className = 'fixed bottom-4 right-4 bg-pine text-marigold px-4 py-3 rounded-lg shadow-xl text-xs font-bold z-50 flex items-center space-x-2';
             tempBox.innerHTML = `<i class="fas fa-file-download text-lg"></i> <span>डाउनलोड हुँदैछ: ${filename}...</span>`;
             document.body.appendChild(tempBox);
             setTimeout(() => {
