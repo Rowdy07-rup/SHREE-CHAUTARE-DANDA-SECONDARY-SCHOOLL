@@ -1,967 +1,1153 @@
-<!DOCTYPE html>
-<html lang="en">
+ <!DOCTYPE html>
+<html lang="ne">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Shree Chautare Danda Secondary School - Quality education, character building, and academic excellence in Baglung, Nepal. Tagline: Education for all.">
-  <meta name="keywords" content="Shree Chautare Danda Secondary School, Baglung Nepal school, secondary education Nepal, education for all">
-  <meta name="author" content="Shree Chautare Danda Secondary School">
-  
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Shree Chautare Danda Secondary School | Education for all">
-  <meta property="og:description" content="Empowering students with knowledge, character, and confidence for a brighter future in Baglung, Nepal.">
-  <meta property="og:image" content="https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=1200&q=80">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>श्री चौतारे डाँडा माध्यमिक विद्यालय | बा.नं.१० भकुण्डे, बागलुङ</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@300;400;500;600;700;800&family=Tiro+Devanagari+Sanskrit&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <title>Shree Chautare Danda Secondary School | Baglung, Nepal</title>
+    <!-- Tailwind Custom Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pine: { DEFAULT: '#1E4D3B', dark: '#12342A', light: '#2D6A52' },
+                        marigold: { DEFAULT: '#E9A412', hover: '#CF900A', light: '#FFF3D1' },
+                        crimson: { DEFAULT: '#B3261E', dark: '#8F1D17' },
+                        neutralBg: '#F3F6EF'
+                    },
+                    fontFamily: {
+                        sans: ['Mukta', 'sans-serif'],
+                        serif: ['Tiro Devanagari Sanskrit', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
 
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="style.css">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        .text-shadow {
+            text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+        .page-view {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .page-view.active {
+            display: block;
+            opacity: 1;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #E6EDE0;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1E4D3B;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #E9A412;
+        }
+        /* Fixed Background Watermark */
+        .watermark-bg {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50vw;
+            max-width: 600px;
+            opacity: 0.04;
+            pointer-events: none;
+            z-index: 0;
+        }
 
-  <link rel="stylesheet" href="style.css">
+        /* ---- Natural theme: pine, marigold, rhododendron ---- */
+        html body .rounded-2xl { border-radius: 1.75rem 0.5rem 1.75rem 0.5rem; }
+        main .text-marigold { color: #8A5A00; }
+        main .bg-pine .text-marigold, main .bg-pine-dark .text-marigold, main .bg-pine-light\/50 .text-marigold, main .bg-pine.text-marigold { color: #F4B93A; }
+        .ticker-wrap { overflow: hidden; width: 100%; }
+        .ticker-track { display: inline-flex; white-space: nowrap; animation: tick 45s linear infinite; }
+        .ticker-wrap:hover .ticker-track { animation-play-state: paused; }
+        .ticker-track span { padding-right: 3rem; }
+        @keyframes tick { to { transform: translateX(-50%); } }
+        @media (prefers-reduced-motion: reduce) { .ticker-track { animation: none; } .ticker-wrap { overflow-x: auto; } }
+        .urgent-bar { background: repeating-linear-gradient(135deg, #B3261E 0 18px, #A3201A 18px 36px); }
+        :focus-visible { outline: 3px solid #E9A412; outline-offset: 2px; }
+    </style>
 </head>
-<body>
+<body class="bg-neutralBg text-gray-800 font-sans flex flex-col min-h-screen relative">
 
-  <!-- Header & Navigation -->
-  <header class="navbar-header" id="navbar">
-    <div class="container navbar-container">
-      <a href="#home" class="logo" aria-label="Shree Chautare Danda Secondary School Home">
-        <div class="logo-mark">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="logo-svg">
-            <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
-            <path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"/>
-          </svg>
-        </div>
-        <div class="logo-text">
-          <span class="logo-title">Shree Chautare Danda</span>
-          <span class="logo-subtitle">Secondary School</span>
-        </div>
-      </a>
+    <!-- Center Background Watermark Photo -->
+    <img src="school%20photo%201.png" alt="Watermark" class="watermark-bg">
 
-      <nav class="nav-menu" id="nav-menu" aria-label="Main Navigation">
-        <ul class="nav-list">
-          <li class="nav-item"><a href="#home" class="nav-link active">Home</a></li>
-          <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
-          <li class="nav-item"><a href="#academics" class="nav-link">Academics</a></li>
-          <li class="nav-item"><a href="#facilities" class="nav-link">Facilities</a></li>
-          <li class="nav-item"><a href="#gallery" class="nav-link">Gallery</a></li>
-          <li class="nav-item"><a href="#events" class="nav-link">Events</a></li>
-          <li class="nav-item"><a href="#testimonials" class="nav-link">Reviews</a></li>
-          <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
-        </ul>
-        <div class="nav-cta-mobile">
-          <a href="#contact" class="btn btn-primary btn-full">Inquire Now</a>
+    <!-- Top Utility Bar -->
+    <div class="bg-pine-dark text-white text-xs py-2 px-4 border-b border-pine-light hidden sm:block relative z-10">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-6">
+                <span><i class="fas fa-map-marker-alt text-marigold mr-2"></i>बा.नं. १० भकुण्डे, बागलुङ जिल्ला, नेपाल</span>
+                <span><i class="fas fa-phone-alt text-marigold mr-2"></i>+९७७ ०६८-XXXXXX</span>
+                <span><i class="fas fa-envelope text-marigold mr-2"></i>info@chautaredanda.edu.np</span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <span class="bg-marigold text-pine-dark px-2 py-0.5 rounded font-bold text-[10px]">स्था. २०३८ B.S.</span>
+                <a href="#contact" onclick="navigateTo('contact')" class="hover:text-marigold transition">नक्सा र स्थान</a>
+                <a href="#admissions" onclick="navigateTo('admissions')" class="hover:text-marigold transition">सम्बन्धन</a>
+            </div>
         </div>
-      </nav>
-
-      <div class="navbar-actions">
-        <a href="#contact" class="btn btn-primary btn-nav-cta">Inquire Now</a>
-        <button class="hamburger-toggle" id="menu-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle Menu">
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
-        </button>
-      </div>
     </div>
-  </header>
 
-  <main>
-    <!-- Hero Section -->
-    <section class="hero-section" id="home">
-      <div class="hero-bg-wrapper">
-        <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1920&q=80" alt="Students learning in a modern classroom setting" class="hero-bg-img">
-        <div class="hero-overlay"></div>
-      </div>
-      
-      <div class="container hero-container">
-        <div class="hero-content">
-          <div class="hero-badge animate-fade-down">
-            <span class="badge-dot"></span>
-            Welcome to Shree Chautare Danda
-          </div>
-          <h1 class="hero-title animate-fade-up">
-            Education for <span class="highlight-gold">all</span>
-          </h1>
-          <p class="hero-subtitle animate-fade-up delay-100">
-            Empowering students in Baglung, Nepal with knowledge, character, and confidence for a brighter, more inclusive future.
-          </p>
-          <div class="hero-buttons animate-fade-up delay-200">
-            <a href="#about" class="btn btn-primary btn-lg">Explore Our School</a>
-            <a href="#contact" class="btn btn-secondary btn-lg">Contact Us</a>
-          </div>
-        </div>
-      </div>
+    <!-- Main Navigation Bar -->
+    <header class="bg-pine sticky top-0 z-40 shadow-lg border-b-2 border-marigold">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- School Badge & Title -->
+                <a href="#home" onclick="navigateTo('home')" class="flex items-center space-x-3 group">
+                    <div class="w-12 h-12 rounded-full bg-white border-2 border-marigold flex items-center justify-center shadow-md text-pine group-hover:scale-105 transition transform">
+                        <i class="fas fa-graduation-cap text-2xl text-pine"></i>
+                    </div>
+                    <div>
+                        <span class="block text-lg sm:text-xl font-extrabold text-white tracking-wide uppercase font-serif leading-tight">
+                            श्री चौतारे डाँडा माध्यमिक विद्यालय
+                        </span>
+                        <span class="block text-xs sm:text-sm text-marigold font-medium tracking-wider">
+                             &bull; भकुण्डे, बागलुङ
+                        </span>
+                    </div>
+                </a>
 
-      <a href="#about" class="scroll-indicator" aria-label="Scroll down to About section">
-        <span class="mouse">
-          <span class="wheel"></span>
-        </span>
-      </a>
-    </section>
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden lg:flex space-x-1 items-center">
+                    <button onclick="navigateTo('home')" id="nav-home" class="nav-btn px-3 py-2 text-sm font-semibold text-white hover:text-marigold hover:bg-pine-light rounded-md transition">गृहपृष्ठ</button>
+                    <button onclick="navigateTo('about')" id="nav-about" class="nav-btn px-3 py-2 text-sm font-semibold text-white hover:text-marigold hover:bg-pine-light rounded-md transition">हाम्रो बारेमा</button>
+                    <button onclick="navigateTo('admissions')" id="nav-admissions" class="nav-btn px-3 py-2 text-sm font-semibold text-white hover:text-marigold hover:bg-pine-light rounded-md transition">भर्ना सूचना</button>
+                    <button onclick="navigateTo('academics')" id="nav-academics" class="nav-btn px-3 py-2 text-sm font-semibold text-white hover:text-marigold hover:bg-pine-light rounded-md transition">शैक्षिक कार्यक्रम</button>
+                    <button onclick="navigateTo('news')" id="nav-news" class="nav-btn px-3 py-2 text-sm font-semibold text-white hover:text-marigold hover:bg-pine-light rounded-md transition">समाचार तथा सूचना</button>
+                    <button onclick="navigateTo('contact')" id="nav-contact" class="nav-btn px-3 py-2 text-sm font-semibold text-white hover:text-marigold hover:bg-pine-light rounded-md transition">सम्पर्क</button>
+                    
+                    <button onclick="openTourModal()" class="ml-3 px-4 py-2 text-xs font-bold uppercase tracking-wider text-pine bg-marigold hover:bg-marigold-hover rounded-md shadow-md transition transform active:scale-95">
+                        <i class="fas fa-calendar-check mr-1.5"></i>विद्यालय अवलोकन
+                    </button>
+                </nav>
 
-    <!-- School Introduction / About -->
-    <section class="section about-section" id="about">
-      <div class="container">
-        <div class="grid grid-2-cols about-grid">
-          <div class="about-images-wrapper reveal-left">
-            <div class="about-img-main-card">
-              <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=800&q=80" alt="Shree Chautare Danda Secondary School Building" class="about-img-main" loading="lazy">
-            </div>
-            <div class="about-img-sub-card">
-              <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=600&q=80" alt="Teacher interacting with students" class="about-img-sub" loading="lazy">
-            </div>
-            <div class="about-experience-badge">
-              <span class="exp-badge-title">Baglung, Nepal</span>
-              <span class="exp-badge-desc">Community-Centered Learning</span>
-            </div>
-          </div>
-
-          <div class="about-content reveal-right">
-            <div class="section-eyebrow">About Our School</div>
-            <h2 class="section-title">Dedicated to Nurturing Potential & Character</h2>
-            <p class="about-lead">
-              Shree Chautare Danda Secondary School stands as a beacon of learning in Baglung, Nepal. Guided by our foundational belief in "Education for all," we cultivate a welcoming, high-expectation environment.
-            </p>
-            <p class="section-text">
-              We strive to combine strong core academics with practical life skills, cultural appreciation, and moral integrity. Our dedicated educators work closely with families and community leaders to ensure every student receives the guidance needed to thrive.
-            </p>
-
-            <div class="about-features">
-              <div class="feature-item">
-                <div class="feature-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <!-- Mobile Menu Button -->
+                <div class="flex lg:hidden items-center">
+                    <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="text-white hover:text-marigold focus:outline-none p-2" aria-label="नेभिगेसन खोल्नुहोस्">
+                        <i class="fas fa-bars text-2xl" id="menu-icon"></i>
+                    </button>
                 </div>
-                <div>
-                  <h3 class="feature-title">Our Mission</h3>
-                  <p class="feature-desc">Provide holistic, affordable, and accessible education that prepares learners for lifelong achievement.</p>
-                </div>
-              </div>
-
-              <div class="feature-item">
-                <div class="feature-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                </div>
-                <div>
-                  <h3 class="feature-title">Our Vision</h3>
-                  <p class="feature-desc">A vibrant learning community where equal educational opportunities foster innovation and social responsibility.</p>
-                </div>
-              </div>
             </div>
-
-            <div class="about-cta">
-              <a href="#academics" class="btn btn-outline">Learn About Academics</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- School Statistics -->
-    <!-- Note: Editable placeholder metrics reflecting community focus -->
-    <section class="section stats-section">
-      <div class="container">
-        <div class="stats-grid">
-          <div class="stat-card reveal-up">
-            <div class="stat-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            </div>
-            <div class="stat-number-wrapper">
-              <span class="stat-number" data-target="35">0</span><span class="stat-plus">+</span>
-            </div>
-            <div class="stat-label">Dedicated Faculty</div>
-          </div>
-
-          <div class="stat-card reveal-up" data-delay="100">
-            <div class="stat-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-            </div>
-            <div class="stat-number-wrapper">
-              <span class="stat-number" data-target="750">0</span><span class="stat-plus">+</span>
-            </div>
-            <div class="stat-label">Active Students</div>
-          </div>
-
-          <div class="stat-card reveal-up" data-delay="200">
-            <div class="stat-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            </div>
-            <div class="stat-number-wrapper">
-              <span class="stat-number" data-target="100">0</span><span class="stat-plus">%</span>
-            </div>
-            <div class="stat-label">Community Focus</div>
-          </div>
-
-          <div class="stat-card reveal-up" data-delay="300">
-            <div class="stat-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            </div>
-            <div class="stat-number-wrapper">
-              <span class="stat-number" data-target="25">0</span><span class="stat-plus">+</span>
-            </div>
-            <div class="stat-label">Years of Educational Service</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Academics Section -->
-    <section class="section academics-section" id="academics">
-      <div class="container">
-        <div class="section-header text-center reveal-up">
-          <div class="section-eyebrow">Curriculum & Programs</div>
-          <h2 class="section-title">Academic Programs</h2>
-          <p class="section-subtitle">Delivering balanced instruction rooted in standard educational standards and practical real-world competencies.</p>
         </div>
 
-        <div class="grid grid-4-cols academics-grid">
-          <div class="academic-card reveal-up">
-            <div class="academic-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+        <!-- Mobile Drawer Navigation -->
+        <div id="mobile-drawer" class="hidden lg:hidden bg-pine-dark border-t border-pine-light transition-all duration-300">
+            <div class="px-4 pt-3 pb-6 space-y-2">
+                <button onclick="navigateTo('home')" class="mobile-nav-btn block w-full text-left px-3 py-2.5 rounded-md text-base font-medium text-white hover:bg-pine-light hover:text-marigold">गृहपृष्ठ</button>
+                <button onclick="navigateTo('about')" class="mobile-nav-btn block w-full text-left px-3 py-2.5 rounded-md text-base font-medium text-white hover:bg-pine-light hover:text-marigold">हाम्रो बारेमा</button>
+                <button onclick="navigateTo('admissions')" class="mobile-nav-btn block w-full text-left px-3 py-2.5 rounded-md text-base font-medium text-white hover:bg-pine-light hover:text-marigold">भर्ना सूचना</button>
+                <button onclick="navigateTo('academics')" class="mobile-nav-btn block w-full text-left px-3 py-2.5 rounded-md text-base font-medium text-white hover:bg-pine-light hover:text-marigold">शैक्षिक कार्यक्रम</button>
+                <button onclick="navigateTo('news')" class="mobile-nav-btn block w-full text-left px-3 py-2.5 rounded-md text-base font-medium text-white hover:bg-pine-light hover:text-marigold">समाचार तथा सूचना</button>
+                <button onclick="navigateTo('contact')" class="mobile-nav-btn block w-full text-left px-3 py-2.5 rounded-md text-base font-medium text-white hover:bg-pine-light hover:text-marigold">सम्पर्क</button>
+                
+                <div class="pt-4 border-t border-pine-light">
+                    <button onclick="openTourModal(); toggleMobileMenu();" class="w-full text-center py-3 px-4 rounded-md font-bold text-pine bg-marigold hover:bg-marigold-hover shadow">
+                        <i class="fas fa-calendar-check mr-2"></i>विद्यालय अवलोकनको समय लिनुहोस्
+                    </button>
+                </div>
             </div>
-            <h3 class="academic-title">Foundation Learning</h3>
-            <p class="academic-desc">Creating a welcoming, curiosity-driven environment for early learners to build essential social and communicative habits.</p>
-          </div>
-
-          <div class="academic-card reveal-up" data-delay="100">
-            <div class="academic-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-            </div>
-            <h3 class="academic-title">Basic Level (Grades 1-8)</h3>
-            <p class="academic-desc">Developing foundational mastery in literacy, arithmetic, social studies, and environmental awareness.</p>
-          </div>
-
-          <div class="academic-card reveal-up" data-delay="200">
-            <div class="academic-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"/></svg>
-            </div>
-            <h3 class="academic-title">Secondary Level (Grades 9-12)</h3>
-            <p class="academic-desc">Rigorous academic tracks offering advanced instruction in sciences, humanities, and management streams.</p>
-          </div>
-
-          <div class="academic-card reveal-up" data-delay="300">
-            <div class="academic-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-            </div>
-            <h3 class="academic-title">English Language Skill</h3>
-            <p class="academic-desc">Focused instruction on spoken and written English proficiency to prepare students for higher global prospects.</p>
-          </div>
-
-          <div class="academic-card reveal-up">
-            <div class="academic-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-            </div>
-            <h3 class="academic-title">Mathematics & Science</h3>
-            <p class="academic-desc">Fostering critical logic, analytical reasoning, and practical scientific experimentation in everyday life.</p>
-          </div>
-
-          <div class="academic-card reveal-up" data-delay="100">
-            <div class="academic-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            </div>
-            <h3 class="academic-title">Social Studies & Heritage</h3>
-            <p class="academic-desc">Cultivating civic responsibility, understanding local culture, and instilling pride in Nepalese identity.</p>
-          </div>
-
-          <div class="academic-card reveal-up" data-delay="200">
-            <div class="academic-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-            </div>
-            <h3 class="academic-title">Computer Education</h3>
-            <p class="academic-desc">Introducing essential digital skills, keyboarding, basic software utilization, and Internet safety.</p>
-          </div>
-
-          <div class="academic-card reveal-up" data-delay="300">
-            <div class="academic-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            </div>
-            <h3 class="academic-title">Extracurricular Development</h3>
-            <p class="academic-desc">Encouraging debate, creative arts, music, athletics, and community development clubs.</p>
-          </div>
         </div>
-      </div>
-    </section>
+    </header>
 
-    <!-- Why Choose Our School -->
-    <section class="section why-us-section bg-light">
-      <div class="container">
-        <div class="section-header text-center reveal-up">
-          <div class="section-eyebrow">Core Values & Strengths</div>
-          <h2 class="section-title">Why Choose Shree Chautare Danda?</h2>
-          <p class="section-subtitle">We are dedicated to creating an environment where learning is engaging, inclusive, and meaningful.</p>
+   <!-- URGENT NOTICE BAR -->
+    <button onclick="openRoutineModal()" class="urgent-bar block w-full text-white py-2.5 px-4 relative z-10 text-center text-sm sm:text-base font-bold hover:brightness-110 transition">
+        <i class="fas fa-exclamation-triangle mr-2 animate-pulse"></i>अत्यावश्यक सूचना: दोस्रो त्रैमासिक परीक्षा २०८३/०६/१६ गतेदेखि — परीक्षा रूटीन हेर्नुहोस् <i class="fas fa-chevron-right ml-2 text-xs"></i>
+    </button>
+
+    <!-- Announcement Ticker -->
+    <div class="bg-marigold-light border-b border-marigold/30 text-pine py-2 px-4 relative z-10">
+        <div class="max-w-7xl mx-auto flex items-center">
+            <span class="bg-pine text-marigold text-xs font-extrabold px-3 py-1 rounded-full flex items-center shrink-0 mr-3">
+                <i class="fas fa-bullhorn mr-1.5"></i> सूचना
+            </span>
+            <div class="ticker-wrap text-sm font-medium"><div class="ticker-track"><span>📢 दोस्रो त्रैमासिक परीक्षा २०८३/०६/१६ गते देखि हुँदैछ, अभिभावकहरूलाई बाबु नानीको पढाइ घरमा पनि हेरिदिन अनुरोध गरिन्छ।</span><span>👨‍🏫 आगामी शुक्रबार वार्षिक अभिभावक-शिक्षक भेला हुने सूचना</span><span>🏆 विद्यालय इको-क्लबद्वारा बागलुङ जिल्लास्तरीय वातावरणीय पुरस्कार प्राप्त!</span><span>📢 दोस्रो त्रैमासिक परीक्षा २०८३/०६/१६ गते देखि हुँदैछ, अभिभावकहरूलाई बाबु नानीको पढाइ घरमा पनि हेरिदिन अनुरोध गरिन्छ।</span><span>👨‍🏫 आगामी शुक्रबार वार्षिक अभिभावक-शिक्षक भेला हुने सूचना</span><span>🏆 विद्यालय इको-क्लबद्वारा बागलुङ जिल्लास्तरीय वातावरणीय पुरस्कार प्राप्त!</span></div></div>
         </div>
-
-        <div class="grid grid-3-cols why-grid">
-          <div class="why-card reveal-up">
-            <div class="why-number">01</div>
-            <h3 class="why-title">Student-Centered Learning</h3>
-            <p class="why-desc">Our teaching methods focus on active participation, encouraging curiosity and personalized growth for each child.</p>
-          </div>
-
-          <div class="why-card reveal-up" data-delay="100">
-            <div class="why-number">02</div>
-            <h3 class="why-title">Dedicated Teaching Faculty</h3>
-            <p class="why-desc">Experienced and passionate educators who serve not only as teachers but as mentors and role models.</p>
-          </div>
-
-          <div class="why-card reveal-up" data-delay="200">
-            <div class="why-number">03</div>
-            <h3 class="why-title">Safe & Inclusive Environment</h3>
-            <p class="why-desc">We champion "Education for all", fostering a compassionate community where equity and respect are paramount.</p>
-          </div>
-
-          <div class="why-card reveal-up">
-            <div class="why-number">04</div>
-            <h3 class="why-title">Practical Knowledge</h3>
-            <p class="why-desc">Integrating theoretical lessons with hands-on activities, real-life examples, and creative problem-solving.</p>
-          </div>
-
-          <div class="why-card reveal-up" data-delay="100">
-            <div class="why-number">05</div>
-            <h3 class="why-title">Character & Ethical Value</h3>
-            <p class="why-desc">Building discipline, humility, mutual respect, and leadership qualities alongside academic study.</p>
-          </div>
-
-          <div class="why-card reveal-up" data-delay="200">
-            <div class="why-number">06</div>
-            <h3 class="why-title">Deep Community Roots</h3>
-            <p class="why-desc">Working hand-in-hand with parents and local leaders in Baglung to ensure school growth mirrors local progress.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Facilities Section -->
-    <section class="section facilities-section" id="facilities">
-      <div class="container">
-        <div class="section-header text-center reveal-up">
-          <div class="section-eyebrow">Campus & Environment</div>
-          <h2 class="section-title">Our School Facilities</h2>
-          <p class="section-subtitle">Providing a supportive, safe, and resource-filled infrastructure for everyday learning.</p>
-        </div>
-
-        <div class="grid grid-3-cols facilities-grid">
-          <div class="facility-card reveal-up">
-            <div class="facility-img-wrapper">
-              <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80" alt="Well-lit spacious classroom" class="facility-img" loading="lazy">
-            </div>
-            <div class="facility-content">
-              <h3 class="facility-title">Spacious Classrooms</h3>
-              <p class="facility-desc">Well-ventilated learning rooms equipped with modern blackboards and comfortable seating arrangements.</p>
-            </div>
-          </div>
-
-          <div class="facility-card reveal-up" data-delay="100">
-            <div class="facility-img-wrapper">
-              <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80" alt="Computer Education Room" class="facility-img" loading="lazy">
-            </div>
-            <div class="facility-content">
-              <h3 class="facility-title">Computer Learning Center</h3>
-              <p class="facility-desc">A functional computer lab allowing students to acquire digital literacy skills essential for modern careers.</p>
-            </div>
-          </div>
-
-          <div class="facility-card reveal-up" data-delay="200">
-            <div class="facility-img-wrapper">
-              <img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=800&q=80" alt="School Library and Reading Corner" class="facility-img" loading="lazy">
-            </div>
-            <div class="facility-content">
-              <h3 class="facility-title">Library & Reading Space</h3>
-              <p class="facility-desc">A peaceful repository of textbooks, reference guides, storybooks, and reference materials.</p>
-            </div>
-          </div>
-
-          <div class="facility-card reveal-up">
-            <div class="facility-img-wrapper">
-              <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=800&q=80" alt="Science Practical Learning Apparatus" class="facility-img" loading="lazy">
-            </div>
-            <div class="facility-content">
-              <h3 class="facility-title">Science Learning Apparatus</h3>
-              <p class="facility-desc">Practical demonstration kits and apparatus to bring physics, chemistry, and biology concepts to life.</p>
-            </div>
-          </div>
-
-          <div class="facility-card reveal-up" data-delay="100">
-            <div class="facility-img-wrapper">
-              <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=800&q=80" alt="Sports Grounds and Athletics Field" class="facility-img" loading="lazy">
-            </div>
-            <div class="facility-content">
-              <h3 class="facility-title">Sports & Recreation Field</h3>
-              <p class="facility-desc">Open playground space for volleyball, football, athletics, and traditional school games.</p>
-            </div>
-          </div>
-
-          <div class="facility-card reveal-up" data-delay="200">
-            <div class="facility-img-wrapper">
-              <img src="https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&w=800&q=80" alt="Clean School Grounds" class="facility-img" loading="lazy">
-            </div>
-            <div class="facility-content">
-              <h3 class="facility-title">Safe Water & Sanitation</h3>
-              <p class="facility-desc">Clean drinking water facilities and well-maintained hygiene facilities prioritizing student health.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Gallery Section -->
-    <section class="section gallery-section bg-light" id="gallery">
-      <div class="container">
-        <div class="section-header text-center reveal-up">
-          <div class="section-eyebrow">Life at School</div>
-          <h2 class="section-title">Our School Gallery</h2>
-          <p class="section-subtitle">Snapshots of vibrant classroom sessions, community initiatives, and school events.</p>
-        </div>
-
-        <!-- Filter Controls -->
-        <div class="gallery-filter-wrapper reveal-up">
-          <button class="filter-btn active" data-filter="all">All Photos</button>
-          <button class="filter-btn" data-filter="classrooms">Classrooms</button>
-          <button class="filter-btn" data-filter="activities">Activities</button>
-          <button class="filter-btn" data-filter="events">Events</button>
-        </div>
-
-        <!-- Gallery Grid -->
-        <div class="gallery-grid" id="gallery-grid">
-          <div class="gallery-item reveal-up" data-category="classrooms">
-            <div class="gallery-img-card">
-              <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80" alt="Interactive Classroom Session" class="gallery-img" loading="lazy">
-              <div class="gallery-overlay">
-                <div class="gallery-info">
-                  <span class="gallery-cat">Classrooms</span>
-                  <h3 class="gallery-item-title">Interactive Learning</h3>
-                </div>
-                <div class="gallery-zoom-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="gallery-item reveal-up" data-category="activities" data-delay="100">
-            <div class="gallery-img-card">
-              <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80" alt="Students engaging in group science discussion" class="gallery-img" loading="lazy">
-              <div class="gallery-overlay">
-                <div class="gallery-info">
-                  <span class="gallery-cat">Activities</span>
-                  <h3 class="gallery-item-title">Collaborative Science Project</h3>
-                </div>
-                <div class="gallery-zoom-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="gallery-item reveal-up" data-category="events" data-delay="200">
-            <div class="gallery-img-card">
-              <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=800&q=80" alt="School Annual Day Gathering" class="gallery-img" loading="lazy">
-              <div class="gallery-overlay">
-                <div class="gallery-info">
-                  <span class="gallery-cat">Events</span>
-                  <h3 class="gallery-item-title">Annual School Program</h3>
-                </div>
-                <div class="gallery-zoom-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="gallery-item reveal-up" data-category="classrooms">
-            <div class="gallery-img-card">
-              <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=800&q=80" alt="Reading room library session" class="gallery-img" loading="lazy">
-              <div class="gallery-overlay">
-                <div class="gallery-info">
-                  <span class="gallery-cat">Classrooms</span>
-                  <h3 class="gallery-item-title">Library Exploration</h3>
-                </div>
-                <div class="gallery-zoom-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="gallery-item reveal-up" data-category="activities" data-delay="100">
-            <div class="gallery-img-card">
-              <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=800&q=80" alt="Students playing outdoor sports" class="gallery-img" loading="lazy">
-              <div class="gallery-overlay">
-                <div class="gallery-info">
-                  <span class="gallery-cat">Activities</span>
-                  <h3 class="gallery-item-title">Sports Meets & Games</h3>
-                </div>
-                <div class="gallery-zoom-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="gallery-item reveal-up" data-category="events" data-delay="200">
-            <div class="gallery-img-card">
-              <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=800&q=80" alt="Cultural performance by students" class="gallery-img" loading="lazy">
-              <div class="gallery-overlay">
-                <div class="gallery-info">
-                  <span class="gallery-cat">Events</span>
-                  <h3 class="gallery-item-title">Cultural Showcase</h3>
-                </div>
-                <div class="gallery-zoom-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Faculty & Educators Section -->
-    <!-- Note: Standard placeholders for faculty representation -->
-    <section class="section faculty-section bg-light border-top">
-      <div class="container">
-        <div class="section-header text-center reveal-up">
-          <div class="section-eyebrow">Educators & Mentors</div>
-          <h2 class="section-title">Our Dedicated Faculty</h2>
-          <p class="section-subtitle">Experienced teachers giving personalized care and academic leadership in Baglung.</p>
-        </div>
-
-        <div class="grid grid-3-cols faculty-grid">
-          <div class="faculty-card reveal-up">
-            <div class="faculty-avatar">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-            </div>
-            <h3 class="faculty-name">School Leadership Team</h3>
-            <span class="faculty-role">Administration & Guidance</span>
-            <p class="faculty-bio">Guiding institutional strategy, academic standards, and student welfare with community-centric vision.</p>
-          </div>
-
-          <div class="faculty-card reveal-up" data-delay="100">
-            <div class="faculty-avatar">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-            </div>
-            <h3 class="faculty-name">Secondary Level Faculty</h3>
-            <span class="faculty-role">Science, Math & Humanities</span>
-            <p class="faculty-bio">Subject-matter specialists empowering students through exam preparation and fundamental concepts.</p>
-          </div>
-
-          <div class="faculty-card reveal-up" data-delay="200">
-            <div class="faculty-avatar">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-            </div>
-            <h3 class="faculty-name">Basic Level Educators</h3>
-            <span class="faculty-role">Foundation & Literacy</span>
-            <p class="faculty-bio">Patient educators dedicated to nurturing core literacy, arithmetic, and constructive social habits.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Events Section -->
-    <section class="section events-section" id="events">
-      <div class="container">
-        <div class="section-header text-center reveal-up">
-          <div class="section-eyebrow">Upcoming & Highlights</div>
-          <h2 class="section-title">School Events & Activities</h2>
-          <p class="section-subtitle">Key dates and co-curricular highlights on our academic calendar.</p>
-        </div>
-
-        <div class="grid grid-3-cols events-grid">
-          <div class="event-card reveal-up">
-            <div class="event-date-badge">
-              <span class="event-day">15</span>
-              <span class="event-month">NOV</span>
-            </div>
-            <div class="event-content">
-              <span class="event-category">Community & Parents</span>
-              <h3 class="event-title">Parent-Teacher Gathering</h3>
-              <p class="event-desc">An interactive session discussing student progress, school growth plans, and collaborative learning home tips.</p>
-              <button class="btn-link event-modal-btn" data-event-id="1">View Details &rarr;</button>
-            </div>
-          </div>
-
-          <div class="event-card reveal-up" data-delay="100">
-            <div class="event-date-badge">
-              <span class="event-day">28</span>
-              <span class="event-month">NOV</span>
-            </div>
-            <div class="event-content">
-              <span class="event-category">Academic / Science</span>
-              <h3 class="event-title">Annual Science & Craft Exhibition</h3>
-              <p class="event-desc">Students display original practical science models, creative crafts, and technological demonstrations.</p>
-              <button class="btn-link event-modal-btn" data-event-id="2">View Details &rarr;</button>
-            </div>
-          </div>
-
-          <div class="event-card reveal-up" data-delay="200">
-            <div class="event-date-badge">
-              <span class="event-day">10</span>
-              <span class="event-month">DEC</span>
-            </div>
-            <div class="event-content">
-              <span class="event-category">Sports & Wellness</span>
-              <h3 class="event-title">Inter-House Sports Meet</h3>
-              <p class="event-desc">A fun-filled day of athletic sports, track events, football, and team competitions encouraging physical fitness.</p>
-              <button class="btn-link event-modal-btn" data-event-id="3">View Details &rarr;</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Testimonials / Reviews Carousel -->
-    <section class="section testimonials-section bg-light" id="testimonials">
-      <div class="container">
-        <div class="section-header text-center reveal-up">
-          <div class="section-eyebrow">Community Voices</div>
-          <h2 class="section-title">What Parents & Students Say</h2>
-          <p class="section-subtitle">Sample feedback reflecting our commitment to accessible, character-building education.</p>
-        </div>
-
-        <div class="testimonial-carousel-container reveal-up">
-          <div class="testimonial-carousel" id="testimonial-carousel">
-            <!-- Slide 1 -->
-            <div class="testimonial-card active">
-              <div class="quote-icon">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
-              </div>
-              <p class="testimonial-text">
-                "Shree Chautare Danda Secondary School provides a wonderfully supportive atmosphere. Teachers give equal attention to every child, ensuring no student gets left behind in their studies."
-              </p>
-
-              <div class="testimonial-author">
-                <div class="author-info">
-                  <h4 class="author-name">Parent Voice (Sample)</h4>
-                  <span class="author-role">Parent of Grade 8 Student</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Slide 2 -->
-            <div class="testimonial-card">
-              <div class="quote-icon">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
-              </div>
-              <p class="testimonial-text">
-                "Learning here has built my confidence. The practical lessons and sports events make school enjoyable every day. I feel well-prepared for higher studies."
-              </p>
-              <div class="testimonial-author">
-                <div class="author-info">
-                  <h4 class="author-name">Student Voice (Sample)</h4>
-                  <span class="author-role">Secondary Level Student</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Slide 3 -->
-            <div class="testimonial-card">
-              <div class="quote-icon">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
-              </div>
-              <p class="testimonial-text">
-                "The commitment to 'Education for all' is evident in how warm and inclusive the school culture is. We are grateful to have such dedicated educators in Baglung."
-              </p>
-              <div class="testimonial-author">
-                <div class="author-info">
-                  <h4 class="author-name">Community Member (Sample)</h4>
-                  <span class="author-role">Local Guardian</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Carousel Controls -->
-          <div class="carousel-controls">
-            <button class="carousel-btn prev-btn" id="carousel-prev" aria-label="Previous Testimonial">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
-            </button>
-            <div class="carousel-dots" id="carousel-dots"></div>
-            <button class="carousel-btn next-btn" id="carousel-next" aria-label="Next Testimonial">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-            </button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Call to Action Banner -->
-    <section class="section cta-section">
-      <div class="container text-center reveal-up">
-        <h2 class="cta-title">Every Child Deserves the Opportunity to Learn</h2>
-        <p class="cta-desc">Join a learning community committed to knowledge, character, and opportunity in Baglung, Nepal.</p>
-        <div class="cta-buttons">
-          <a href="#contact" class="btn btn-gold btn-lg">Get in Touch</a>
-          <a href="#about" class="btn btn-outline-light btn-lg">Explore Our School</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="section faq-section">
-      <div class="container">
-        <div class="section-header text-center reveal-up">
-          <div class="section-eyebrow">Common Questions</div>
-          <h2 class="section-title">Frequently Asked Questions</h2>
-          <p class="section-subtitle">Find answers to key inquiries regarding enrollment, levels, and school policies.</p>
-        </div>
-
-        <div class="faq-accordion reveal-up">
-          <div class="faq-item">
-            <button class="faq-question" aria-expanded="false">
-              <span>What academic levels does Shree Chautare Danda offer?</span>
-              <span class="faq-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-              </span>
-            </button>
-            <div class="faq-answer">
-              <p>We provide educational programs spanning early foundation learning, basic level (Grades 1-8), and secondary level education (Grades 9-12).</p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-question" aria-expanded="false">
-              <span>How can parents contact or visit the school administration?</span>
-              <span class="faq-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-              </span>
-            </button>
-            <div class="faq-answer">
-              <p>Parents are always welcome during regular office hours. You can also send an inquiry using our online contact form below or reach us via telephone.</p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-question" aria-expanded="false">
-              <span>What co-curricular activities are available for students?</span>
-              <span class="faq-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-              </span>
-            </button>
-            <div class="faq-answer">
-              <p>We offer sports competitions, cultural dances, speech/debate clubs, science exhibitions, and community service projects to ensure well-rounded student development.</p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-question" aria-expanded="false">
-              <span>Where exactly is the school located?</span>
-              <span class="faq-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-              </span>
-            </button>
-            <div class="faq-answer">
-              <p>The school is situated in Baglung, Nepal. Please see our contact section for precise geographical directions and inquiry details.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="section contact-section bg-light" id="contact">
-      <div class="container">
-        <div class="grid grid-2-cols contact-grid">
-          
-          <div class="contact-info-col reveal-left">
-            <div class="section-eyebrow">Get In Touch</div>
-            <h2 class="section-title">We are Here to Help</h2>
-            <p class="section-text">
-              Have questions about admissions, academic programs, or school visits? Feel free to write to us or visit our school office in Baglung.
-            </p>
-
-            <div class="info-list">
-              <div class="info-item">
-                <div class="info-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                </div>
-                <div>
-                  <h4 class="info-heading">Location</h4>
-                  <p class="info-detail">Shree Chautare Danda Secondary School<br>Baglung, Nepal</p>
-                </div>
-              </div>
-
-              <div class="info-item">
-                <div class="info-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                </div>
-                <div>
-                  <h4 class="info-heading">Phone Number</h4>
-                  <!-- Editable Placeholder Phone -->
-                  <p class="info-detail">[Add School Phone Number]</p>
-                </div>
-              </div>
-
-              <div class="info-item">
-                <div class="info-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                </div>
-                <div>
-                  <h4 class="info-heading">Email Address</h4>
-                  <!-- Editable Placeholder Email -->
-                  <p class="info-detail">[Add School Email Address]</p>
-                </div>
-              </div>
-
-              <div class="info-item">
-                <div class="info-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                </div>
-                <div>
-                  <h4 class="info-heading">Office Working Hours</h4>
-                  <p class="info-detail">Sunday – Friday: 10:00 AM – 4:00 PM<br>Saturday: Closed</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Contact Form Container -->
-          <div class="contact-form-col reveal-right">
-            <div class="form-card">
-              <h3 class="form-title">Send Us a Message</h3>
-              
-              <!-- Success Alert Message -->
-              <div class="form-alert alert-success" id="form-success" role="alert" style="display: none;">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                <span>Thank you! Your message has been validated successfully. (Note: Frontend simulation only).</span>
-              </div>
-
-              <form id="contact-form" novalidate>
-                <div class="form-group">
-                  <label for="contact-name">Full Name <span class="required">*</span></label>
-                  <input type="text" id="contact-name" class="form-control" placeholder="Enter your full name" required>
-                  <span class="error-msg" id="err-name">Please enter your full name.</span>
-                </div>
-
-                <div class="grid grid-2-cols form-row">
-                  <div class="form-group">
-                    <label for="contact-email">Email Address <span class="required">*</span></label>
-                    <input type="email" id="contact-email" class="form-control" placeholder="name@example.com" required>
-                    <span class="error-msg" id="err-email">Please provide a valid email.</span>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="contact-phone">Phone Number</label>
-                    <input type="tel" id="contact-phone" class="form-control" placeholder="Phone number">
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label for="contact-subject">Subject <span class="required">*</span></label>
-                  <input type="text" id="contact-subject" class="form-control" placeholder="Inquiry subject" required>
-                  <span class="error-msg" id="err-subject">Please enter a subject.</span>
-                </div>
-
-                <div class="form-group">
-                  <label for="contact-message">Message <span class="required">*</span></label>
-                  <textarea id="contact-message" class="form-control" rows="4" placeholder="How can we help you?" required></textarea>
-                  <span class="error-msg" id="err-message">Please write your message.</span>
-                </div>
-
-                <button type="submit" class="btn btn-primary btn-full">Submit Inquiry</button>
-              </form>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-top grid">
-        <div class="footer-brand">
-          <div class="footer-logo">
-            <div class="logo-mark">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"/></svg>
-            </div>
-            <span class="footer-logo-title">Shree Chautare Danda</span>
-          </div>
-          <p class="footer-tagline">"Education for all"</p>
-          <p class="footer-about">
-            A dedicated secondary school empowering students in Baglung, Nepal with quality education, core moral values, and academic confidence.
-          </p>
-        </div>
-
-        <div class="footer-links-col">
-          <h4 class="footer-heading">Quick Links</h4>
-          <ul class="footer-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About Us</a></li>
-            <li><a href="#academics">Academics</a></li>
-            <li><a href="#facilities">Facilities</a></li>
-            <li><a href="#gallery">Gallery</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-links-col">
-          <h4 class="footer-heading">Academics</h4>
-          <ul class="footer-links">
-            <li><a href="#academics">Foundation Level</a></li>
-            <li><a href="#academics">Basic Level (1-8)</a></li>
-            <li><a href="#academics">Secondary Level (9-12)</a></li>
-            <li><a href="#academics">Computer Education</a></li>
-            <li><a href="#academics">Extracurricular Clubs</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-contact-col">
-          <h4 class="footer-heading">School Address</h4>
-          <p class="footer-address">
-            Shree Chautare Danda Secondary School<br>
-            Baglung, Nepal
-          </p>
-          <div class="social-placeholders">
-            <!-- Social Media Placeholders -->
-            <a href="#" class="social-btn" aria-label="Facebook (Placeholder)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
-            <a href="#" class="social-btn" aria-label="YouTube (Placeholder)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="#fff"/></svg></a>
-          </div>
-        </div>
-      </div>
-
-      <div class="footer-bottom">
-        <p>&copy; 2026 Shree Chautare Danda Secondary School. All rights reserved. | Baglung, Nepal</p>
-      </div>
     </div>
-  </footer>
 
-  <!-- Lightbox Modal for Gallery -->
-  <div class="lightbox-modal" id="lightbox-modal" aria-hidden="true" role="dialog" aria-label="Image Lightbox">
-    <button class="lightbox-close" id="lightbox-close" aria-label="Close Lightbox">&times;</button>
-    <button class="lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="Previous Image">&#10094;</button>
-    <button class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="Next Image">&#10095;</button>
-    <div class="lightbox-content">
-      <img src="" alt="" id="lightbox-img">
-      <div class="lightbox-caption" id="lightbox-caption"></div>
+    <!-- MAIN CONTENT CONTAINER WITH SPA VIEWS -->
+    <main class="flex-grow relative z-10">
+
+        <!-- 1. HOMEPAGE VIEW -->
+        <section id="view-home" class="page-view active">
+            <!-- Hero -->
+            <div class="relative overflow-hidden" style="background:linear-gradient(180deg,#DCE8D4 0%,#F3F6EF 100%)">
+                <svg class="absolute bottom-0 inset-x-0 w-full h-24 text-pine opacity-10" viewBox="0 0 1200 100" preserveAspectRatio="none" aria-hidden="true"><path fill="currentColor" d="M0 100V60C120 20 200 70 320 45S520 0 640 35s240 50 360 10 140-20 200-5v35z"/></svg>
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-20 relative z-10">
+                    <div class="grid md:grid-cols-12 gap-12 items-center">
+                        <div class="md:col-span-7 space-y-6 text-center md:text-left">
+                            <span class="inline-block bg-white text-pine border border-pine/20 text-xs font-bold px-3 py-1.5 rounded-full shadow-sm">
+                                <i class="fas fa-seedling text-marigold mr-1.5"></i>भकुण्डेको उत्कृष्ट सामुदायिक शैक्षिक संस्था
+                            </span>
+                            <h1 class="text-3xl sm:text-5xl font-extrabold font-serif leading-tight text-pine">
+                                ज्ञान र क्षमताको विकास, <br>
+                                <span class="text-marigold">संस्कारयुक्त शिक्षा,</span> <br>
+                                उज्यालो भविष्यको निर्माण।
+                            </h1>
+                            <p class="text-gray-700 text-base sm:text-lg max-w-xl leading-relaxed">
+                                श्री चौतारे डाँडा माध्यमिक विद्यालयले बागलुङ जिल्लामा गुणस्तरीय शिक्षा, डिजिटल प्रविधि, मौलिक नेपाली संस्कार र नेतृत्व विकासको संयोजनसहित समग्र शैक्षिक वातावरण प्रदान गर्दै आएको छ।
+                            </p>
+                            <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start pt-2">
+                                <button onclick="navigateTo('admissions')" class="px-6 py-3.5 bg-pine hover:bg-pine-light text-white font-bold rounded-lg shadow-lg transition">
+                                    <i class="fas fa-file-signature mr-2 text-marigold"></i>भर्ना आवेदन दिनुहोस्
+                                </button>
+                                <button onclick="openTourModal()" class="px-6 py-3.5 bg-white border-2 border-pine text-pine hover:bg-pine/5 font-semibold rounded-lg transition">
+                                    <i class="fas fa-compass mr-2 text-marigold"></i>विद्यालय अवलोकन
+                                </button>
+                            </div>
+                        </div>
+                        <div class="md:col-span-5">
+                            <div class="relative max-w-sm mx-auto">
+                                <div class="absolute inset-0 border-2 border-marigold translate-x-3 translate-y-3" style="border-radius:999px 999px 1.25rem 1.25rem"></div>
+                                <img src="school%20photo%201.png" alt="श्री चौतारे डाँडा माध्यमिक विद्यालय" class="relative w-full aspect-[4/5] object-cover shadow-2xl bg-pine/10" style="border-radius:999px 999px 1.25rem 1.25rem">
+                                <span class="absolute -bottom-4 left-6 bg-pine text-white text-xs font-bold px-4 py-2 rounded-full shadow-lg">स्था. २०३८ B.S.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- URGENT: Exam routine -->
+            <div id="exam-routine" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-2 relative z-20">
+                <div class="grid md:grid-cols-12 bg-white shadow-xl overflow-hidden border-l-8 border-crimson rounded-r-2xl">
+                    <div class="md:col-span-7 p-6 sm:p-8 space-y-4">
+                        <span class="inline-flex items-center bg-crimson text-white text-xs font-extrabold px-3 py-1 rounded-full">
+                            <i class="fas fa-exclamation-triangle mr-1.5 animate-pulse"></i> अत्यावश्यक सूचना
+                        </span>
+                        <h2 class="font-serif font-bold text-2xl sm:text-3xl text-pine">दोस्रो त्रैमासिक परीक्षा तालिकासम्बन्धी सूचना</h2>
+                        <p class="text-gray-700 leading-relaxed">
+                            आदरणीय अभिभावक तथा विद्यार्थी वर्ग, दोस्रो त्रैमासिक परीक्षा मिति <strong class="text-crimson">२०८३/०६/१६</strong> गतेदेखि सञ्चालन हुन गइरहेकाले परीक्षा कार्यतालिका यहाँ प्रदान गरिएको छ।
+                        </p>
+                        <div class="flex flex-wrap gap-3 pt-1">
+                            <button onclick="openRoutineModal()" class="px-5 py-2.5 bg-crimson hover:bg-crimson-dark text-white font-bold rounded-lg text-sm shadow transition"><i class="fas fa-eye mr-2"></i>रूटीन हेर्नुहोस्</button>
+                            <a href="examroutine.png" download class="px-5 py-2.5 bg-marigold hover:bg-marigold-hover text-pine-dark font-bold rounded-lg text-sm shadow transition"><i class="fas fa-download mr-2"></i>रूटीन डाउनलोड गर्नुहोस्</a>
+                        </div>
+                    </div>
+                    <button onclick="openRoutineModal()" class="md:col-span-5 relative block h-56 md:h-auto bg-pine/5 group" aria-label="परीक्षा रूटीन ठूलो गरी हेर्नुहोस्">
+                        <img src="examroutine.png" alt="दोस्रो त्रैमासिक परीक्षा रूटीन" class="absolute inset-0 w-full h-full object-cover object-top">
+                        <span class="absolute bottom-3 right-3 bg-pine-dark/85 text-white text-xs font-bold px-3 py-1.5 rounded-full"><i class="fas fa-search-plus mr-1"></i>ठूलो हेर्नुहोस्</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Achievements strip -->
+            <div class="bg-pine text-white mt-12">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                    <h3 class="text-lg font-bold font-serif mb-5 flex items-center"><i class="fas fa-award text-marigold mr-3"></i>हाम्रा मुख्य उपलब्धिहरू</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-y-6 text-center md:divide-x divide-white/15">
+                        <div class="px-2"><div class="text-3xl font-extrabold text-marigold font-serif">४०+</div><div class="text-xs text-gray-200 mt-1 font-semibold">५४ वर्षको गौरवशाली इतिहास</div></div>
+                        <div class="px-2"><div class="text-3xl font-extrabold text-marigold font-serif">K-12</div><div class="text-xs text-gray-200 mt-1 font-semibold">शिशु देखि १० सम्म</div></div>
+                        <div class="px-2"><div class="text-3xl font-extrabold text-marigold font-serif">१००%</div><div class="text-xs text-gray-200 mt-1 font-semibold">SEE उत्कृष्ट सफलता</div></div>
+                        <div class="px-2"><div class="text-3xl font-extrabold text-marigold font-serif">२५+</div><div class="text-xs text-gray-200 mt-1 font-semibold">दक्ष तथा अनुभवी शिक्षक</div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Action Links -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10 relative z-20">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <button onclick="navigateTo('academics')" class="bg-white/90 backdrop-blur p-5 rounded-xl shadow-md border-t-4 border-marigold hover:shadow-xl transition text-left group">
+                        <i class="fas fa-calendar-alt text-2xl text-pine group-hover:text-marigold transition mb-2 block"></i>
+                        <h4 class="font-bold text-pine text-base">शैक्षिक क्यालेन्डर</h4>
+                        <p class="text-xs text-gray-500 mt-1">परीक्षा तथा कार्यक्रम तालिका</p>
+                    </button>
+                    <button onclick="navigateTo('academics')" class="bg-white/90 backdrop-blur p-5 rounded-xl shadow-md border-t-4 border-pine hover:shadow-xl transition text-left group">
+                        <i class="fas fa-clock text-2xl text-pine group-hover:text-marigold transition mb-2 block"></i>
+                        <h4 class="font-bold text-pine text-base">कक्षा कार्यतालिका</h4>
+                        <p class="text-xs text-gray-500 mt-1">दैनिक रुटिन तथा पिरियडहरू</p>
+                    </button>
+                    <button onclick="navigateTo('admissions')" class="bg-white/90 backdrop-blur p-5 rounded-xl shadow-md border-t-4 border-marigold hover:shadow-xl transition text-left group">
+                        <i class="fas fa-download text-2xl text-pine group-hover:text-marigold transition mb-2 block"></i>
+                        <h4 class="font-bold text-pine text-base">डाउनलोडहरू</h4>
+                        <p class="text-xs text-gray-500 mt-1">फारम, पाठ्यक्रम र सूचनाहरू</p>
+                    </button>
+                    <button onclick="navigateTo('news')" class="bg-white/90 backdrop-blur p-5 rounded-xl shadow-md border-t-4 border-pine hover:shadow-xl transition text-left group">
+                        <i class="fas fa-newspaper text-[#1E4D3B] group-hover:text-marigold transition mb-2 block"></i>
+                        <h4 class="font-bold text-pine text-base">सूचना पाटी</h4>
+                        <p class="text-xs text-gray-500 mt-1">ताजा समाचार तथा सूचनाहरू</p>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Principal's Message -->
+            <div class="py-16 bg-white/90 backdrop-blur my-12 shadow-sm border-y border-gray-100">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid md:grid-cols-12 gap-10 items-center">
+                        <div class="md:col-span-4 text-center">
+                          <div class="relative inline-block"> <div class="w-56 h-64 mx-auto rounded-2xl bg-gray-200 border-4 border-marigold overflow-hidden shadow-lg"> <img src="principal.jpeg" alt="प्रधानाध्यापक श्री तिलक आचार्य" class="w-full h-full object-cover object-center"> </div> <div class="bg-pine text-white text-xs px-4 py-1.5 rounded-full font-bold absolute -bottom-3 left-1/2 transform -translate-x-1/2 shadow"> प्रधानाध्यापक
+ </div> 
+</div>                            <h3 class="font-serif font-bold text-xl text-pine mt-4">श्री तिलक आचार्य </h3>
+                            <p class="text-xs text-marigold font-semibold uppercase tracking-wider">एम.एड., शैक्षिक नेतृत्व</p>
+                        </div>
+                        <div class="md:col-span-8 space-y-4">
+                            <span class="text-marigold font-bold text-sm uppercase tracking-widest">प्रधानाध्यापकको सन्देश</span>
+                            <h2 class="text-2xl sm:text-3xl font-bold font-serif text-pine">श्री चौतारे डाँडा माध्यमिक विद्यालयमा हार्दिक स्वागत छ</h2>
+                            <p class="text-gray-600 leading-relaxed italic border-l-4 border-marigold pl-4">
+                                "नमस्ते  सम्पूर्ण शिक्षक , विद्यार्थी, अभिभावक , शुभचिन्तक एवं समुदायका प्रबुद्ध व्यक्तित्वहरूमा हार्दिक स्वागत गर्दछु। श्री चौतारे डाँडा विद्यालयमा हामी प्रत्येक बालबालिकामा विशिष्ट क्षमता हुन्छ भन्ने विश्वास राख्छौँ। आधुनिक प्रविधि र व्यावहारिक ज्ञानको सम्मिश्रणसहित गुणस्तरीय शिक्षा प्रदान गर्नु नै हाम्रो मुख्य उद्देश्य हो।"                  </p>
+                            <p class="text-gray-600 leading-relaxed">
+                                हामी विद्यार्थीहरूमा रचनात्मक सोच, अनुशासन र नैतिक मूल्य मान्यताको विकास गर्न प्रतिबद्ध छौँ। दक्ष शिक्षक शिक्षिका, कम्प्युटर प्रयोगशाला र अतिरिक्त क्रियाकलापको माध्यमबाट हामी विद्यार्थीहरूलाई उज्ज्वल भविष्यका लागि तयार पारिरहेका छौँ।
+                            </p>
+                            <button onclick="navigateTo('about')" class="text-pine font-bold hover:text-marigold transition inline-flex items-center text-sm pt-2">
+                                हाम्रो इतिहासको बारेमा थप पढ्नुहोस् <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PRINCIPAL CELEBRATION PHOTO GALLERY SECTION -->
+            <div class="py-12 bg-neutralBg border-t border-b border-gray-200">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center max-w-2xl mx-auto mb-10">
+                        <span class="text-marigold font-bold text-xs uppercase tracking-widest"><i class="fas fa-images mr-1"></i> फोटो ग्यालरी</span>
+                        <h2 class="text-2xl sm:text-3xl font-serif font-bold text-pine mt-1">प्रधानाध्यापक सम्मान तथा उत्सव तस्बिरहरू</h2>
+                        <p class="text-gray-600 text-xs sm:text-sm mt-2">फोटोमा क्लिक गरेर ठूलो आकारमा (Pop-up) हेर्नुहोस्।</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                        <!-- Photo 1 -->
+                        <div class="group relative bg-white rounded-xl shadow-md overflow-hidden border border-gray-200 cursor-pointer transition hover:-translate-y-1 hover:shadow-xl" onclick="openPhotoModal('principal.jpeg', 'प्रधानाध्यापक सम्मान कार्यक्रम')">
+                            <div class="h-52 overflow-hidden relative">
+                                <img src="principal.jpeg" alt="प्रधानाध्यापक सम्मान कार्यक्रम" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                                <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-white">
+                                    <i class="fas fa-search-plus text-3xl"></i>
+                                </div>
+                            </div>
+                            <div class="p-3 text-center bg-white">
+                                <p class="text-xs font-bold text-pine">प्रधानाध्यापक सम्मान कार्यक्रम</p>
+                            </div>
+                        </div>
+
+                        <!-- Photo 2 -->
+                        <div class="group relative bg-white rounded-xl shadow-md overflow-hidden border border-gray-200 cursor-pointer transition hover:-translate-y-1 hover:shadow-xl" onclick="openPhotoModal('indraji.jpeg', 'उत्सव समारोह तथा बधाई ज्ञापन')">
+                            <div class="h-52 overflow-hidden relative">
+                                <img src="indraji.jpeg" alt="उत्सव समारोह तथा बधाई ज्ञापन" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                                <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-white">
+                                    <i class="fas fa-search-plus text-3xl"></i>
+                                </div>
+                            </div>
+                            <div class="p-3 text-center bg-white">
+                                <p class="text-xs font-bold text-pine">उत्सव समारोह तथा बधाई ज्ञापन</p>
+                            </div>
+                        </div>
+
+                        <!-- Photo 3 -->
+                        <div class="group relative bg-white rounded-xl shadow-md overflow-hidden border border-gray-200 cursor-pointer transition hover:-translate-y-1 hover:shadow-xl" onclick="openPhotoModal('oggy (1).jpg', 'विशेष सांस्कृतिक उत्सव')">
+                            <div class="h-52 overflow-hidden relative">
+                                <img src="oggy (1).jpg" alt="विशेष सांस्कृतिक उत्सव" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                                <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-white">
+                                    <i class="fas fa-search-plus text-3xl"></i>
+                                </div>
+                            </div>
+                            <div class="p-3 text-center bg-white">
+                                <p class="text-xs font-bold text-pine">विशेष सांस्कृतिक उत्सव</p>
+                            </div>
+                        </div>
+
+                        <!-- Photo 4 -->
+                        <div class="group relative bg-white rounded-xl shadow-md overflow-hidden border border-gray-200 cursor-pointer transition hover:-translate-y-1 hover:shadow-xl" onclick="openPhotoModal('school photo 1.png', 'विद्यालय वार्षिकोत्सव तथा सम्मान')">
+                            <div class="h-52 overflow-hidden relative">
+                                <img src="school%20photo%201.png" alt="विद्यालय वार्षिकोत्सव तथा सम्मान" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                                <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-white">
+                                    <i class="fas fa-search-plus text-3xl"></i>
+                                </div>
+                            </div>
+                            <div class="p-3 text-center bg-white">
+                                <p class="text-xs font-bold text-pine">विद्यालय वार्षिकोत्सव तथा सम्मान</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Home Inquiry Form Section -->
+            <div class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-pine rounded-2xl p-8 sm:p-12 shadow-2xl text-white relative overflow-hidden">
+                    <div class="grid md:grid-cols-2 gap-8 items-center">
+                        <div>
+                            <span class="text-marigold font-bold text-xs uppercase tracking-widest">सम्पर्कमा रहनुहोस्</span>
+                            <h2 class="text-2xl sm:text-3xl font-serif font-bold mt-1 mb-4">भर्ना सम्बन्धमा केही सोध्नु छ?</h2>
+                            <p class="text-gray-300 text-sm leading-relaxed mb-6">
+                                तल दिइएको फारम भर्नुहोस्, हाम्रो प्रशासन शाखा (बा.नं. १० भकुण्डे) बाट २४ घण्टाभित्र सम्पर्क गरिनेछ।
+                            </p>
+                            <div class="space-y-3 text-sm text-gray-300">
+                                <div class="flex items-center"><i class="fas fa-phone text-marigold w-6"></i> +९७७ ०६८-XXXXXX</div>
+                                <div class="flex items-center"><i class="fas fa-envelope text-marigold w-6"></i> admissions@chautaredanda.edu.np</div>
+                                <div class="flex items-center"><i class="fas fa-clock text-marigold w-6"></i> आइतबार - शुक्रबार: बिहान १०:०० देखि अपराह्न ४:०० सम्म</div>
+                            </div>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl text-gray-800 shadow-lg">
+                            <form id="homeInquiryForm" onsubmit="handleInquirySubmit(event)" class="space-y-4">
+                                <div>
+                                    <label class="block text-xs font-bold uppercase text-pine mb-1">अभिभावकको पूरा नाम *</label>
+                                    <input type="text" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-pine focus:outline-none text-sm" placeholder="उदा: हरिबहादुर थापा">
+                                </div>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label class="block text-xs font-bold uppercase text-pine mb-1">फोन नम्बर *</label>
+                                        <input type="tel" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-pine focus:outline-none text-sm" placeholder="९८XXXXXXXX">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold uppercase text-pine mb-1">खोजी गरिएको कक्षा</label>
+                                        <select class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-pine focus:outline-none text-sm bg-white">
+                                            <option>नर्सरी - यु.के.जी.</option>
+                                            <option>कक्षा १ - ५</option>
+                                            <option>कक्षा ६ - ८</option>
+                                            <option>कक्षा ९ - १० (SEE)</option>
+                                            <option>कक्षा ११ - १२</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold uppercase text-pine mb-1">तपाईंको जिज्ञासा / सन्देश</label>
+                                    <textarea rows="3" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-pine focus:outline-none text-sm" placeholder="शुल्क, बस वा पाठ्यक्रम्बारे सोध्नुहोस्..."></textarea>
+                                </div>
+                                <button type="submit" class="w-full py-3 bg-marigold hover:bg-marigold-hover text-pine font-bold rounded-md shadow transition">
+                                    जिज्ञासा पठाउनुहोस्
+                                </button>
+                            </form>
+                            <div id="inquiryAlert" class="hidden mt-3 p-3 bg-green-100 text-green-800 rounded-md text-xs font-semibold text-center">
+                                <i class="fas fa-check-circle mr-1"></i> सन्देश सफलतापुर्वक पठाइयो! हामी चाँडै सम्पर्क गर्नेछौँ।
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. ABOUT US VIEW -->
+        <section id="view-about" class="page-view py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-marigold font-bold text-xs uppercase tracking-widest">हाम्रो पहिचान</span>
+                <h1 class="text-3xl sm:text-4xl font-serif font-bold text-pine mt-1">श्री चौतारे डाँडा विद्यालयको बारेमा</h1>
+                <p class="text-gray-600 mt-2 text-sm sm:text-base">बागलुङ जिल्लाको भकुण्डेमा अवस्थित, गुणस्तरीय र सर्वसुलभ माध्यमिक शिक्षा प्रदान गर्न समर्पित संस्था।</p>
+            </div>
+
+            <!-- History & Vision Cards -->
+            <div class="grid md:grid-cols-2 gap-8 mb-16">
+                <div class="bg-white/90 backdrop-blur p-8 rounded-2xl shadow-md border-t-4 border-marigold space-y-4">
+                    <div class="w-12 h-12 bg-marigold/20 text-marigold rounded-full flex items-center justify-center text-xl font-bold">
+                        <i class="fas fa-landmark"></i>
+                    </div>
+                    <h3 class="text-xl font-serif font-bold text-pine">इतिहास र पृष्ठभूमि</h3>
+                    <p class="text-gray-600 leading-relaxed text-sm">
+                        वि.सं. २०३८ सालमा स्थानीय शिक्षाप्रेमी तथा समाजसेवीहरूको योगदानबाट स्थापित श्री चौतारे डाँडा माध्यमिक विद्यालयले बागलुङ जिल्लाको वडा नं. १० भकुण्डेबाट आफ्नो सेवा यात्रा सुरु गरेको थियो। चार दशकको यस यात्रामा सरकार र समुदायको सहकार्यमा यो एक प्रतिष्ठित माध्यमिक विद्यालयको रूपमा विकसित भएको छ।
+                    </p>
+                </div>
+                <div class="bg-white/90 backdrop-blur p-8 rounded-2xl shadow-md border-t-4 border-pine space-y-4">
+                    <div class="w-12 h-12 bg-pine/10 text-pine rounded-full flex items-center justify-center text-xl font-bold">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3 class="text-xl font-serif font-bold text-pine">दूरदृष्टि र लक्ष्य</h3>
+                    <p class="text-gray-600 leading-relaxed text-sm">
+                        <strong>दूरदृष्टि:</strong> गण्डकी प्रदेशमै उत्कृष्ट, प्रविधियुक्त र नैतिक शिक्षाको केन्द्र बन्नु।<br>
+                        <strong>लक्ष्य:</strong> विद्यार्थीहरूलाई आधुनिक प्रविधि, खेलकुद र सामाजिक उत्तरदायित्वसँग जोड्दै शैक्षिक रूपमा सक्षम र सबल नागरिक बनाउनु।
+                    </p>
+                </div>
+            </div>
+
+            <!-- Faculty Directory Section -->
+            <div class="bg-white/90 backdrop-blur p-8 rounded-2xl shadow-md mb-12">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-gray-200 pb-6 mb-6 gap-4">
+                    <div>
+                        <h2 class="text-2xl font-serif font-bold text-pine">शिक्षक तथा कर्मचारी विवरण</h2>
+                        <p class="text-xs text-gray-500 mt-1">हाम्रा समर्पित शिक्षक तथा प्रशासनिक टोलीलाई भेट्नुहोस्</p>
+                    </div>
+                    <!-- Faculty Filter Tags -->
+                    <div class="flex flex-wrap gap-2" id="faculty-filters">
+                        <button onclick="filterFaculty('all')" class="faculty-filter-btn px-3 py-1.5 text-xs font-bold rounded-full bg-pine text-white">सबै</button>
+                        <button onclick="filterFaculty('admin')" class="faculty-filter-btn px-3 py-1.5 text-xs font-bold rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200">प्रशासन</button>
+                        <button onclick="filterFaculty('secondary')" class="faculty-filter-btn px-3 py-1.5 text-xs font-bold rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200">माध्यमिक (९-१२)</button>
+                        <button onclick="filterFaculty('basic')" class="faculty-filter-btn px-3 py-1.5 text-xs font-bold rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200">आधारभूत (६-८)</button>
+                        <button onclick="filterFaculty('primary')" class="faculty-filter-btn px-3 py-1.5 text-xs font-bold rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200">प्राथमिक (१-५)</button>
+                    </div>
+                </div>
+
+              <!-- Faculty Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6" id="faculty-grid">
+
+    <!-- Faculty item 1 (तिलक आचार्य) -->
+    <div class="faculty-card admin bg-neutralBg/80 p-4 rounded-xl text-center border border-gray-200">
+        <img src="principal.jpeg" 
+             alt="तिलक आचार्य" 
+             onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 80 80%22%3E%3Crect width=%2280%22 height=%2280%22 fill=%22%23DCE8D4%22/%3E%3Ccircle cx=%2240%22 cy=%2232%22 r=%2214%22 fill=%22%231E4D3B%22/%3E%3Cpath d=%22M12 80c4-22 52-22 56 0z%22 fill=%22%231E4D3B%22/%3E%3C/svg%3E'" class="w-20 h-20 mx-auto rounded-full object-cover border-2 border-marigold shadow-sm mb-3">
+        <h4 class="font-bold text-pine">तिलक आचार्य</h4>
+        <p class="text-xs text-marigold font-bold">प्रधानाध्यापक</p>
+        <p class="text-[11px] text-gray-500 mt-1">एम.ए. / एम.एड.</p>
     </div>
-  </div>
 
-  <!-- Event Details Modal -->
-  <div class="event-modal-wrapper" id="event-modal" aria-hidden="true" role="dialog" aria-label="Event Details">
-    <div class="event-modal-content">
-      <button class="event-modal-close" id="event-modal-close" aria-label="Close Modal">&times;</button>
-      <div class="event-modal-header">
-        <span class="event-modal-cat" id="modal-event-cat">Category</span>
-        <h3 class="event-modal-title" id="modal-event-title">Event Title</h3>
-      </div>
-      <div class="event-modal-body">
-        <p class="event-modal-date" id="modal-event-date"><strong>Date:</strong> <span>--</span></p>
-        <p class="event-modal-desc" id="modal-event-desc">Event details will appear here.</p>
-      </div>
-      <div class="event-modal-footer">
-        <button class="btn btn-secondary" id="event-modal-dismiss">Close</button>
-      </div>
+    <!-- Faculty item 2 (इन्द्र प्रसाद शर्मा) -->
+    <div class="faculty-card secondary bg-neutralBg p-4 rounded-xl text-center border border-gray-200">
+        <img src="indraji.jpeg" 
+             alt="इन्द्र प्रसाद शर्मा" 
+             onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 80 80%22%3E%3Crect width=%2280%22 height=%2280%22 fill=%22%23DCE8D4%22/%3E%3Ccircle cx=%2240%22 cy=%2232%22 r=%2214%22 fill=%22%231E4D3B%22/%3E%3Cpath d=%22M12 80c4-22 52-22 56 0z%22 fill=%22%231E4D3B%22/%3E%3C/svg%3E'" class="w-20 h-20 mx-auto rounded-full object-cover border-2 border-marigold shadow-sm mb-3">
+        <h4 class="font-bold text-pine">इन्द्र प्रसाद शर्मा</h4>
+        <p class="text-xs text-marigold font-bold">विज्ञान संयोजक (कक्षा ९-१०)</p>
+        <p class="text-[11px] text-gray-500 mt-1">बी.एससी., बी.एड.</p>
     </div>
-  </div>
 
-  <!-- Floating Back-to-Top Button -->
-  <button class="back-to-top" id="back-to-top" aria-label="Back to Top">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
-  </button>
+    <!-- Faculty item 3 (रूपेश बस्याल) -->
+    <div class="faculty-card secondary bg-neutralBg p-4 rounded-xl text-center border border-gray-200">
+        <img src="oggy (1).jpg" 
+             alt="रूपेश बस्याल" 
+             onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 80 80%22%3E%3Crect width=%2280%22 height=%2280%22 fill=%22%23DCE8D4%22/%3E%3Ccircle cx=%2240%22 cy=%2232%22 r=%2214%22 fill=%22%231E4D3B%22/%3E%3Cpath d=%22M12 80c4-22 52-22 56 0z%22 fill=%22%231E4D3B%22/%3E%3C/svg%3E'" class="w-20 h-20 mx-auto rounded-full object-cover border-2 border-marigold shadow-sm mb-3">
+        <h4 class="font-bold text-pine">रूपेश बस्याल</h4>
+        <p class="text-xs text-marigold font-bold">गणित संयोजक (कक्षा ९-१०)</p>
+        <p class="text-[11px] text-gray-500 mt-1">बी.एससी.</p>
+    </div>
 
-  <script src="script.js"></script>
+    <!-- Faculty item 4 (गीताकुमारी पौडेल) -->
+    <div class="faculty-card primary bg-neutralBg p-4 rounded-xl text-center border border-gray-200">
+        <img src="gita-paudel.jpg" 
+             alt="गीताकुमारी पौडेल" 
+             onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 80 80%22%3E%3Crect width=%2280%22 height=%2280%22 fill=%22%23DCE8D4%22/%3E%3Ccircle cx=%2240%22 cy=%2232%22 r=%2214%22 fill=%22%231E4D3B%22/%3E%3Cpath d=%22M12 80c4-22 52-22 56 0z%22 fill=%22%231E4D3B%22/%3E%3C/svg%3E'" class="w-20 h-20 mx-auto rounded-full object-cover border-2 border-marigold shadow-sm mb-3">
+        <h4 class="font-bold text-pine">गीताकुमारी पौडेल</h4>
+        <p class="text-xs text-marigold font-bold">प्राथमिक तह संयोजक</p>
+        <p class="text-[11px] text-gray-500 mt-1">बी.एड. प्राथमिक शिक्षा</p>
+    </div>
+
+</div>
+            </div>
+        </section>
+
+        <!-- 3. ADMISSIONS VIEW -->
+        <section id="view-admissions" class="page-view py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-marigold font-bold text-xs uppercase tracking-widest">हाम्रो परिवारमा जोडिनुहोस्</span>
+                <h1 class="text-3xl sm:text-4xl font-serif font-bold text-pine mt-1">भर्ना प्रक्रिया तथा मापदण्ड</h1>
+                <p class="text-gray-600 mt-2 text-sm sm:text-base">आगामी शैक्षिक सत्रका लागि विद्यार्थी तथा अभिभावकहरूका लागि सरल र पारदर्शी भर्ना प्रक्रिया।</p>
+            </div>
+
+            <!-- Enrollment Steps Timeline -->
+            <div class="grid md:grid-cols-4 gap-6 mb-16">
+                <div class="bg-white/90 backdrop-blur p-6 rounded-xl shadow border-t-4 border-marigold relative">
+                    <span class="text-3xl font-extrabold text-marigold/30 absolute top-4 right-4">०१</span>
+                    <h3 class="font-bold text-pine mb-2">फारम बुझाउने</h3>
+                    <p class="text-xs text-gray-600">विद्यालयको वेबसाइट वा प्रशासन शाखाबाट आवेदन फारम प्राप्त गरी भर्नुहोस्।</p>
+                </div>
+                <div class="bg-white/90 backdrop-blur p-6 rounded-xl shadow border-t-4 border-pine relative">
+                    <span class="text-3xl font-extrabold text-pine/20 absolute top-4 right-4">०२</span>
+                    <h3 class="font-bold text-pine mb-2">कागजात रुजु</h3>
+                    <p class="text-xs text-gray-600">अघिल्लो कक्षाको लब्धाङ्क पत्र, जन्मदर्ता र स्थानान्तरण प्रमाणपत्र बुझाउनुहोस्।</p>
+                </div>
+                <div class="bg-white/90 backdrop-blur p-6 rounded-xl shadow border-t-4 border-marigold relative">
+                    <span class="text-3xl font-extrabold text-marigold/30 absolute top-4 right-4">०३</span>
+                    <h3 class="font-bold text-pine mb-2">प्रवेश परीक्षा / अन्तर्वार्ता</h3>
+                    <p class="text-xs text-gray-600">विद्यार्थीको सिकाइ स्तर पहिचानका लागि सामान्य प्रवेश परीक्षा सञ्चालन गरिनेछ।</p>
+                </div>
+                <div class="bg-white/90 backdrop-blur p-6 rounded-xl shadow border-t-4 border-pine relative">
+                    <span class="text-3xl font-extrabold text-pine/20 absolute top-4 right-4">०४</span>
+                    <h3 class="font-bold text-pine mb-2">अन्तिम भर्ना</h3>
+                    <p class="text-xs text-gray-600">आवश्यक प्रक्रिया पुरा गरी पाठ्यपुस्तक र अभिमुखीकरण कार्यक्रममा सहभागी हुनुहोस्।</p>
+                </div>
+            </div>
+
+            <!-- Downloadable Application Forms & Fee Info -->
+            <div class="grid md:grid-cols-12 gap-8 mb-12">
+                <div class="md:col-span-7 bg-white/90 backdrop-blur p-8 rounded-2xl shadow-md">
+                    <h3 class="text-xl font-serif font-bold text-pine mb-4 flex items-center">
+                        <i class="fas fa-file-pdf text-red-600 mr-2"></i> डाउनलोड गर्न सकिने कागजातहरू
+                    </h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between p-3 bg-neutralBg rounded-lg border border-gray-200">
+                            <div class="flex items-center space-x-3">
+                                <i class="fas fa-file-alt text-pine text-xl"></i>
+                                <div>
+                                    <div class="font-bold text-xs text-pine">नयाँ भर्ना फारम (PDF)</div>
+                                    <div class="text-[10px] text-gray-500">साइज: १.२ MB &bull; शैक्षिक सत्र २०८३</div>
+                                </div>
+                            </div>
+                            <button onclick="downloadSimulatedFile('Bharna_Form_2083.pdf')" class="px-3 py-1.5 bg-pine text-marigold text-xs font-bold rounded hover:bg-pine-light transition">
+                                <i class="fas fa-download mr-1"></i> डाउनलोड
+                            </button>
+                        </div>
+                        <div class="flex items-center justify-between p-3 bg-neutralBg rounded-lg border border-gray-200">
+                            <div class="flex items-center space-x-3">
+                                <i class="fas fa-book text-pine text-xl"></i>
+                                <div>
+                                    <div class="font-bold text-xs text-pine">विद्यालय परिचयपुस्तिका (Prospectus)</div>
+                                    <div class="text-[10px] text-gray-500">साइज: ३.४ MB &bull; विस्तृत विवरण</div>
+                                </div>
+                            </div>
+                            <button onclick="downloadSimulatedFile('School_Prospectus_Baglung.pdf')" class="px-3 py-1.5 bg-pine text-marigold text-xs font-bold rounded hover:bg-pine-light transition">
+                                <i class="fas fa-download mr-1"></i> डाउनलोड
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fee Structure & Scholarships -->
+                <div class="md:col-span-5 bg-marigold-light/60 backdrop-blur p-8 rounded-2xl border border-marigold/30">
+                    <h3 class="text-xl font-serif font-bold text-pine mb-2">छात्रवृत्ति तथा सहयोग</h3>
+                    <p class="text-xs text-gray-600 leading-relaxed mb-4">
+                        नेपाल सरकारको नियमानुसार तथा स्थानीय अक्षयकोषबाट जेहेन्दार तथा विपन्न विद्यार्थीहरूका लागि विभिन्न छात्रवृत्तिको व्यवस्था गरिएको छ:
+                    </p>
+                    <ul class="text-xs space-y-2 text-pine font-semibold">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-marigold mr-2"></i> जेहेन्दार छात्रवृत्ति (जिल्ला उत्कृष्ट)</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-marigold mr-2"></i> विपन्न, दलित तथा जनजाति छात्रवृत्ति</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-marigold mr-2"></i> भकुण्डेवासी विद्यार्थीहरूका लागि विशेष सुविधा</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. ACADEMICS VIEW -->
+<section id="view-academics" class="page-view py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-marigold font-bold text-xs uppercase tracking-widest">शैक्षिक स्तर</span>
+                <h1 class="text-3xl sm:text-4xl font-serif font-bold text-pine mt-1">पाठ्यक्रम तथा अतिरिक्त क्रियाकलाप</h1>
+                <p class="text-gray-600 mt-2 text-sm sm:text-base">नेपाल सरकारको राष्ट्रिय पाठ्यक्रममा आधारित भई कम्प्युटर, खेलकुद र व्यावहारिक शिक्षामा जोड।</p>
+            </div>
+
+            <!-- Grade Tracks -->
+            <div class="grid md:grid-cols-3 gap-8 mb-16">
+                <div class="bg-white/90 backdrop-blur p-6 rounded-2xl shadow border-b-4 border-marigold">
+                    <div class="w-12 h-12 bg-pine/10 text-pine rounded-full flex items-center justify-center text-xl font-bold mb-4">
+                        <i class="fas fa-shapes"></i>
+                    </div>
+                    <h3 class="text-lg font-serif font-bold text-pine mb-2">प्राथमिक तह (कक्षा १-५)</h3>
+                    <p class="text-xs text-gray-600 leading-relaxed">
+                        अक्षर ज्ञान, सङ्ख्यात्मक ज्ञान र सिर्जनात्मक खेलहरूमार्फत बालबालिकाको आधारभूत विकासमा जोड।
+                    </p>
+                </div>
+                <div class="bg-white/90 backdrop-blur p-6 rounded-2xl shadow border-b-4 border-pine">
+                    <div class="w-12 h-12 bg-marigold/20 text-marigold rounded-full flex items-center justify-center text-xl font-bold mb-4">
+                        <i class="fas fa-atom"></i>
+                    </div>
+                    <h3 class="text-lg font-serif font-bold text-pine mb-2">आधारभूत तह (कक्षा ६-८)</h3>
+                    <p class="text-xs text-gray-600 leading-relaxed">
+                        विज्ञान, गणित, सामाजिक अध्ययन, अंग्रेजी र नेपाली विषयसँगै कम्प्युटर शिक्षाको व्यावहारिक अभ्यास।
+                    </p>
+                </div>
+                <div class="bg-white/90 backdrop-blur p-6 rounded-2xl shadow border-b-4 border-marigold">
+                    <div class="w-12 h-12 bg-pine/10 text-pine rounded-full flex items-center justify-center text-xl font-bold mb-4">
+                        <i class="fas fa-microscope"></i>
+                    </div>
+                    <h3 class="text-lg font-serif font-bold text-pine mb-2">माध्यमिक तह (कक्षा ९-१२)</h3>
+                    <p class="text-xs text-gray-600 leading-relaxed">
+                        एस.ई.ई. (SEE) को विशेष तयारी तथा +२ तहका लागि व्यवस्थापन, मानविकी र विज्ञान विधाका कक्षाहरू।
+                    </p>
+                </div>
+            </div>
+
+            <!-- ECA Activities Grid -->
+            <div class="bg-pine text-white p-8 rounded-2xl shadow-xl">
+                <h3 class="text-2xl font-serif font-bold mb-6 text-center text-marigold">अतिरिक्त क्रियाकलाप (ECA)</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                    <div class="p-4 bg-pine-light/50 rounded-xl border border-white/10">
+                        <i class="fas fa-futbol text-3xl text-marigold mb-2 block"></i>
+                        <h4 class="font-bold text-sm">खेलकुद तथा एथलेटिक्स</h4>
+                        <p class="text-[11px] text-gray-300 mt-1">भलिबल, ब्याडमिन्टन, फुटबल</p>
+                    </div>
+                    <div class="p-4 bg-pine-light/50 rounded-xl border border-white/10">
+                        <i class="fas fa-leaf text-3xl text-marigold mb-2 block"></i>
+                        <h4 class="font-bold text-sm">इको-क्लब तथा वातावरण</h4>
+                        <p class="text-[11px] text-gray-300 mt-1">वृक्षारोपण तथा सरसफाइ अभियान</p>
+                    </div>
+                    <div class="p-4 bg-pine-light/50 rounded-xl border border-white/10">
+                        <i class="fas fa-laptop-code text-3xl text-marigold mb-2 block"></i>
+                        <h4 class="font-bold text-sm">कम्प्युटर ल्याब</h4>
+                        <p class="text-[11px] text-gray-300 mt-1">डिजिटल साक्षरता तथा कोडिङ</p>
+                    </div>
+                    <div class="p-4 bg-pine-light/50 rounded-xl border border-white/10">
+                        <i class="fas fa-music text-3xl text-marigold mb-2 block"></i>
+                        <h4 class="font-bold text-sm">साहित्य तथा संस्कृति</h4>
+                        <p class="text-[11px] text-gray-300 mt-1">लोक नृत्य, हाजिरीजवाफ, वक्तृत्वकला</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. NEWS & EVENTS VIEW -->
+        <section id="view-news" class="page-view py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-marigold font-bold text-xs uppercase tracking-widest">सूचना पाटी</span>
+                <h1 class="text-3xl sm:text-4xl font-serif font-bold text-pine mt-1">समाचार, सूचना तथा कार्यक्रमहरू</h1>
+                <p class="text-gray-600 mt-2 text-sm sm:text-base">विद्यालयका आधिकारिक सूचना, परीक्षा तालिका र गतिविधिहरूबारे अपडेट रहनुहोस्।</p>
+            </div>
+
+            <!-- Filter Categories -->
+            <div class="flex justify-center flex-wrap gap-2 mb-8">
+                <button onclick="filterNews('all')" class="news-filter-btn active-news-btn px-4 py-2 text-xs font-bold rounded-full bg-pine text-white shadow">सबै सूचना</button>
+                <button onclick="filterNews('academic')" class="news-filter-btn px-4 py-2 text-xs font-bold rounded-full bg-white text-pine border border-gray-300 hover:bg-gray-100">शैक्षिक</button>
+                <button onclick="filterNews('sports')" class="news-filter-btn px-4 py-2 text-xs font-bold rounded-full bg-white text-pine border border-gray-300 hover:bg-gray-100">खेलकुद</button>
+                <button onclick="filterNews('admin')" class="news-filter-btn px-4 py-2 text-xs font-bold rounded-full bg-white text-pine border border-gray-300 hover:bg-gray-100">प्रशासनिक</button>
+            </div>
+<button onclick="openRoutineModal()" class="w-full mb-8 flex items-center gap-4 bg-white border-l-8 border-crimson rounded-r-2xl shadow-md p-4 text-left hover:shadow-lg transition">
+                <span class="bg-crimson text-white text-xs font-extrabold px-3 py-1 rounded-full shrink-0"><i class="fas fa-exclamation-triangle mr-1"></i> अत्यावश्यक</span>
+                <span class="font-serif font-bold text-pine">दोस्रो त्रैमासिक परीक्षा तालिकासम्बन्धी सूचना — २०८३/०६/१६ गतेदेखि</span>
+                <i class="fas fa-chevron-right ml-auto text-crimson"></i>
+            </button>
+            <!-- Notices Grid -->
+            <div class="grid md:grid-cols-3 gap-6" id="news-grid">
+                <div class="news-card academic bg-white/90 backdrop-blur rounded-2xl shadow-md border border-gray-100 overflow-hidden flex flex-col">
+                    <div class="bg-pine p-4 text-marigold text-xs font-bold flex justify-between items-center">
+                        <span><i class="fas fa-graduation-cap mr-1"></i> शैक्षिक</span>
+                        <span>फागुन १५, २०८२</span>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-serif font-bold text-pine text-lg mb-2">वार्षिक परीक्षा तालिका प्रकाशित</h3>
+                            <p class="text-xs text-gray-600 leading-relaxed mb-4">
+                                कक्षा १ देखि ९ सम्मको अन्तिम वार्षिक परीक्षाको कार्यतालिका प्रकाशित गरिएको छ। परीक्षा चैत ५ गतेदेखि सुरु हुनेछ।
+                            </p>
+                        </div>
+                        <button onclick="openNoticeModal('वार्षिक परीक्षा तालिका प्रकाशित', 'कक्षा १ देखि ९ सम्मको वार्षिक परीक्षा तालिका परीक्षा समितिद्वारा प्रकाशित भइसकेको छ। विद्यार्थीहरूले आफ्नो कक्षा शिक्षक वा सूचना पाटीबाट तालिका लिन सक्नुहुनेछ।', 'फागुन १५, २०८२')" class="text-xs font-bold text-pine hover:text-marigold transition text-left">
+                            विस्तृत हेर्नुहोस् <i class="fas fa-chevron-right ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="news-card sports bg-white/90 backdrop-blur rounded-2xl shadow-md border border-gray-100 overflow-hidden flex flex-col">
+                    <div class="bg-marigold p-4 text-pine text-xs font-bold flex justify-between items-center">
+                        <span><i class="fas fa-trophy mr-1"></i> खेलकुद</span>
+                        <span>माघ २८, २०८२</span>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-serif font-bold text-pine text-lg mb-2">अन्तर-सदन भलिबल प्रतियोगिता</h3>
+                            <p class="text-xs text-gray-600 leading-relaxed mb-4">
+                                भकुण्डे खेल मैदानमा सम्पन्न वार्षिक भलिबल प्रतियोगितामा सगरमाथा सदन प्रथम हुन सफल भएकोमा बधाई!
+                            </p>
+                        </div>
+                        <button onclick="openNoticeModal('अन्तर-सदन भलिबल प्रतियोगिता', 'वार्षिक खेलकुद सप्ताह अन्तर्गत भएको रोमाञ्चक फाइनल खेलमा सगरमाथा सदनले अन्नपूर्ण सदनलाई पराजित गर्दै ट्रफी हात पारेको छ।', 'माघ २८, २०८२')" class="text-xs font-bold text-pine hover:text-marigold transition text-left">
+                            विस्तृत हेर्नुहोस् <i class="fas fa-chevron-right ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="news-card admin bg-white/90 backdrop-blur rounded-2xl shadow-md border border-gray-100 overflow-hidden flex flex-col">
+                    <div class="bg-pine p-4 text-marigold text-xs font-bold flex justify-between items-center">
+                        <span><i class="fas fa-building mr-1"></i> प्रशासनिक</span>
+                        <span>माघ १०, २०८२</span>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-serif font-bold text-pine text-lg mb-2">नयाँ शैक्षिक सत्र २०८३ को भर्ना खुल्यो</h3>
+                            <p class="text-xs text-gray-600 leading-relaxed mb-4">
+                                शिशु कक्षा देखि कक्षा ११ सम्मका लागि आवेदन फारमहरू विद्यालयको प्रशासन शाखा तथा वेबसाइटमा उपलब्ध छन्।
+                            </p>
+                        </div>
+                        <button onclick="openNoticeModal('नयाँ शैक्षिक सत्र २०८३ को भर्ना खुल्यो', 'आगामी शैक्षिक सत्रका लागि आफ्ना बालबालिकालाई भर्ना गराउन चाहनुहुने अभिभावकहरूले यथाशीघ्र आवेदन फारम भरेर बुझाउनुहोला। कोटा सीमित छ।', 'माघ १०, २०८२')" class="text-xs font-bold text-pine hover:text-marigold transition text-left">
+                            विस्तृत हेर्नुहोस् <i class="fas fa-chevron-right ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. CONTACT VIEW -->
+        <section id="view-contact" class="page-view py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-marigold font-bold text-xs uppercase tracking-widest">हामीसँग जोडिनुहोस्</span>
+                <h1 class="text-3xl sm:text-4xl font-serif font-bold text-pine mt-1">सम्पर्क तथा स्थान</h1>
+                <p class="text-gray-600 mt-2 text-sm sm:text-base">अभिभावक, आगन्तुक तथा भुतपूर्व विद्यार्थीहरूलाई भकुण्डेस्थित विद्यालय परिसरमा हार्दिक स्वागत गर्दछौँ।</p>
+            </div>
+
+            <div class="grid md:grid-cols-12 gap-8">
+                <div class="md:col-span-5 bg-white/90 backdrop-blur p-8 rounded-2xl shadow-md space-y-6">
+                    <h3 class="text-xl font-serif font-bold text-pine border-b pb-3">विद्यालय कार्यालय विवरण</h3>
+                    <div class="space-y-4 text-sm text-gray-600">
+                        <div class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-marigold text-lg mt-1 w-8"></i>
+                            <div>
+                                <strong class="text-pine block">ठेगाना</strong>
+                                श्री चौतारे डाँडा माध्यमिक विद्यालय<br>
+                                वडा नं. १० भकुण्डे, बागलुङ नगरपालिका<br>
+                                गण्डकी प्रदेश, नेपाल
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-phone-alt text-marigold text-lg mt-1 w-8"></i>
+                            <div>
+                                <strong class="text-pine block">फोन तथा हेल्पलाइन</strong>
+                                कार्यालय: +९७७ ९८४७७६७८१०<br>
+                                भर्ना डेस्क: +९७७ ९८४७७६७८१०
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-envelope text-marigold text-lg mt-1 w-8"></i>
+                            <div>
+                                <strong class="text-pine block">इमेल सम्पर्क</strong>
+                                सामान्य सोधपुछ: chautaredanda98@gmail.com<br>
+                                भर्ना सोधपुछ: chautaredanda98@gmail.com
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:col-span-7 bg-white/90 backdrop-blur p-8 rounded-2xl shadow-md border-t-4 border-pine">
+                    <h3 class="text-xl font-serif font-bold text-pine mb-4">हामीलाई प्रत्यक्ष सन्देश पठाउनुहोस्</h3>
+                    <form onsubmit="handleDirectContact(event)" class="space-y-4">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-pine mb-1">पूरा नाम *</label>
+                                <input type="text" required class="w-full px-3 py-2 border rounded-md text-sm focus:ring-2 focus:ring-pine focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-pine mb-1">इमेल ठेगाना</label>
+                                <input type="email" class="w-full px-3 py-2 border rounded-md text-sm focus:ring-2 focus:ring-pine focus:outline-none">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-pine mb-1">विषय</label>
+                            <input type="text" required class="w-full px-3 py-2 border rounded-md text-sm focus:ring-2 focus:ring-pine focus:outline-none" placeholder="उदा: भर्नासम्बन्धी सोधपुछ / ट्रान्सफर">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-pine mb-1">सन्देश *</label>
+                            <textarea rows="4" required class="w-full px-3 py-2 border rounded-md text-sm focus:ring-2 focus:ring-pine focus:outline-none"></textarea>
+                        </div>
+                        <button type="submit" class="px-6 py-3 bg-pine hover:bg-pine-light text-marigold font-bold text-sm rounded-md shadow transition">
+                            सन्देश पठाउनुहोस्
+                        </button>
+                    </form>
+                    <div id="contactAlert" class="hidden mt-3 p-3 bg-green-100 text-green-800 rounded-md text-xs font-semibold">
+                        <i class="fas fa-check-circle mr-1"></i> सन्देश सफलतापूर्वक पठाइयो! हाम्रो टोलीले शीघ्र प्रतिक्रिया दिनेछ।
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- TOUR BOOKING MODAL -->
+    <div id="tourModal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl relative transform transition-all">
+            <button onclick="closeTourModal()" class="absolute top-4 right-4 text-gray-400 hover:text-pine text-lg">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="text-center mb-6">
+                <div class="w-12 h-12 bg-marigold/20 text-marigold rounded-full flex items-center justify-center mx-auto mb-2 text-xl">
+                    <i class="fas fa-walking"></i>
+                </div>
+                <h3 class="font-serif font-bold text-xl text-pine">विद्यालय अवलोकनको समय लिनुहोस्</h3>
+                <p class="text-xs text-gray-500">भकुण्डे परिसरको भ्रमण गरी शिक्षकहरूसँग भेटघाट गर्नुहोस्।</p>
+            </div>
+            <form onsubmit="handleTourBooking(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-pine mb-1">पूरा नाम *</label>
+                    <input type="text" required class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-pine focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-pine mb-1">फोन नम्बर *</label>
+                    <input type="tel" required class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-pine focus:outline-none">
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-pine mb-1">भ्रमण गर्ने मिति *</label>
+                        <input type="date" required class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-pine focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-pine mb-1">समय *</label>
+                        <select class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-2 focus:ring-pine focus:outline-none bg-white">
+                            <option>बिहान १०:३० बजे</option>
+                            <option>दिउँसो ०१:०० बजे</option>
+                            <option>अपराह्न ०३:०० बजे</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="w-full py-3 bg-pine hover:bg-pine-light text-marigold font-bold text-sm rounded-md shadow transition">
+                    अवलोकन निश्चित गर्नुहोस्
+                </button>
+            </form>
+            <div id="tourSuccessAlert" class="hidden mt-3 p-3 bg-green-100 text-green-800 rounded-md text-xs font-semibold text-center">
+                <i class="fas fa-check-circle mr-1"></i> समय सुरक्षित भयो! हामी तपाईंलाई स्वागत गर्न उत्सुक छौँ।
+            </div>
+        </div>
+    </div>
+
+    <!-- EXAM ROUTINE MODAL -->
+    <div id="routineModal" class="fixed inset-0 bg-black/70 z-50 hidden flex items-start justify-center p-4 overflow-y-auto backdrop-blur-sm" onclick="if(event.target===this)closeRoutineModal()">
+        <div class="bg-white rounded-2xl max-w-3xl w-full my-6 shadow-2xl overflow-hidden">
+            <div class="bg-crimson text-white p-4 flex items-center justify-between gap-3 flex-wrap">
+                <h3 class="font-serif font-bold text-lg"><i class="fas fa-exclamation-triangle mr-2"></i>दोस्रो त्रैमासिक परीक्षा रूटीन</h3>
+                <div class="flex gap-2">
+                    <a href="examroutine.png" download class="px-3 py-1.5 bg-marigold text-pine-dark font-bold rounded text-xs"><i class="fas fa-download mr-1"></i>डाउनलोड</a>
+                    <button onclick="closeRoutineModal()" class="px-3 py-1.5 bg-white/20 hover:bg-white/30 rounded text-xs font-bold" aria-label="बन्द गर्नुहोस्"><i class="fas fa-times"></i></button>
+                </div>
+            </div>
+            <img src="examroutine.png" alt="दोस्रो त्रैमासिक परीक्षा रूटीन" class="w-full h-auto">
+        </div>
+    </div>
+
+    <!-- NOTICE DETAIL MODAL -->
+    <div id="noticeModal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl relative">
+            <button onclick="closeNoticeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-pine text-lg">
+                <i class="fas fa-times"></i>
+            </button>
+            <span id="modalNoticeDate" class="text-xs text-marigold font-bold uppercase tracking-wider block mb-1"></span>
+            <h3 id="modalNoticeTitle" class="font-serif font-bold text-xl text-pine mb-4"></h3>
+            <p id="modalNoticeBody" class="text-xs text-gray-600 leading-relaxed mb-6"></p>
+            <button onclick="closeNoticeModal()" class="w-full py-2 bg-pine text-white text-xs font-bold rounded hover:bg-pine-light">
+                विन्डो बन्द गर्नुहोस्
+            </button>
+        </div>
+    </div>
+
+    <!-- PHOTO POPUP MODAL (LIGHTBOX) -->
+    <div id="photoModal" class="fixed inset-0 bg-black/80 z-50 hidden flex flex-col items-center justify-center p-4 backdrop-blur-sm" onclick="if(event.target===this)closePhotoModal()">
+        <div class="relative max-w-4xl w-full flex flex-col items-center bg-white rounded-2xl overflow-hidden shadow-2xl">
+            <button onclick="closePhotoModal()" class="absolute top-3 right-3 bg-black/60 hover:bg-black/80 text-white rounded-full w-9 h-9 flex items-center justify-center z-10 transition">
+                <i class="fas fa-times text-lg"></i>
+            </button>
+            <div class="w-full max-h-[80vh] flex items-center justify-center bg-black/90 p-2">
+                <img id="popupImage" src="" alt="Popup Photo" class="max-h-[75vh] w-auto object-contain rounded">
+            </div>
+            <div class="p-4 w-full bg-pine text-white text-center">
+                <h4 id="popupCaption" class="font-serif font-bold text-base sm:text-lg"></h4>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-pine-dark text-white border-t-4 border-marigold pt-12 pb-6 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-8 border-b border-pine-light">
+                <div class="space-y-3">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-pine font-bold">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <span class="font-serif font-bold text-base text-marigold">श्री चौतारे डाँडा</span>
+                    </div>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        बागलुङ जिल्लाको बा.नं. १० भकुण्डेमा उत्कृष्ट शिक्षा, अनुशासन र व्यक्तित्व विकासका लागि प्रतिबद्ध संस्था।
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-marigold font-bold text-sm uppercase mb-3 font-serif">द्रुत नेभिगेसन</h4>
+                    <ul class="text-xs space-y-2 text-gray-300">
+                        <li><a href="#about" onclick="navigateTo('about')" class="hover:text-marigold transition">हाम्रो बारेमा</a></li>
+                        <li><a href="#admissions" onclick="navigateTo('admissions')" class="hover:text-marigold transition">भर्ना सूचना २०८३</a></li>
+                        <li><a href="#academics" onclick="navigateTo('academics')" class="hover:text-marigold transition">शैक्षिक तहहरू</a></li>
+                        <li><a href="#news" onclick="navigateTo('news')" class="hover:text-marigold transition">सूचना पाटी</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-marigold font-bold text-sm uppercase mb-3 font-serif">शैक्षिक तहहरू</h4>
+                    <ul class="text-xs space-y-2 text-gray-300">
+                        <li><span class="text-gray-400">प्राथमिक शिक्षा (कक्षा १-५)</span></li>
+                        <li><span class="text-gray-400">आधारभूत शिक्षा (कक्षा ६-८)</span></li>
+                        <li><span class="text-gray-400">माध्यमिक शिक्षा (SEE र +२)</span></li>
+                        <li><span class="text-gray-400">कम्प्युटर तथा विज्ञान प्रयोगशाला</span></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-marigold font-bold text-sm uppercase mb-3 font-serif">सम्पर्क विवरण</h4>
+                    <p class="text-xs text-gray-300 leading-relaxed">
+                        बा.नं. १० भकुण्डे, बागलुङ जिल्ला<br>
+                        गण्डकी प्रदेश, नेपाल<br><br>
+                        फोन: +९७७ ०६८-XXXXXX<br>
+                        इमेल: info@chautaredanda.edu.np
+                    </p>
+                </div>
+            </div>
+            <div class="pt-6 flex flex-col sm:flex-row justify-between items-center text-xs text-gray-400">
+                <p>&copy; <span id="currentYear"></span> श्री चौतारे डाँडा माध्यमिक विद्यालय। सर्वाधिकार सुरक्षित।</p>
+                <p class="mt-2 sm:mt-0">बागलुङ नगरपालिका तथा स्थानीय समुदायका लागि निर्मित</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Set dynamic current year
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Single Page Navigation Functionality
+        function navigateTo(viewId) {
+            const views = document.querySelectorAll('.page-view');
+            views.forEach(v => v.classList.remove('active'));
+
+            const target = document.getElementById('view-' + viewId);
+            if (target) {
+                target.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            const navBtns = document.querySelectorAll('.nav-btn');
+            navBtns.forEach(btn => {
+                btn.classList.remove('bg-pine-light', 'text-marigold');
+            });
+            const activeNavBtn = document.getElementById('nav-' + viewId);
+            if (activeNavBtn) {
+                activeNavBtn.classList.add('bg-pine-light', 'text-marigold');
+            }
+
+            const drawer = document.getElementById('mobile-drawer');
+            if (drawer && !drawer.classList.contains('hidden')) {
+                drawer.classList.add('hidden');
+            }
+
+            window.location.hash = viewId;
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const drawer = document.getElementById('mobile-drawer');
+            drawer.classList.toggle('hidden');
+        }
+
+        // Handle Hash Routing on Load
+        window.addEventListener('load', () => {
+            const hash = window.location.hash.replace('#', '');
+            if (hash && ['home', 'about', 'admissions', 'academics', 'news', 'contact'].includes(hash)) {
+                navigateTo(hash);
+            } else {
+                navigateTo('home');
+            }
+        });
+
+        // Faculty Filter Function
+        function filterFaculty(category) {
+            const cards = document.querySelectorAll('.faculty-card');
+            cards.forEach(card => {
+                if (category === 'all' || card.classList.contains(category)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            const buttons = document.querySelectorAll('.faculty-filter-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-pine', 'text-white');
+                btn.classList.add('bg-gray-100', 'text-gray-600');
+            });
+            event.currentTarget.classList.remove('bg-gray-100', 'text-gray-600');
+            event.currentTarget.classList.add('bg-pine', 'text-white');
+        }
+
+        // News & Notices Filter Function
+        function filterNews(category) {
+            const cards = document.querySelectorAll('.news-card');
+            cards.forEach(card => {
+                if (category === 'all' || card.classList.contains(category)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            const buttons = document.querySelectorAll('.news-filter-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-pine', 'text-white', 'shadow');
+                btn.classList.add('bg-white', 'text-pine', 'border', 'border-gray-300');
+            });
+            event.currentTarget.classList.remove('bg-white', 'border', 'border-gray-300');
+            event.currentTarget.classList.add('bg-pine', 'text-white', 'shadow');
+        }
+
+        // Interactive Tour Modal Handling
+        function openTourModal() {
+            document.getElementById('tourModal').classList.remove('hidden');
+        }
+
+        function closeTourModal() {
+            document.getElementById('tourModal').classList.add('hidden');
+            document.getElementById('tourSuccessAlert').classList.add('hidden');
+        }
+
+        function handleTourBooking(e) {
+            e.preventDefault();
+            document.getElementById('tourSuccessAlert').classList.remove('hidden');
+            setTimeout(() => {
+                closeTourModal();
+            }, 2500);
+        }
+
+        // Inquiry Form Handler
+        function handleInquirySubmit(e) {
+            e.preventDefault();
+            document.getElementById('inquiryAlert').classList.remove('hidden');
+            e.target.reset();
+            setTimeout(() => {
+                document.getElementById('inquiryAlert').classList.add('hidden');
+            }, 4000);
+        }
+
+        // Direct Contact Form Handler
+        function handleDirectContact(e) {
+            e.preventDefault();
+            document.getElementById('contactAlert').classList.remove('hidden');
+            e.target.reset();
+            setTimeout(() => {
+                document.getElementById('contactAlert').classList.add('hidden');
+            }, 4000);
+        }
+
+        // Notice Modal Handling
+        function openNoticeModal(title, body, date) {
+            document.getElementById('modalNoticeTitle').textContent = title;
+            document.getElementById('modalNoticeBody').textContent = body;
+            document.getElementById('modalNoticeDate').textContent = date;
+            document.getElementById('noticeModal').classList.remove('hidden');
+        }
+
+        function closeNoticeModal() {
+            document.getElementById('noticeModal').classList.add('hidden');
+        }
+
+        // Photo Popup Modal Handling
+        function openPhotoModal(imgSrc, caption) {
+            document.getElementById('popupImage').src = imgSrc;
+            document.getElementById('popupCaption').textContent = caption;
+            document.getElementById('photoModal').classList.remove('hidden');
+        }
+
+        function closePhotoModal() {
+            document.getElementById('photoModal').classList.add('hidden');
+        }
+
+        // Exam routine modal
+        function openRoutineModal() { document.getElementById('routineModal').classList.remove('hidden'); }
+        function closeRoutineModal() { document.getElementById('routineModal').classList.add('hidden'); }
+        
+        document.addEventListener('keydown', e => { 
+            if (e.key === 'Escape') { 
+                closeRoutineModal(); 
+                closeNoticeModal(); 
+                closeTourModal(); 
+                closePhotoModal();
+            } 
+        });
+
+        // Simulated PDF Download feedback
+        function downloadSimulatedFile(filename) {
+            const tempBox = document.createElement('div');
+            tempBox.className = 'fixed bottom-4 right-4 bg-pine text-marigold px-4 py-3 rounded-lg shadow-xl text-xs font-bold z-50 flex items-center space-x-2';
+            tempBox.innerHTML = `<i class="fas fa-file-download text-lg"></i> <span>डाउनलोड हुँदैछ: ${filename}...</span>`;
+            document.body.appendChild(tempBox);
+            setTimeout(() => {
+                tempBox.remove();
+            }, 2500);
+        }
+    </script>
 </body>
 </html>
