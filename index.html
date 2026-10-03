@@ -897,6 +897,58 @@
     </footer>
 
     <script>
+       
+        // Principal Welcome Photos Popup Logic
+let currentPripsltIndex = 1;
+const totalPripsltPhotos = 10;
+let pripsltTimer = null;
+
+function showPripsltPhoto(index) {
+    const imgElement = document.getElementById('pripsltImage');
+    const indexElement = document.getElementById('pripsltIndex');
+    
+    if (!imgElement) return;
+
+    // Smooth Fade Transition
+    imgElement.style.opacity = '0.3';
+    setTimeout(() => {
+        imgElement.src = `pripslt/${index}.jpeg`;
+        indexElement.textContent = index;
+        imgElement.style.opacity = '1';
+    }, 200);
+}
+
+function nextPripsltPhoto() {
+    currentPripsltIndex = (currentPripsltIndex % totalPripsltPhotos) + 1;
+    showPripsltPhoto(currentPripsltIndex);
+}
+
+function prevPripsltPhoto() {
+    currentPripsltIndex = (currentPripsltIndex - 2 + totalPripsltPhotos) % totalPripsltPhotos + 1;
+    showPripsltPhoto(currentPripsltIndex);
+}
+
+function startPripsltAutoRotate() {
+    // Auto-rotate every 3 seconds
+    pripsltTimer = setInterval(() => {
+        nextPripsltPhoto();
+    }, 3000);
+}
+
+function closePripsltModal() {
+    const modal = document.getElementById('pripsltModal');
+    if (modal) {
+        modal.classList.add('hidden');
+    }
+    if (pripsltTimer) {
+        clearInterval(pripsltTimer);
+    }
+}
+
+// Start auto rotation on load
+window.addEventListener('load', () => {
+    startPripsltAutoRotate();
+});
         // Set dynamic current year
         document.getElementById('currentYear').textContent = new Date().getFullYear();
 
@@ -1049,6 +1101,39 @@
                 tempBox.remove();
             }, 2500);
         }
-    </script>
+   <!-- PRINCIPAL WELCOME POPUP MODAL -->
+<div id="pripsltModal" class="fixed bottom-6 right-6 z-50 flex items-center justify-center p-2">
+    <div class="bg-white border-2 border-marigold rounded-2xl p-3 shadow-2xl relative max-w-xs w-72 transition-all duration-300">
+        <!-- Close Button -->
+        <button onclick="closePripsltModal()" class="absolute -top-2 -right-2 bg-crimson text-white w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs shadow-md hover:bg-crimson-dark transition z-10" aria-label="Close">
+            <i class="fas fa-times"></i>
+        </button>
+        
+        <!-- Header -->
+        <div class="text-center mb-2">
+            <span class="bg-pine text-marigold text-[10px] font-extrabold px-2 py-0.5 rounded-full inline-block">
+                <i class="fas fa-camera mr-1"></i> प्रअ स्वागत स्वागतम्
+            </span>
+        </div>
+
+        <!-- Image Viewer Container -->
+        <div class="relative w-full h-48 bg-gray-100 rounded-xl overflow-hidden border border-gray-200">
+            <img id="pripsltImage" src="pripslt/1.jpeg" alt="Principal Welcome Photo" class="w-full h-full object-cover transition-opacity duration-500 opacity-100">
+            
+            <!-- Navigation Arrows -->
+            <button onclick="prevPripsltPhoto()" class="absolute left-1 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs transition">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button onclick="nextPripsltPhoto()" class="absolute right-1 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs transition">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+
+            <!-- Counter Badge -->
+            <div class="absolute bottom-2 right-2 bg-black/60 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
+                <span id="pripsltIndex">1</span> / 10
+            </div>
+        </div>
+    </div>
+</div> </script>
 </body>
 </html>
