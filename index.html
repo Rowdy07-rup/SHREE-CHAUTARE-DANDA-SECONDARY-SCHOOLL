@@ -92,6 +92,134 @@
         @media (prefers-reduced-motion: reduce) { .ticker-track { animation: none; } .ticker-wrap { overflow-x: auto; } }
         .urgent-bar { background: repeating-linear-gradient(135deg, #B3261E 0 18px, #A3201A 18px 36px); }
         :focus-visible { outline: 3px solid #E9A412; outline-offset: 2px; }
+
+        /* ================= Principal Celebration Photo Slider ================= */
+        .pp-section { position: relative; }
+        .pp-frame {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            background: #12342A;
+            overflow: hidden;
+            border: 4px solid #E9A412;
+            border-radius: 1.75rem 0.5rem 1.75rem 0.5rem;
+            box-shadow: 0 20px 40px -12px rgba(18, 52, 42, 0.45);
+            cursor: zoom-in;
+        }
+        .pp-frame img.pp-main {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 1;
+            transform: scale(1);
+            transition: opacity 0.6s ease, transform 6s ease;
+        }
+        .pp-frame img.pp-main.pp-fade { opacity: 0; transform: scale(1.04); }
+        .pp-frame .pp-badge {
+            position: absolute;
+            left: 12px;
+            bottom: 12px;
+            background: rgba(18, 52, 42, 0.88);
+            color: #fff;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 6px 14px;
+            border-radius: 999px;
+            z-index: 3;
+        }
+        .pp-frame .pp-zoom {
+            position: absolute;
+            right: 12px;
+            bottom: 12px;
+            background: rgba(233, 164, 18, 0.95);
+            color: #12342A;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 6px 14px;
+            border-radius: 999px;
+            z-index: 3;
+        }
+        .pp-progress {
+            position: absolute;
+            left: 0; top: 0;
+            height: 4px;
+            width: 0;
+            background: #E9A412;
+            z-index: 4;
+        }
+        .pp-progress.run { animation: ppbar var(--pp-ms, 4500ms) linear forwards; }
+        @keyframes ppbar { from { width: 0; } to { width: 100%; } }
+        .pp-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px; height: 40px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #1E4D3B;
+            display: flex; align-items: center; justify-content: center;
+            z-index: 5;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+            transition: background 0.2s, color 0.2s;
+        }
+        .pp-nav:hover { background: #E9A412; color: #12342A; }
+        .pp-prev { left: 10px; }
+        .pp-next { right: 10px; }
+        .pp-dot {
+            width: 10px; height: 10px;
+            border-radius: 999px;
+            background: #C9D6C3;
+            transition: all 0.3s;
+        }
+        .pp-dot.active { background: #1E4D3B; width: 26px; }
+        .pp-thumb {
+            width: 56px; height: 42px;
+            object-fit: cover;
+            border-radius: 6px;
+            border: 2px solid transparent;
+            opacity: 0.6;
+            cursor: pointer;
+            transition: all 0.25s;
+        }
+        .pp-thumb.active { border-color: #E9A412; opacity: 1; transform: translateY(-2px); }
+        .pp-thumb:hover { opacity: 1; }
+
+        /* Lightbox */
+        #ppLightbox {
+            position: fixed; inset: 0;
+            background: rgba(0, 0, 0, 0.88);
+            z-index: 60;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+        #ppLightbox.open { display: flex; }
+        #ppLightbox img {
+            max-width: min(1100px, 94vw);
+            max-height: 82vh;
+            object-fit: contain;
+            border-radius: 12px;
+            border: 3px solid #E9A412;
+            background: #12342A;
+        }
+        .pp-lb-btn {
+            position: absolute;
+            width: 46px; height: 46px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.14);
+            color: #fff;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 18px;
+            transition: background 0.2s;
+        }
+        .pp-lb-btn:hover { background: #E9A412; color: #12342A; }
+        @media (prefers-reduced-motion: reduce) {
+            .pp-frame img.pp-main { transition: opacity 0.2s ease; }
+            .pp-progress.run { animation: none; }
+        }
     </style>
 </head>
 <body class="bg-neutralBg text-gray-800 font-sans flex flex-col min-h-screen relative">
@@ -176,7 +304,7 @@
         </div>
     </header>
 
-    <!-- URGENT NOTICE BAR -->
+   <!-- URGENT NOTICE BAR -->
     <button onclick="openRoutineModal()" class="urgent-bar block w-full text-white py-2.5 px-4 relative z-10 text-center text-sm sm:text-base font-bold hover:brightness-110 transition">
         <i class="fas fa-exclamation-triangle mr-2 animate-pulse"></i>अत्यावश्यक सूचना: दोस्रो त्रैमासिक परीक्षा २०८३/०६/१६ गतेदेखि — परीक्षा रूटीन हेर्नुहोस् <i class="fas fa-chevron-right ml-2 text-xs"></i>
     </button>
@@ -414,26 +542,109 @@
                 </div>
             </div>
 
-            <!-- PHOTO GALLERY & ROTATING SLIDESHOW SECTION -->
+            <!-- Faculty Directory Section -->
             <div class="bg-white/90 backdrop-blur p-8 rounded-2xl shadow-md mb-12">
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-gray-200 pb-6 mb-6 gap-4">
                     <div>
-                        <h2 class="text-2xl font-serif font-bold text-pine">प्रधानाध्यापक सम्मान तथा उत्सव तस्बिरहरू</h2>
-                        <p class="text-xs text-gray-500 mt-1">फोटोमा क्लिक गरेर ठूलो आकारमा (Pop-up) हेर्नुहोस्।</p>
+                        <h2 class="text-2xl font-serif font-bold text-pine">शिक्षक तथा कर्मचारी विवरण</h2>
+                        <p class="text-xs text-gray-500 mt-1">हाम्रा समर्पित शिक्षक तथा प्रशासनिक टोलीलाई भेट्नुहोस्</p>
                     </div>
-                    <div class="flex gap-2">
-                        <button onclick="prevPhotoSlide()" class="px-3 py-1.5 bg-pine text-white text-xs font-bold rounded-lg hover:bg-pine-light transition">
-                            <i class="fas fa-chevron-left mr-1"></i> अघिल्लो
-                        </button>
-                        <button onclick="nextPhotoSlide()" class="px-3 py-1.5 bg-pine text-white text-xs font-bold rounded-lg hover:bg-pine-light transition">
-                            पछिल्लो <i class="fas fa-chevron-right ml-1"></i>
-                        </button>
+                    <!-- Faculty Filter Tags -->
+                    <div class="flex flex-wrap gap-2" id="faculty-filters">
+                        <button onclick="filterFaculty('all', event)" class="faculty-filter-btn px-3 py-1.5 text-xs font-bold rounded-full bg-pine text-white">सबै</button>
+                        <button onclick="filterFaculty('admin', event)" class="faculty-filter-btn px-3 py-1.5 text-xs font-bold rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200">प्रशासन</button>
+                        <button onclick="filterFaculty('secondary', event)" class="faculty-filter-btn px-3 py-1.5 text-xs font-bold rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200">माध्यमिक (९-१२)</button>
+                        <button onclick="filterFaculty('basic', event)" class="faculty-filter-btn px-3 py-1.5 text-xs font-bold rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200">आधारभूत (६-८)</button>
+                        <button onclick="filterFaculty('primary', event)" class="faculty-filter-btn px-3 py-1.5 text-xs font-bold rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200">प्राथमिक (१-५)</button>
                     </div>
                 </div>
 
-                <!-- Rotating Dynamic Image Grid (pripslt/1.jpeg to pripslt/10.jpeg) -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6" id="gallery-grid">
-                    <!-- Populated dynamically via JS -->
+                <!-- Faculty Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6" id="faculty-grid">
+
+                    <!-- Faculty item 1 (तिलक आचार्य) -->
+                    <div class="faculty-card admin bg-neutralBg/80 p-4 rounded-xl text-center border border-gray-200">
+                        <img src="principal.jpeg" 
+                             alt="तिलक आचार्य" 
+                             onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 80 80%22%3E%3Crect width=%2280%22 height=%2280%22 fill=%22%23DCE8D4%22/%3E%3Ccircle cx=%2240%22 cy=%2232%22 r=%2214%22 fill=%22%231E4D3B%22/%3E%3Cpath d=%22M12 80c4-22 52-22 56 0z%22 fill=%22%231E4D3B%22/%3E%3C/svg%3E'" class="w-20 h-20 mx-auto rounded-full object-cover border-2 border-marigold shadow-sm mb-3">
+                        <h4 class="font-bold text-pine">तिलक आचार्य</h4>
+                        <p class="text-xs text-marigold font-bold">प्रधानाध्यापक</p>
+                        <p class="text-[11px] text-gray-500 mt-1">एम.ए. / एम.एड.</p>
+                    </div>
+
+                    <!-- Faculty item 2 (इन्द्र प्रसाद शर्मा) -->
+                    <div class="faculty-card secondary bg-neutralBg p-4 rounded-xl text-center border border-gray-200">
+                        <img src="indraji.jpeg" 
+                             alt="इन्द्र प्रसाद शर्मा" 
+                             onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 80 80%22%3E%3Crect width=%2280%22 height=%2280%22 fill=%22%23DCE8D4%22/%3E%3Ccircle cx=%2240%22 cy=%2232%22 r=%2214%22 fill=%22%231E4D3B%22/%3E%3Cpath d=%22M12 80c4-22 52-22 56 0z%22 fill=%22%231E4D3B%22/%3E%3C/svg%3E'" class="w-20 h-20 mx-auto rounded-full object-cover border-2 border-marigold shadow-sm mb-3">
+                        <h4 class="font-bold text-pine">इन्द्र प्रसाद शर्मा</h4>
+                        <p class="text-xs text-marigold font-bold">विज्ञान संयोजक (कक्षा ९-१०)</p>
+                        <p class="text-[11px] text-gray-500 mt-1">बी.एससी., बी.एड.</p>
+                    </div>
+
+                    <!-- Faculty item 3 (रूपेश बस्याल) -->
+                    <div class="faculty-card secondary bg-neutralBg p-4 rounded-xl text-center border border-gray-200">
+                        <img src="oggy (1).jpg" 
+                             alt="रूपेश बस्याल" 
+                             onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 80 80%22%3E%3Crect width=%2280%22 height=%2280%22 fill=%22%23DCE8D4%22/%3E%3Ccircle cx=%2240%22 cy=%2232%22 r=%2214%22 fill=%22%231E4D3B%22/%3E%3Cpath d=%22M12 80c4-22 52-22 56 0z%22 fill=%22%231E4D3B%22/%3E%3C/svg%3E'" class="w-20 h-20 mx-auto rounded-full object-cover border-2 border-marigold shadow-sm mb-3">
+                        <h4 class="font-bold text-pine">रूपेश बस्याल</h4>
+                        <p class="text-xs text-marigold font-bold">गणित संयोजक (कक्षा ९-१०)</p>
+                        <p class="text-[11px] text-gray-500 mt-1">बी.एससी.</p>
+                    </div>
+
+                    <!-- Faculty item 4 (गीताकुमारी पौडेल) -->
+                    <div class="faculty-card primary bg-neutralBg p-4 rounded-xl text-center border border-gray-200">
+                        <img src="gita-paudel.jpg" 
+                             alt="गीताकुमारी पौडेल" 
+                             onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 80 80%22%3E%3Crect width=%2280%22 height=%2280%22 fill=%22%23DCE8D4%22/%3E%3Ccircle cx=%2240%22 cy=%2232%22 r=%2214%22 fill=%22%231E4D3B%22/%3E%3Cpath d=%22M12 80c4-22 52-22 56 0z%22 fill=%22%231E4D3B%22/%3E%3C/svg%3E'" class="w-20 h-20 mx-auto rounded-full object-cover border-2 border-marigold shadow-sm mb-3">
+                        <h4 class="font-bold text-pine">गीताकुमारी पौडेल</h4>
+                        <p class="text-xs text-marigold font-bold">प्राथमिक तह संयोजक</p>
+                        <p class="text-[11px] text-gray-500 mt-1">बी.एड. प्राथमिक शिक्षा</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- ============ PRINCIPAL CELEBRATION PHOTO SLIDER (NEW) ============ -->
+            <div id="principal-celebration" class="pp-section bg-white/90 backdrop-blur p-6 sm:p-8 rounded-2xl shadow-md mb-12 border-t-4 border-marigold">
+                <div class="grid lg:grid-cols-12 gap-8 items-center">
+
+                    <!-- Left: text + controls -->
+                    <div class="lg:col-span-5 space-y-4 text-center lg:text-left">
+                        <span class="inline-flex items-center bg-pine text-white text-xs font-extrabold px-3 py-1 rounded-full">
+                            <i class="fas fa-camera mr-1.5 text-marigold" style="color:#F4B93A"></i> फोटो ग्यालरी
+                        </span>
+                        <h2 class="text-2xl sm:text-3xl font-serif font-bold text-pine leading-snug">प्रधानाध्यापक सम्मान तथा उत्सव तस्बिरहरू</h2>
+                        <p class="text-sm text-gray-600 leading-relaxed">
+                            प्रधानाध्यापक श्री तिलक आचार्यको उपस्थितिमा सम्पन्न सम्मान तथा उत्सवका यादगार क्षणहरू। तस्बिर आफैँ फेरिन्छन्, ठूलो आकारमा हेर्न फोटोमा क्लिक गर्नुहोस्।
+                        </p>
+
+                        <div class="flex items-center justify-center lg:justify-start gap-3 pt-1">
+                            <button id="ppPlayBtn" onclick="ppTogglePlay()" class="px-4 py-2 bg-pine hover:bg-pine-light text-white text-xs font-bold rounded-full shadow transition" aria-label="स्लाइडशो रोक्नुहोस् वा चलाउनुहोस्">
+                                <i id="ppPlayIcon" class="fas fa-pause mr-1.5" style="color:#F4B93A"></i><span id="ppPlayText">रोक्नुहोस्</span>
+                            </button>
+                            <span class="text-xs font-bold text-pine bg-marigold-light px-3 py-2 rounded-full">
+                                तस्बिर <span id="ppCounter">1 / 10</span>
+                            </span>
+                        </div>
+
+                        <!-- Dots -->
+                        <div id="ppDots" class="flex items-center justify-center lg:justify-start gap-2 pt-1"></div>
+                    </div>
+
+                    <!-- Right: photo frame -->
+                    <div class="lg:col-span-7">
+                        <div id="ppFrame" class="pp-frame" onclick="ppOpenLightbox()" role="button" tabindex="0" aria-label="तस्बिर ठूलो गरी हेर्नुहोस्" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();ppOpenLightbox();}">
+                            <div id="ppProgress" class="pp-progress"></div>
+                            <img id="ppMain" class="pp-main" src="" alt="प्रधानाध्यापक उत्सव तस्बिर">
+                            <button class="pp-nav pp-prev" onclick="event.stopPropagation();ppPrev()" aria-label="अघिल्लो तस्बिर"><i class="fas fa-chevron-left"></i></button>
+                            <button class="pp-nav pp-next" onclick="event.stopPropagation();ppNext()" aria-label="अर्को तस्बिर"><i class="fas fa-chevron-right"></i></button>
+                            <span id="ppBadge" class="pp-badge">उत्सव तथा कार्यक्रम तस्बिर 1</span>
+                            <span class="pp-zoom"><i class="fas fa-search-plus mr-1"></i>ठूलो हेर्नुहोस्</span>
+                        </div>
+                        <!-- Thumbnails -->
+                        <div id="ppThumbs" class="flex flex-wrap justify-center gap-2 mt-4"></div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -740,24 +951,14 @@
 
     </main>
 
-    <!-- POP-UP LIGHTBOX MODAL FOR GALLERY PHOTOS -->
-    <div id="imagePopupModal" class="fixed inset-0 bg-black/80 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm" onclick="closeImageModal(event)">
-        <div class="relative max-w-4xl w-full bg-white rounded-2xl overflow-hidden shadow-2xl p-2" onclick="event.stopPropagation()">
-            <button onclick="closeImageModal()" class="absolute top-4 right-4 bg-black/60 text-white w-9 h-9 rounded-full flex items-center justify-center hover:bg-black transition z-10" aria-label="बन्द गर्नुहोस्">
-                <i class="fas fa-times"></i>
-            </button>
-            <div class="relative flex items-center justify-center bg-black/5 rounded-xl overflow-hidden min-h-[300px]">
-                <button onclick="changeModalImage(-1)" class="absolute left-3 bg-black/50 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-black transition z-10" aria-label="अघिल्लो">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <img id="popupImage" src="" alt="Popup View" class="max-h-[80vh] w-auto object-contain rounded-lg">
-                <button onclick="changeModalImage(1)" class="absolute right-3 bg-black/50 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-black transition z-10" aria-label="पछिल्लो">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
-            </div>
-            <div class="p-3 text-center">
-                <span id="popupImageCaption" class="text-sm font-bold text-pine"></span>
-            </div>
+    <!-- PRINCIPAL PHOTO LIGHTBOX (pop-up) -->
+    <div id="ppLightbox" onclick="if(event.target===this)ppCloseLightbox()" role="dialog" aria-modal="true" aria-label="उत्सव तस्बिर">
+        <button class="pp-lb-btn" style="top:16px;right:16px" onclick="ppCloseLightbox()" aria-label="बन्द गर्नुहोस्"><i class="fas fa-times"></i></button>
+        <button class="pp-lb-btn" style="left:16px;top:50%;transform:translateY(-50%)" onclick="ppLbStep(-1)" aria-label="अघिल्लो"><i class="fas fa-chevron-left"></i></button>
+        <button class="pp-lb-btn" style="right:16px;top:50%;transform:translateY(-50%)" onclick="ppLbStep(1)" aria-label="अर्को"><i class="fas fa-chevron-right"></i></button>
+        <div class="text-center">
+            <img id="ppLbImg" src="" alt="उत्सव तस्बिर">
+            <p id="ppLbCaption" class="text-white text-sm font-bold mt-3"></p>
         </div>
     </div>
 
@@ -890,89 +1091,6 @@
         // Set dynamic current year
         document.getElementById('currentYear').textContent = new Date().getFullYear();
 
-        // 10 PHOTOS FROM YOUR GITHUB FOLDER pripslt (pripslt/1.jpeg ... pripslt/10.jpeg)
-        const photos = Array.from({ length: 10 }, (_, i) => ({
-            src: `pripslt/${i + 1}.jpeg`,
-            title: `उत्सव तथा कार्यक्रम तस्बिर ${i + 1}`
-        }));
-
-        let currentStartIndex = 0;
-        let activeModalIndex = 0;
-        const visibleCount = 4; // Display 4 photos at a time in grid
-
-        // Render photo items into the grid
-        function renderPhotoGrid() {
-            const grid = document.getElementById('gallery-grid');
-            if (!grid) return;
-            
-            grid.innerHTML = '';
-
-            for (let i = 0; i < visibleCount; i++) {
-                const photoIndex = (currentStartIndex + i) % photos.length;
-                const photo = photos[photoIndex];
-
-                const card = document.createElement('div');
-                card.className = "bg-neutralBg p-3 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition cursor-pointer group";
-                card.onclick = () => openImageModal(photoIndex);
-
-                card.innerHTML = `
-                    <div class="relative overflow-hidden rounded-lg aspect-[4/3] bg-gray-200">
-                        <img src="${photo.src}" 
-                             alt="${photo.title}" 
-                             class="w-full h-full object-cover group-hover:scale-105 transition duration-300"
-                             onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23E9A412%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%231E4D3B%22 font-size=%2212%22 text-anchor=%22middle%22 dy=%22.3em%22%3EPhoto ${photoIndex + 1}%3C/text%3E%3C/svg%3E'">
-                        <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
-                            <span class="bg-pine text-white text-xs px-3 py-1 rounded-full font-bold shadow"><i class="fas fa-search-plus mr-1"></i> हेर्नुहोस्</span>
-                        </div>
-                    </div>
-                    <p class="text-xs font-bold text-pine text-center mt-2">${photo.title}</p>
-                `;
-                grid.appendChild(card);
-            }
-        }
-
-        // Photo Slider Controls
-        function nextPhotoSlide() {
-            currentStartIndex = (currentStartIndex + 1) % photos.length;
-            renderPhotoGrid();
-        }
-
-        function prevPhotoSlide() {
-            currentStartIndex = (currentStartIndex - 1 + photos.length) % photos.length;
-            renderPhotoGrid();
-        }
-
-        // Auto-Rotate Photos every 4 seconds
-        setInterval(() => {
-            nextPhotoSlide();
-        }, 4000);
-
-        // Pop-up Lightbox Functions
-        function openImageModal(index) {
-            activeModalIndex = index;
-            const modal = document.getElementById('imagePopupModal');
-            const popupImg = document.getElementById('popupImage');
-            const caption = document.getElementById('popupImageCaption');
-
-            popupImg.src = photos[activeModalIndex].src;
-            caption.textContent = photos[activeModalIndex].title;
-            modal.classList.remove('hidden');
-        }
-
-        function closeImageModal(event) {
-            if (event && event.target !== event.currentTarget) return;
-            document.getElementById('imagePopupModal').classList.add('hidden');
-        }
-
-        function changeModalImage(step) {
-            activeModalIndex = (activeModalIndex + step + photos.length) % photos.length;
-            const popupImg = document.getElementById('popupImage');
-            const caption = document.getElementById('popupImageCaption');
-
-            popupImg.src = photos[activeModalIndex].src;
-            caption.textContent = photos[activeModalIndex].title;
-        }
-
         // Single Page Navigation Functionality
         function navigateTo(viewId) {
             const views = document.querySelectorAll('.page-view');
@@ -999,6 +1117,9 @@
             }
 
             window.location.hash = viewId;
+
+            // Photo slider only runs while the About page is visible
+            if (typeof ppSyncWithView === 'function') ppSyncWithView(viewId);
         }
 
         // Mobile Menu Toggle
@@ -1007,10 +1128,8 @@
             drawer.classList.toggle('hidden');
         }
 
-        // Handle Hash Routing & Initializations on Load
+        // Handle Hash Routing on Load
         window.addEventListener('load', () => {
-            renderPhotoGrid();
-            
             const hash = window.location.hash.replace('#', '');
             if (hash && ['home', 'about', 'admissions', 'academics', 'news', 'contact'].includes(hash)) {
                 navigateTo(hash);
@@ -1018,6 +1137,29 @@
                 navigateTo('home');
             }
         });
+
+        // Faculty Filter Function
+        function filterFaculty(category, evt) {
+            const cards = document.querySelectorAll('.faculty-card');
+            cards.forEach(card => {
+                if (category === 'all' || card.classList.contains(category)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            const buttons = document.querySelectorAll('.faculty-filter-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-pine', 'text-white');
+                btn.classList.add('bg-gray-100', 'text-gray-600');
+            });
+            
+            if (evt && evt.currentTarget) {
+                evt.currentTarget.classList.remove('bg-gray-100', 'text-gray-600');
+                evt.currentTarget.classList.add('bg-pine', 'text-white');
+            }
+        }
 
         // News & Notices Filter Function
         function filterNews(category, evt) {
@@ -1095,16 +1237,7 @@
         // Exam routine modal
         function openRoutineModal() { document.getElementById('routineModal').classList.remove('hidden'); }
         function closeRoutineModal() { document.getElementById('routineModal').classList.add('hidden'); }
-
-        // Keyboard navigation (Escape key to close modals)
-        document.addEventListener('keydown', e => { 
-            if (e.key === 'Escape') { 
-                closeRoutineModal(); 
-                closeNoticeModal(); 
-                closeTourModal(); 
-                closeImageModal();
-            } 
-        });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeRoutineModal(); closeNoticeModal(); closeTourModal(); } });
 
         // Simulated PDF Download feedback
         function downloadSimulatedFile(filename) {
@@ -1116,6 +1249,168 @@
                 tempBox.remove();
             }, 2500);
         }
+
+        /* =====================================================================
+           PRINCIPAL CELEBRATION PHOTO SLIDER
+           ---------------------------------------------------------------------
+           EDIT THESE 4 LINES IF NEEDED:
+           PP_FOLDER   -> folder name in your GitHub repo that holds the photos
+           PP_COUNT    -> how many photos (1.jpeg ... 10.jpeg)
+           PP_EXT      -> file extension
+           PP_INTERVAL -> milliseconds each photo stays on screen (4500 = 4.5 s)
+           ===================================================================== */
+        const PP_FOLDER   = 'prinslt ten photo';
+        const PP_COUNT    = 10;
+        const PP_EXT      = 'jpeg';
+        const PP_INTERVAL = 4500;
+
+        let ppIndex = 1;
+        let ppTimer = null;
+        let ppPlaying = true;
+        let ppBusy = false;
+
+        function ppUrl(i) {
+            return encodeURI(PP_FOLDER + '/' + i + '.' + PP_EXT);
+        }
+
+        function ppBuildUI() {
+            const dots = document.getElementById('ppDots');
+            const thumbs = document.getElementById('ppThumbs');
+            dots.innerHTML = '';
+            thumbs.innerHTML = '';
+            for (let i = 1; i <= PP_COUNT; i++) {
+                const d = document.createElement('button');
+                d.className = 'pp-dot';
+                d.setAttribute('aria-label', 'तस्बिर ' + i);
+                d.onclick = () => ppGo(i, true);
+                dots.appendChild(d);
+
+                const t = document.createElement('img');
+                t.className = 'pp-thumb';
+                t.src = ppUrl(i);
+                t.alt = 'तस्बिर ' + i;
+                t.loading = 'lazy';
+                t.onclick = () => ppGo(i, true);
+                t.onerror = function () { this.style.display = 'none'; };
+                thumbs.appendChild(t);
+            }
+        }
+
+        function ppUpdateMarks() {
+            document.querySelectorAll('.pp-dot').forEach((d, k) => d.classList.toggle('active', k + 1 === ppIndex));
+            document.querySelectorAll('.pp-thumb').forEach((t, k) => t.classList.toggle('active', k + 1 === ppIndex));
+            document.getElementById('ppCounter').textContent = ppIndex + ' / ' + PP_COUNT;
+            document.getElementById('ppBadge').textContent = 'उत्सव तथा कार्यक्रम तस्बिर ' + ppIndex;
+        }
+
+        function ppRestartBar() {
+            const bar = document.getElementById('ppProgress');
+            bar.classList.remove('run');
+            void bar.offsetWidth; // restart CSS animation
+            bar.style.setProperty('--pp-ms', PP_INTERVAL + 'ms');
+            if (ppPlaying) bar.classList.add('run');
+        }
+
+        // Show photo n with a smooth fade
+        function ppGo(n, userAction) {
+            if (ppBusy) return;
+            if (n > PP_COUNT) n = 1;
+            if (n < 1) n = PP_COUNT;
+
+            const img = document.getElementById('ppMain');
+            ppBusy = true;
+            img.classList.add('pp-fade');
+
+            const loader = new Image();
+            const finish = () => {
+                setTimeout(() => {
+                    ppIndex = n;
+                    img.src = loader.src || ppUrl(n);
+                    ppUpdateMarks();
+                    img.classList.remove('pp-fade');
+                    ppBusy = false;
+                    ppRestartBar();
+                    if (ppPlaying) ppSchedule();
+                }, 350);
+            };
+            loader.onload = finish;
+            loader.onerror = finish; // still advance if a photo is missing
+            loader.src = ppUrl(n);
+
+            clearTimeout(ppTimer);
+        }
+
+        function ppSchedule() {
+            clearTimeout(ppTimer);
+            ppTimer = setTimeout(() => ppGo(ppIndex + 1), PP_INTERVAL);
+        }
+
+        function ppNext() { ppGo(ppIndex + 1, true); }
+        function ppPrev() { ppGo(ppIndex - 1, true); }
+
+        function ppSetPlaying(state) {
+            ppPlaying = state;
+            document.getElementById('ppPlayIcon').className = 'fas ' + (state ? 'fa-pause' : 'fa-play') + ' mr-1.5';
+            document.getElementById('ppPlayText').textContent = state ? 'रोक्नुहोस्' : 'चलाउनुहोस्';
+            if (state) { ppRestartBar(); ppSchedule(); }
+            else { clearTimeout(ppTimer); document.getElementById('ppProgress').classList.remove('run'); }
+        }
+        function ppTogglePlay() { ppSetPlaying(!ppPlaying); }
+
+        // Run only while the About page is showing
+        function ppSyncWithView(viewId) {
+            if (viewId === 'about') {
+                if (ppPlaying) { ppRestartBar(); ppSchedule(); }
+            } else {
+                clearTimeout(ppTimer);
+                ppCloseLightbox();
+            }
+        }
+
+        // Lightbox (pop-up)
+        function ppOpenLightbox() {
+            ppLbRender();
+            document.getElementById('ppLightbox').classList.add('open');
+            clearTimeout(ppTimer); // pause while enlarged
+        }
+        function ppCloseLightbox() {
+            const lb = document.getElementById('ppLightbox');
+            if (lb && lb.classList.contains('open')) {
+                lb.classList.remove('open');
+                if (ppPlaying && document.getElementById('view-about').classList.contains('active')) {
+                    ppRestartBar(); ppSchedule();
+                }
+            }
+        }
+        function ppLbRender() {
+            document.getElementById('ppLbImg').src = ppUrl(ppIndex);
+            document.getElementById('ppLbCaption').textContent = 'उत्सव तथा कार्यक्रम तस्बिर ' + ppIndex + ' / ' + PP_COUNT;
+        }
+        function ppLbStep(d) {
+            ppIndex = ((ppIndex - 1 + d + PP_COUNT) % PP_COUNT) + 1;
+            document.getElementById('ppMain').src = ppUrl(ppIndex);
+            ppUpdateMarks();
+            ppLbRender();
+        }
+        document.addEventListener('keydown', e => {
+            const open = document.getElementById('ppLightbox').classList.contains('open');
+            if (!open) return;
+            if (e.key === 'Escape') ppCloseLightbox();
+            if (e.key === 'ArrowRight') ppLbStep(1);
+            if (e.key === 'ArrowLeft') ppLbStep(-1);
+        });
+
+        // Pause on hover (desktop)
+        (function () {
+            const frame = document.getElementById('ppFrame');
+            frame.addEventListener('mouseenter', () => { if (ppPlaying) { clearTimeout(ppTimer); document.getElementById('ppProgress').classList.remove('run'); } });
+            frame.addEventListener('mouseleave', () => { if (ppPlaying && !ppBusy) { ppRestartBar(); ppSchedule(); } });
+        })();
+
+        // Init
+        ppBuildUI();
+        document.getElementById('ppMain').src = ppUrl(1);
+        ppUpdateMarks();
     </script>
 </body>
 </html>
