@@ -360,8 +360,7 @@
                     </div>
                 </div>
             </div>
-
-            <!-- URGENT: Exam routine -->
+ <!-- URGENT: Exam routine -->
             <div id="exam-routine" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-2 relative z-20">
                 <div class="grid md:grid-cols-12 bg-white shadow-xl overflow-hidden border-l-8 border-crimson rounded-r-2xl">
                     <div class="md:col-span-7 p-6 sm:p-8 space-y-4">
@@ -1162,7 +1161,7 @@
         }
 
         // News & Notices Filter Function
-        function filterNews(category, evt) {
+         function filterNews(category, evt) {
             const cards = document.querySelectorAll('.news-card');
             cards.forEach(card => {
                 if (category === 'all' || card.classList.contains(category)) {
@@ -1251,17 +1250,11 @@
         }
 
         /* =====================================================================
-           PRINCIPAL CELEBRATION PHOTO SLIDER
-           ---------------------------------------------------------------------
-           EDIT THESE 4 LINES IF NEEDED:
-           PP_FOLDER   -> folder name in your GitHub repo that holds the photos
-           PP_COUNT    -> how many photos (1.jpeg ... 10.jpeg)
-           PP_EXT      -> file extension
-           PP_INTERVAL -> milliseconds each photo stays on screen (4500 = 4.5 s)
+           PRINCIPAL CELEBRATION PHOTO SLIDER (FIXED PATHS & EXTENSIONS)
            ===================================================================== */
-        const PP_FOLDER   = 'prinslt ten photo';
+        const PP_FOLDER   = 'prinslt';
         const PP_COUNT    = 10;
-        const PP_EXT      = 'jpeg';
+        const PP_EXT      = 'jepg';
         const PP_INTERVAL = 4500;
 
         let ppIndex = 1;
@@ -1291,7 +1284,15 @@
                 t.alt = 'तस्बिर ' + i;
                 t.loading = 'lazy';
                 t.onclick = () => ppGo(i, true);
-                t.onerror = function () { this.style.display = 'none'; };
+                t.onerror = function () { 
+                    // Fallback to .jpeg if .jepg fails on any specific file
+                    if (!this.dataset.fallback) {
+                        this.dataset.fallback = 'true';
+                        this.src = PP_FOLDER + '/' + i + '.jpeg';
+                    } else {
+                        this.style.display = 'none'; 
+                    }
+                };
                 thumbs.appendChild(t);
             }
         }
@@ -1322,10 +1323,12 @@
             img.classList.add('pp-fade');
 
             const loader = new Image();
+            let resolvedSrc = ppUrl(n);
+
             const finish = () => {
                 setTimeout(() => {
                     ppIndex = n;
-                    img.src = loader.src || ppUrl(n);
+                    img.src = resolvedSrc;
                     ppUpdateMarks();
                     img.classList.remove('pp-fade');
                     ppBusy = false;
@@ -1333,9 +1336,14 @@
                     if (ppPlaying) ppSchedule();
                 }, 350);
             };
+
             loader.onload = finish;
-            loader.onerror = finish; // still advance if a photo is missing
-            loader.src = ppUrl(n);
+            loader.onerror = () => {
+                // Secondary fallback attempt with .jpeg if .jepg path isn't found
+                resolvedSrc = PP_FOLDER + '/' + n + '.jpeg';
+                finish();
+            };
+            loader.src = resolvedSrc;
 
             clearTimeout(ppTimer);
         }
