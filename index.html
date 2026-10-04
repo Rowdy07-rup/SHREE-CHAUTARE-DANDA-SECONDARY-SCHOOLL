@@ -228,6 +228,7 @@
     <img src="school%20photo%201.png" alt="Watermark" class="watermark-bg">
 
     <!-- Top Utility Bar -->
+    
     <div class="bg-pine-dark text-white text-xs py-2 px-4 border-b border-pine-light hidden sm:block relative z-10">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <div class="flex items-center space-x-6">
@@ -360,7 +361,8 @@
                     </div>
                 </div>
             </div>
- <!-- URGENT: Exam routine -->
+
+            <!-- URGENT: Exam routine -->
             <div id="exam-routine" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-2 relative z-20">
                 <div class="grid md:grid-cols-12 bg-white shadow-xl overflow-hidden border-l-8 border-crimson rounded-r-2xl">
                     <div class="md:col-span-7 p-6 sm:p-8 space-y-4">
@@ -450,6 +452,7 @@
                             <button onclick="navigateTo('about')" class="text-pine font-bold hover:text-marigold transition inline-flex items-center text-sm pt-2">
                                 हाम्रो इतिहासको बारेमा थप पढ्नुहोस् <i class="fas fa-arrow-right ml-2 text-xs"></i>
                             </button>
+                            
                         </div>
                     </div>
                 </div>
@@ -582,6 +585,7 @@
                     </div>
 
                     <!-- Faculty item 3 (रूपेश बस्याल) -->
+                    
                     <div class="faculty-card secondary bg-neutralBg p-4 rounded-xl text-center border border-gray-200">
                         <img src="oggy (1).jpg" 
                              alt="रूपेश बस्याल" 
@@ -604,7 +608,7 @@
                 </div>
             </div>
 
-            <!-- ============ PRINCIPAL CELEBRATION PHOTO SLIDER (NEW) ============ -->
+            <!-- ============ PRINCIPAL CELEBRATION PHOTO SLIDER ============ -->
             <div id="principal-celebration" class="pp-section bg-white/90 backdrop-blur p-6 sm:p-8 rounded-2xl shadow-md mb-12 border-t-4 border-marigold">
                 <div class="grid lg:grid-cols-12 gap-8 items-center">
 
@@ -941,6 +945,7 @@
                             सन्देश पठाउनुहोस्
                         </button>
                     </form>
+                    
                     <div id="contactAlert" class="hidden mt-3 p-3 bg-green-100 text-green-800 rounded-md text-xs font-semibold">
                         <i class="fas fa-check-circle mr-1"></i> सन्देश सफलतापूर्वक पठाइयो! हाम्रो टोलीले शीघ्र प्रतिक्रिया दिनेछ।
                     </div>
@@ -1088,6 +1093,7 @@
 
     <script>
         // Set dynamic current year
+        
         document.getElementById('currentYear').textContent = new Date().getFullYear();
 
         // Single Page Navigation Functionality
@@ -1161,7 +1167,7 @@
         }
 
         // News & Notices Filter Function
-         function filterNews(category, evt) {
+        function filterNews(category, evt) {
             const cards = document.querySelectorAll('.news-card');
             cards.forEach(card => {
                 if (category === 'all' || card.classList.contains(category)) {
@@ -1250,20 +1256,51 @@
         }
 
         /* =====================================================================
-           PRINCIPAL CELEBRATION PHOTO SLIDER (FIXED PATHS & EXTENSIONS)
+           PRINCIPAL CELEBRATION PHOTO SLIDER
+           ---------------------------------------------------------------------
+           FIXED: PP_FOLDER now matches your real GitHub folder name: "prinslt"
+           (before it was 'prinslt ten photo', which does not exist, so every
+           photo showed as broken).
+
+           PP_FOLDER   -> folder name in your GitHub repo (case-sensitive!)
+           PP_COUNT    -> how many photos (1 ... 10)
+           PP_EXTS     -> extensions to try, in order (so .jpeg, .jpg, .JPG,
+                          .png all work automatically)
+           PP_INTERVAL -> milliseconds each photo stays on screen (4500 = 4.5 s)
            ===================================================================== */
         const PP_FOLDER   = 'prinslt';
         const PP_COUNT    = 10;
-        const PP_EXT      = 'jepg';
+        const PP_EXTS     = ['jpeg', 'jpg', 'JPEG', 'JPG', 'png', 'PNG'];
         const PP_INTERVAL = 4500;
 
         let ppIndex = 1;
         let ppTimer = null;
         let ppPlaying = true;
         let ppBusy = false;
+        const ppCache = {};   // remembers which URL worked for each photo number
 
+        function ppBase(i, ext) {
+            return encodeURI(PP_FOLDER + '/' + i + '.' + ext);
+        }
+
+        // Best-known URL for photo i
         function ppUrl(i) {
-            return encodeURI(PP_FOLDER + '/' + i + '.' + PP_EXT);
+            return ppCache[i] || ppBase(i, PP_EXTS[0]);
+        }
+
+        // Finds the correct file extension for photo i, then calls cb(url) (or cb(null) if none found)
+        function ppLoad(i, cb) {
+            if (ppCache[i]) { cb(ppCache[i]); return; }
+            let k = 0;
+            const tryNext = () => {
+                if (k >= PP_EXTS.length) { cb(null); return; }
+                const url = ppBase(i, PP_EXTS[k++]);
+                const im = new Image();
+                im.onload = () => { ppCache[i] = url; cb(url); };
+                im.onerror = tryNext;
+                im.src = url;
+            };
+            tryNext();
         }
 
         function ppBuildUI() {
@@ -1280,20 +1317,13 @@
 
                 const t = document.createElement('img');
                 t.className = 'pp-thumb';
-                t.src = ppUrl(i);
                 t.alt = 'तस्बिर ' + i;
-                t.loading = 'lazy';
                 t.onclick = () => ppGo(i, true);
-                t.onerror = function () { 
-                    // Fallback to .jpeg if .jepg fails on any specific file
-                    if (!this.dataset.fallback) {
-                        this.dataset.fallback = 'true';
-                        this.src = PP_FOLDER + '/' + i + '.jpeg';
-                    } else {
-                        this.style.display = 'none'; 
-                    }
-                };
                 thumbs.appendChild(t);
+                ppLoad(i, url => {
+                    if (url) t.src = url;
+                    else t.style.display = 'none';
+                });
             }
         }
 
@@ -1321,31 +1351,19 @@
             const img = document.getElementById('ppMain');
             ppBusy = true;
             img.classList.add('pp-fade');
+            clearTimeout(ppTimer);
 
-            const loader = new Image();
-            let resolvedSrc = ppUrl(n);
-
-            const finish = () => {
+            ppLoad(n, url => {
                 setTimeout(() => {
                     ppIndex = n;
-                    img.src = resolvedSrc;
+                    img.src = url || ppUrl(n);
                     ppUpdateMarks();
                     img.classList.remove('pp-fade');
                     ppBusy = false;
                     ppRestartBar();
                     if (ppPlaying) ppSchedule();
                 }, 350);
-            };
-
-            loader.onload = finish;
-            loader.onerror = () => {
-                // Secondary fallback attempt with .jpeg if .jepg path isn't found
-                resolvedSrc = PP_FOLDER + '/' + n + '.jpeg';
-                finish();
-            };
-            loader.src = resolvedSrc;
-
-            clearTimeout(ppTimer);
+            });
         }
 
         function ppSchedule() {
@@ -1396,9 +1414,11 @@
         }
         function ppLbStep(d) {
             ppIndex = ((ppIndex - 1 + d + PP_COUNT) % PP_COUNT) + 1;
-            document.getElementById('ppMain').src = ppUrl(ppIndex);
-            ppUpdateMarks();
-            ppLbRender();
+            ppLoad(ppIndex, url => {
+                document.getElementById('ppMain').src = url || ppUrl(ppIndex);
+                ppUpdateMarks();
+                ppLbRender();
+            });
         }
         document.addEventListener('keydown', e => {
             const open = document.getElementById('ppLightbox').classList.contains('open');
@@ -1417,7 +1437,7 @@
 
         // Init
         ppBuildUI();
-        document.getElementById('ppMain').src = ppUrl(1);
+        ppLoad(1, url => { document.getElementById('ppMain').src = url || ppUrl(1); });
         ppUpdateMarks();
     </script>
 </body>
