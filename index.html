@@ -1285,24 +1285,17 @@
             if (typeof ppSyncWithView === 'function') ppSyncWithView(viewId);
         }
         // Handle Top Right Teacher Login
-function handleHeaderLogin(event) {
-    event.preventDefault();
-
-    const teacherId = document.getElementById('teacherId').value;
-    const password = document.getElementById('teacherPassword').value;
+function handleHeaderLogin() {
+    const teacherId = document.getElementById('teacherId').value.trim();
+    const password = document.getElementById('teacherPassword').value.trim();
 
     if (teacherId && password) {
-        // Option 1: Pass credentials via URL query parameters
+        // Redirect directly to teacherlogin.html page
         window.location.href = `teacherlogin.html?id=${encodeURIComponent(teacherId)}`;
-        
-        // Option 2: Store in sessionStorage/localStorage if needed for state management
-        // sessionStorage.setItem('teacherId', teacherId);
-        // window.location.href = 'teacherlogin.html';
     } else {
         alert('कृपया शिक्षक ID र पासवर्ड राख्नुहोस्।');
     }
 }
-
         // Mobile Menu Toggle
         function toggleMobileMenu() {
             const drawer = document.getElementById('mobile-drawer');
