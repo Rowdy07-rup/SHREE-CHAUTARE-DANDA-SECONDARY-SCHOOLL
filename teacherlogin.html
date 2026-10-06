@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>श्री चौतारे डाँडा माध्यमिक विद्यालय | भकुण्डे, बागलुङ</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for Nepali Text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@300;400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brandGreen: '#144a32',
+                        brandLightGreen: '#1b5e3f',
+                        brandGold: '#f0b429',
+                        brandRed: '#c53030',
+                        bgCream: '#faf8f2'
+                    },
+                    fontFamily: {
+                        nepali: ['Mukta', 'Noto Sans Devanagari', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Mukta', 'Noto Sans Devanagari', sans-serif;
+            background-color: #faf8f2;
+        }
+        .bg-pattern {
+            background-color: #faf8f2;
+            background-image: radial-gradient(#d1d5db 0.75px, transparent 0.75px);
+            background-size: 16px 16px;
+        }
+        .ticker-wrapper {
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .ticker-content {
+            display: inline-block;
+            animation: ticker 25s linear infinite;
+        }
+        .ticker-content:hover {
+            animation-play-state: paused;
+        }
+        @keyframes ticker {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+    </style>
+</head>
+<body class="bg-bgCream text-gray-800 antialiased min-h-screen flex flex-col">
+
+    <!-- Top Contact Bar -->
+    <header class="bg-brandGreen text-white text-xs border-b border-emerald-800">
+        <div class="max-w-7xl mx-auto px-4 py-2 flex flex-wrap justify-between items-center gap-2">
+            <div class="flex flex-wrap items-center gap-4 sm:gap-6">
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-location-dot text-brandGold"></i> बा.नं. १० भकुण्डे, बागलुङ जिल्ला, नेपाल</span>
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-phone text-brandGold"></i> +९७७ ९८४६०८०९४८</span>
+                <span class="hidden md:flex items-center gap-1.5"><i class="fa-solid fa-envelope text-brandGold"></i> info@chautaredanda.edu.np</span>
+            </div>
+            <div class="flex items-center gap-3">
+                <span class="bg-emerald-900/80 px-2 py-0.5 rounded text-yellow-300 font-semibold border border-emerald-700">स्था. २०३८ B.S.</span>
+                <a href="#location" class="hover:underline hidden sm:inline"><i class="fa-solid fa-map"></i> नक्शा र स्थान</a>
+                <span class="hidden sm:inline">|</span>
+                <a href="#contact" class="hover:underline hidden sm:inline"><i class="fa-solid fa-headset"></i> सम्पर्क</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Navigation Bar -->
+    <nav class="bg-brandGreen text-white shadow-lg sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+            <!-- Brand Logo & Name -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-brandGreen shadow-md border-2 border-brandGold group-hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-graduation-cap text-2xl"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-lg leading-tight tracking-wide text-white">श्री चौतारे डाँडा माध्यमिक विद्यालय</h1>
+                    <p class="text-xs text-yellow-200 font-medium">भकुण्डे, बागलुङ</p>
+                </div>
+            </a>
+
+            <!-- Desktop Menu Nav Items -->
+            <div class="hidden lg:flex items-center gap-1 font-medium text-sm">
+                <a href="#" class="px-3 py-2 rounded-md bg-brandLightGreen text-brandGold font-semibold">गृहपृष्ठ</a>
+                <a href="#about" class="px-3 py-2 rounded-md hover:bg-brandLightGreen hover:text-yellow-200 transition">हाम्रो बारेमा</a>
+                <a href="#notices" class="px-3 py-2 rounded-md hover:bg-brandLightGreen hover:text-yellow-200 transition">भर्ना सूचना</a>
+                <a href="#academics" class="px-3 py-2 rounded-md hover:bg-brandLightGreen hover:text-yellow-200 transition">शैक्षिक कार्यक्रम</a>
+                <a href="#news" class="px-3 py-2 rounded-md hover:bg-brandLightGreen hover:text-yellow-200 transition">समाचार तथा सूचना</a>
+                <a href="#staff" class="px-3 py-2 rounded-md hover:bg-brandLightGreen hover:text-yellow-200 transition">कर्मचारी विवरण</a>
+            </div>
+
+            <!-- Login / Action Buttons -->
+            <div class="flex items-center gap-2">
+                <button onclick="openLoginModal()" class="bg-brandGold hover:bg-yellow-400 text-brandGreen font-bold px-4 py-2 rounded-lg text-sm shadow flex items-center gap-2 transition transform active:scale-95">
+                    <i class="fa-solid fa-user-shield"></i>
+                    <span>शिक्षक लगइन</span>
+                </button>
+                
+                <!-- Mobile Menu Button -->
+                <button onclick="toggleMobileMenu()" class="lg:hidden p-2 text-xl rounded-md text-white hover:bg-brandLightGreen focus:outline-none">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown Menu -->
+        <div id="mobileMenu" class="hidden lg:hidden bg-emerald-950 border-t border-emerald-800 px-4 pt-2 pb-4 space-y-2 text-sm font-medium">
+            <a href="#" class="block px-3 py-2 rounded bg-brandLightGreen text-brandGold">गृहपृष्ठ</a>
+            <a href="#about" class="block px-3 py-2 rounded hover:bg-emerald-900">हाम्रो बारेमा</a>
+            <a href="#notices" class="block px-3 py-2 rounded hover:bg-emerald-900">भर्ना सूचना</a>
+            <a href="#academics" class="block px-3 py-2 rounded hover:bg-emerald-900">शैक्षिक कार्यक्रम</a>
+            <a href="#news" class="block px-3 py-2 rounded hover:bg-emerald-900">समाचार तथा सूचना</a>
+            <a href="#staff" class="block px-3 py-2 rounded hover:bg-emerald-900">कर्मचारी विवरण</a>
+        </div>
+    </nav>
+
+    <!-- Urgent Notice Red Banner -->
+    <div class="bg-brandRed text-white text-sm font-semibold py-2 px-4 shadow-inner">
+        <div class="max-w-7xl mx-auto flex items-center justify-between gap-2">
+            <div class="flex items-center gap-2 overflow-hidden">
+                <span class="bg-yellow-400 text-red-900 text-xs px-2 py-0.5 rounded font-bold uppercase shrink-0 animate-pulse">
+                    <i class="fa-solid fa-triangle-exclamation"></i> अत्यावश्यक सूचना
+                </span>
+                <span class="truncate">दोस्रो त्रैमासिक परीक्षा २०८३/०६/१६ गतेदेखि — परीक्षा रुटिन हेर्नुहोस्</span>
+            </div>
+            <a href="#notices" class="bg-white/20 hover:bg-white/30 text-white text-xs px-3 py-1 rounded-md shrink-0 flex items-center gap-1 transition">
+                <span>हेर्नुहोस्</span>
+                <i class="fa-solid fa-chevron-right text-xs"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Ticker Announcements Bar -->
+    <div class="bg-yellow-100 border-b border-yellow-200 text-xs py-2 px-4 text-amber-950 flex items-center">
+        <div class="max-w-7xl mx-auto w-full flex items-center gap-3">
+            <span class="bg-brandGreen text-white px-2.5 py-1 rounded font-bold shrink-0 flex items-center gap-1">
+                <i class="fa-solid fa-bullhorn"></i> सूचना
+            </span>
+            <div class="ticker-wrapper flex-1">
+                <div class="ticker-content space-x-8 font-medium">
+                    <span class="inline-flex items-center"><i class="fa-solid fa-award text-yellow-600 mr-1.5"></i> आगामी शुक्रबार वार्षिक अभिभावक-शिक्षक भेला हुने सूचना!</span>
+                    <span class="inline-flex items-center"><i class="fa-solid fa-trophy text-yellow-600 mr-1.5"></i> विद्यालय इको-क्लबद्वारा बागलुङ जिल्लास्तरीय वातावरण पुरस्कार प्राप्त!</span>
+                    <span class="inline-flex items-center"><i class="fa-solid fa-calendar-check text-yellow-600 mr-1.5"></i> दोस्रो त्रैमासिक परीक्षा २०८३/०६/१६ गते देखि हुँदैछ, प्रवेशपत्र लिएर आउनुहोला।</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="flex-grow">
+
+        <!-- "हाम्रो पहिचान - श्री चौतारे डाँडा विद्यालयको बारेमा" Section -->
+        <section id="about" class="py-12 px-4 bg-pattern relative">
+            <div class="max-w-6xl mx-auto text-center mb-10">
+                <span class="text-brandGold font-bold text-sm tracking-wider uppercase block mb-1">हाम्रो पहिचान</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-brandGreen mb-3">श्री चौतारे डाँडा विद्यालयको बारेमा</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto text-base">
+                    बागलुङ जिल्लाको भकुण्डेमा अवस्थित, गुणस्तरीय र सर्वसुलभ माध्यमिक शिक्षा प्रदान गर्न समर्पित संस्था।
+                </p>
+                <div class="w-20 h-1 bg-brandGold mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <!-- About Cards Grid -->
+            <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-8">
+                <!-- Card 1: History -->
+                <div class="bg-white p-8 rounded-2xl shadow-md border border-gray-100 hover:shadow-lg transition-shadow relative overflow-hidden group">
+                    <div class="absolute -right-6 -bottom-6 w-24 h-24 bg-amber-50 rounded-full group-hover:scale-125 transition-transform duration-300"></div>
+                    <div class="w-14 h-14 bg-amber-100 text-amber-700 rounded-xl flex items-center justify-center text-2xl mb-6 relative z-10">
+                        <i class="fa-solid fa-landmark"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3 relative z-10">इतिहास र पृष्ठभूमि</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed relative z-10">
+                        वि.सं. २०३८ सालमा स्थानीय शिक्षाप्रेमी तथा समाजसेवीहरूको योगदानबाट स्थापित श्री चौतारे डाँडा माध्यमिक विद्यालयले बागलुङ जिल्लाको वडा नं. १० भकुण्डेबाट आफ्नो सेवा यात्रा सुरु गरेको थियो। चार दशकको यस यात्रामा सरकार र समुदायको सहकार्यमा यो एक प्रतिष्ठित माध्यमिक विद्यालयको रूपमा विकसित भएको छ।
+                    </p>
+                </div>
+
+                <!-- Card 2: Vision & Mission -->
+                <div class="bg-white p-8 rounded-2xl shadow-md border border-gray-100 hover:shadow-lg transition-shadow relative overflow-hidden group">
+                    <div class="absolute -right-6 -bottom-6 w-24 h-24 bg-emerald-50 rounded-full group-hover:scale-125 transition-transform duration-300"></div>
+                    <div class="w-14 h-14 bg-emerald-100 text-brandGreen rounded-xl flex items-center justify-center text-2xl mb-6 relative z-10">
+                        <i class="fa-solid fa-eye"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3 relative z-10">दूरदृष्टि र लक्ष्य</h3>
+                    <div class="space-y-3 text-sm text-gray-600 relative z-10">
+                        <p><strong class="text-brandGreen font-bold">दूरदृष्टि:</strong> गण्डकी प्रदेशमै उत्कृष्ट, प्रविधियुक्त र नैतिक शिक्षाको केन्द्र बन्नु।</p>
+                        <p><strong class="text-brandGreen font-bold">लक्ष्य:</strong> विद्यार्थीहरूलाई आधुनिक प्रविधि, खेलकुद र सामाजिक उत्तरदायित्वसँग जोड्दै शैक्षिक रूपमा सक्षम र सबल नागरिक बनाउनु।</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- "शिक्षक तथा कर्मचारी विवरण" Directory Section -->
+        <section id="staff" class="py-12 px-4 bg-white border-t border-gray-100">
+            <div class="max-w-6xl mx-auto">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+                    <div>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-brandGreen">शिक्षक तथा कर्मचारी विवरण</h2>
+                        <p class="text-gray-500 text-sm mt-1">हाम्रा समर्पित शिक्षक तथा प्रशासनिक टोलीसँग भेट्नुहोस्</p>
+                    </div>
+
+                    <!-- Category Filter Tabs -->
+                    <div class="flex flex-wrap gap-2 text-xs font-semibold">
+                        <button onclick="filterStaff('all')" class="staff-tab active-tab bg-brandGreen text-white px-3.5 py-2 rounded-full shadow-sm transition">सबै</button>
+                        <button onclick="filterStaff('admin')" class="staff-tab bg-gray-100 text-gray-700 hover:bg-gray-200 px-3.5 py-2 rounded-full transition">प्रशासन</button>
+                        <button onclick="filterStaff('sec')" class="staff-tab bg-gray-100 text-gray-700 hover:bg-gray-200 px-3.5 py-2 rounded-full transition">माध्यमिक (९-१२)</button>
+                        <button onclick="filterStaff('basic')" class="staff-tab bg-gray-100 text-gray-700 hover:bg-gray-200 px-3.5 py-2 rounded-full transition">आधारभूत (६-८)</button>
+                        <button onclick="filterStaff('primary')" class="staff-tab bg-gray-100 text-gray-700 hover:bg-gray-200 px-3.5 py-2 rounded-full transition">प्राथमिक (१-५)</button>
+                    </div>
+                </div>
+
+                <!-- Staff Cards Grid -->
+                <div id="staffGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Dynamic rendering done via JS or initial HTML fallback -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Info Summary Cards -->
+        <section class="py-12 bg-emerald-900 text-white px-4">
+            <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                <div class="p-4 bg-emerald-800/60 rounded-xl border border-emerald-700/50">
+                    <div class="text-3xl font-black text-brandGold mb-1">४५०+</div>
+                    <div class="text-xs text-emerald-100 font-medium">अध्ययनरत विद्यार्थी</div>
+                </div>
+                <div class="p-4 bg-emerald-800/60 rounded-xl border border-emerald-700/50">
+                    <div class="text-3xl font-black text-brandGold mb-1">२२+</div>
+                    <div class="text-xs text-emerald-100 font-medium">दक्ष शिक्षक तथा कर्मचारी</div>
+                </div>
+                <div class="p-4 bg-emerald-800/60 rounded-xl border border-emerald-700/50">
+                    <div class="text-3xl font-black text-brandGold mb-1">१००%</div>
+                    <div class="text-xs text-emerald-100 font-medium">उत्तीर्ण सफलता दर</div>
+                </div>
+                <div class="p-4 bg-emerald-800/60 rounded-xl border border-emerald-700/50">
+                    <div class="text-3xl font-black text-brandGold mb-1">२०३८</div>
+                    <div class="text-xs text-emerald-100 font-medium">स्थापना वर्ष (B.S.)</div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Section -->
+    <footer id="contact" class="bg-gray-900 text-gray-300 text-xs py-10 border-t-4 border-brandGold">
+        <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+                <div class="flex items-center gap-2 mb-3">
+                    <i class="fa-solid fa-graduation-cap text-yellow-400 text-2xl"></i>
+                    <h3 class="text-base font-bold text-white">श्री चौतारे डाँडा माध्यमिक विद्यालय</h3>
+                </div>
+                <p class="text-gray-400 leading-relaxed">
+                    गुणस्तरीय शिक्षा, समृद्ध भविष्य। भकुण्डे, बागलुङको उत्कृष्ट शैक्षिक गन्तव्य।
+                </p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold text-sm mb-3 border-b border-gray-700 pb-2">द्रुत लिङ्कहरू</h4>
+                <ul class="space-y-2">
+                    <li><a href="#about" class="hover:text-yellow-400 transition">हाम्रो बारेमा</a></li>
+                    <li><a href="#notices" class="hover:text-yellow-400 transition">भर्ना तथा नतिजा</a></li>
+                    <li><a href="#staff" class="hover:text-yellow-400 transition">शिक्षक टोली</a></li>
+                    <li><button onclick="openLoginModal()" class="hover:text-yellow-400 text-left">शिक्षक लगइन पोर्टलम</button></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold text-sm mb-3 border-b border-gray-700 pb-2">सम्पर्क ठेगाना</h4>
+                <p class="mb-1"><i class="fa-solid fa-location-dot text-yellow-400 mr-2"></i> काठेखोला गाउँपालिका-१०, भकुण्डे, बागलुङ</p>
+                <p class="mb-1"><i class="fa-solid fa-phone text-yellow-400 mr-2"></i> +९७७ ९८४६०८०९४८</p>
+                <p><i class="fa-solid fa-envelope text-yellow-400 mr-2"></i> info@chautaredanda.edu.np</p>
+            </div>
+        </div>
+        <div class="max-w-6xl mx-auto px-4 mt-8 pt-4 border-t border-gray-800 text-center text-gray-500">
+            © २०८३ श्री चौतारे डाँडा माध्यमिक विद्यालय। सर्वाधिकार सुरक्षित।
+        </div>
+    </footer>
+
+    <!-- TEACHER LOGIN MODAL -->
+    <div id="loginModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden transform transition-all relative">
+            <!-- Close Button -->
+            <button onclick="closeLoginModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-full w-8 h-8 flex items-center justify-center">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <!-- Modal Header -->
+            <div class="bg-brandGreen text-white p-6 text-center">
+                <div class="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-3 text-brandGold text-2xl border border-white/20">
+                    <i class="fa-solid fa-user-lock"></i>
+                </div>
+                <h3 class="text-xl font-bold">शिक्षक तथा कर्मचारी लगइन</h3>
+                <p class="text-xs text-emerald-200 mt-1">पोर्टलमा पहुँच प्राप्त गर्न आफ्नो ID र Password प्रविष्ट गर्नुहोस्</p>
+            </div>
+
+            <!-- Modal Form Body -->
+            <form id="loginForm" onsubmit="handleLogin(event)" class="p-6 space-y-4">
+                <!-- Quick Demo Select -->
+                <div class="bg-amber-50 border border-amber-200 p-3 rounded-lg text-xs">
+                    <label class="block font-bold text-amber-900 mb-1">द्रुत छनोट (Quick Select Teacher):</label>
+                    <select id="quickSelect" onchange="autoFillLogin(this.value)" class="w-full bg-white border border-amber-300 rounded p-1.5 text-xs text-gray-800 font-medium">
+                        <option value="">-- शिक्षक छान्नुहोस् --</option>
+                        <option value="T-101">तिलक आचार्य (प्रधानाध्यापक)</option>
+                        <option value="T-102">विमल थापा (शिक्षक / सूचना अधिकारी)</option>
+                        <option value="T-103">सुमित्रा रिजाल (शिक्षक)</option>
+                        <option value="T-104">पुनम बस्याल (शिक्षक)</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 mb-1">शिक्षक ID (Teacher ID)</label>
+                    <div class="relative">
+                        <i class="fa-solid fa-id-badge absolute left-3 top-3 text-gray-400 text-sm"></i>
+                        <input type="text" id="teacherId" required placeholder="उदाहरण: T-101" class="w-full pl-9 pr-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-brandGreen focus:outline-none">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 mb-1">पासवर्ड (Password)</label>
+                    <div class="relative">
+                        <i class="fa-solid fa-key absolute left-3 top-3 text-gray-400 text-sm"></i>
+                        <input type="password" id="password" required value="123456" placeholder="******" class="w-full pl-9 pr-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-brandGreen focus:outline-none">
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between text-xs">
+                    <label class="flex items-center gap-1.5 text-gray-600">
+                        <input type="checkbox" checked class="rounded text-brandGreen focus:ring-brandGreen"> सम्झनुहोस्
+                    </label>
+                    <a href="#" class="text-brandGreen hover:underline font-semibold">पासवर्ड बिर्सनुभयो?</a>
+                </div>
+
+                <button type="submit" class="w-full bg-brandGreen hover:bg-emerald-800 text-white font-bold py-2.5 rounded-lg shadow-md transition flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-right-to-bracket"></i>
+                    <span>लगइन गर्नुहोस्</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- LOGGED IN TEACHER DASHBOARD PORTAL (Hidden by default) -->
+    <div id="teacherPortal" class="fixed inset-0 bg-gray-100 z-50 hidden overflow-y-auto">
+        <!-- Portal Header Bar -->
+        <header class="bg-brandGreen text-white shadow-md sticky top-0 z-10">
+            <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-brandGold text-brandGreen font-bold rounded-full flex items-center justify-center">
+                        <i class="fa-solid fa-graduation-cap text-lg"></i>
+                    </div>
+                    <div>
+                        <h2 class="font-bold text-sm sm:text-base leading-tight">शिक्षक पोर्टल (Teacher Portal)</h2>
+                        <p class="text-xs text-emerald-200">श्री चौतारे डाँडा मा.वि.</p>
+                    </div>
+                </div>
+                <button onclick="logoutTeacher()" class="bg-red-600 hover:bg-red-700 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition flex items-center gap-1">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <span>लगआउट (Logout)</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Portal Container -->
+        <div class="max-w-6xl mx-auto px-4 py-6 space-y-6">
+            
+            <!-- Teacher Profile Header Card -->
+            <div class="bg-white rounded-2xl shadow-md p-6 border border-gray-200 flex flex-col md:flex-row items-center gap-6">
+                <img id="portalTeacherPhoto" src="" alt="Teacher Photo" class="w-28 h-28 rounded-full object-cover border-4 border-brandGreen shadow-md">
+                
+                <div class="flex-1 text-center md:text-left space-y-1">
+                    <div class="inline-block bg-yellow-100 text-amber-800 text-xs font-bold px-2.5 py-0.5 rounded-full mb-1" id="portalTeacherCategory">
+                        प्रशासन
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-900" id="portalTeacherName">तिलक आचार्य</h2>
+                    <p class="text-brandGreen font-semibold text-sm" id="portalTeacherDesignation">प्रधानाध्यापक</p>
+                    <p class="text-gray-500 text-xs" id="portalTeacherSubject">विषय: अंग्रेजी | ID: T-101</p>
+                </div>
+
+                <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-100 text-xs space-y-2 w-full md:w-auto">
+                    <div class="flex items-center gap-2 text-emerald-900 font-semibold">
+                        <i class="fa-solid fa-calendar-day text-brandGreen"></i>
+                        <span>आजको मिति: २०८३ असोज १६ गते</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-emerald-900 font-semibold">
+                        <i class="fa-solid fa-clock text-brandGreen"></i>
+                        <span>समय: १०:१५ AM (उपस्थिति: जनाइएको)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dashboard Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Left Column: Daily Routine -->
+                <div class="md:col-span-2 bg-white rounded-2xl shadow-md p-6 border border-gray-200">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-list-check text-brandGreen"></i>
+                        <span>आजको कक्षा कार्यतालिका (Today's Routine)</span>
+                    </h3>
+                    
+                    <div id="portalRoutineList" class="space-y-3">
+                        <!-- Dynamic Class List -->
+                    </div>
+                </div>
+
+                <!-- Right Column: Quick Notices & Portal Controls -->
+                <div class="space-y-6">
+                    <!-- Quick Actions -->
+                    <div class="bg-white rounded-2xl shadow-md p-6 border border-gray-200">
+                        <h3 class="text-sm font-bold text-gray-800 mb-3 border-b pb-2">त्वरित कार्यहरू (Quick Actions)</h3>
+                        <div class="grid grid-cols-2 gap-2 text-xs">
+                            <button class="p-3 bg-gray-50 hover:bg-brandGreen hover:text-white rounded-xl text-center font-medium transition border border-gray-200 flex flex-col items-center gap-1">
+                                <i class="fa-solid fa-user-check text-base"></i>
+                                <span>विद्यार्थी हाजिरी</span>
+                            </button>
+                            <button class="p-3 bg-gray-50 hover:bg-brandGreen hover:text-white rounded-xl text-center font-medium transition border border-gray-200 flex flex-col items-center gap-1">
+                                <i class="fa-solid fa-file-pen text-base"></i>
+                                <span>अंक प्रविष्टि</span>
+                            </button>
+                            <button class="p-3 bg-gray-50 hover:bg-brandGreen hover:text-white rounded-xl text-center font-medium transition border border-gray-200 flex flex-col items-center gap-1">
+                                <i class="fa-solid fa-bullhorn text-base"></i>
+                                <span>सूचना प्रकाशन</span>
+                            </button>
+                            <button class="p-3 bg-gray-50 hover:bg-brandGreen hover:text-white rounded-xl text-center font-medium transition border border-gray-200 flex flex-col items-center gap-1">
+                                <i class="fa-solid fa-calendar text-base"></i>
+                                <span>बिदा आवेदन</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Internal Announcements -->
+                    <div class="bg-amber-50 rounded-2xl shadow-sm p-5 border border-amber-200">
+                        <h3 class="text-sm font-bold text-amber-900 mb-2 flex items-center gap-1.5">
+                            <i class="fa-solid fa-bell text-amber-600"></i>
+                            <span>आन्तरिक शिक्षक सूचना</span>
+                        </h3>
+                        <ul class="text-xs text-amber-800 space-y-2 list-disc list-inside">
+                            <li>भोलि दिउँसो २:०० बजे शिक्षक बैठक बस्नेछ।</li>
+                            <li>दोस्रो त्रैमासिक परीक्षाको प्रश्नपत्र असोज २० भित्र बुझाउनुहोला।</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Staff Data Collection with images matching prompt specifications
+        const staffData = [
+            {
+                id: "T-101",
+                name: "तिलक आचार्य",
+                designation: "प्रधानाध्यापक",
+                subject: "विषय: अंग्रेजी",
+                category: "admin",
+                photo: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=300",
+                routine: [
+                    { period: "१ औं पिरियड (१०:१५ - ११:००)", class: "कक्षा १०", subject: "अंग्रेजी (English)" },
+                    { period: "३ औं पिरियड (१२:०० - १२:४५)", class: "कक्षा ९", subject: "अंग्रेजी (English)" }
+                ]
+            },
+            {
+                id: "T-102",
+                name: "विमल थापा",
+                designation: "शिक्षक / सूचना अधिकारी",
+                subject: "विषय: सामाजिक",
+                category: "sec",
+                photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=300",
+                routine: [
+                    { period: "२ औं पिरियड (११:०० - ११:४५)", class: "कक्षा ९", subject: "सामाजिक अध्ययन" },
+                    { period: "५ औं पिरियड (१:४५ - २:३०)", class: "कक्षा १०", subject: "सामाजिक अध्ययन" }
+                ]
+            },
+            {
+                id: "T-103",
+                name: "सुमित्रा रिजाल",
+                designation: "शिक्षक (निम्न माध्यमिक)",
+                subject: "विषय: अंग्रेजी",
+                category: "basic",
+                photo: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=300",
+                routine: [
+                    { period: "१ औं पिरियड (१०:१५ - ११:००)", class: "कक्षा ८", subject: "अंग्रेजी (English)" },
+                    { period: "४ औं पिरियड (०१:०० - ०१:४५)", class: "कक्षा ७", subject: "अंग्रेजी (English)" }
+                ]
+            },
+            {
+                id: "T-104",
+                name: "पुनम बस्याल",
+                designation: "शिक्षक",
+                subject: "विषय: शिक्षा तथा पाठ्यक्रम",
+                category: "primary",
+                photo: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=300",
+                routine: [
+                    { period: "२ औं पिरियड (११:०० - ११:४५)", class: "कक्षा ५", subject: "नेपाली / शिक्षा" },
+                    { period: "३ औं पिरियड (१२:०० - १२:४५)", class: "कक्षा ४", subject: "नेपाली" }
+                ]
+            },
+            {
+                id: "T-105",
+                name: "रामचन्द्र पौडेल",
+                designation: "शिक्षक",
+                subject: "विषय: गणित",
+                category: "sec",
+                photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=300",
+                routine: [
+                    { period: "१ औं पिरियड (१०:१५ - ११:००)", class: "कक्षा ९", subject: "ऐच्छिक गणित" },
+                    { period: "४ औं पिरियड (०१:०० - ०१:४५)", class: "कक्षा १०", subject: "अनिवार्य गणित" }
+                ]
+            },
+            {
+                id: "T-106",
+                name: "सरिता शर्मा",
+                designation: "शिक्षक",
+                subject: "विषय: विज्ञान",
+                category: "basic",
+                photo: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=300",
+                routine: [
+                    { period: "३ औं पिरियड (१२:०० - १२:४५)", class: "कक्षा ८", subject: "विज्ञान तथा प्रविधि" }
+                ]
+            }
+        ];
+
+        // Render Teachers Cards on Home Page
+        function renderStaffGrid(filter = 'all') {
+            const grid = document.getElementById('staffGrid');
+            grid.innerHTML = '';
+
+            const filtered = filter === 'all' ? staffData : staffData.filter(s => s.category === filter);
+
+            filtered.forEach(staff => {
+                const card = document.createElement('div');
+                card.className = 'bg-emerald-50/50 p-6 rounded-2xl border border-gray-200 text-center flex flex-col items-center hover:shadow-md transition group';
+                card.innerHTML = `
+                    <div class="relative mb-4">
+                        <img src="${staff.photo}" alt="${staff.name}" class="w-24 h-24 rounded-full object-cover border-4 border-white shadow-md group-hover:scale-105 transition duration-300">
+                    </div>
+                    <h4 class="font-bold text-gray-900 text-lg mb-0.5">${staff.name}</h4>
+                    <span class="text-brandGreen font-semibold text-xs mb-1 block">${staff.designation}</span>
+                    <span class="text-gray-500 text-xs bg-white px-2.5 py-1 rounded-full border border-gray-200">${staff.subject}</span>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Category Filter Switching Handler
+        function filterStaff(category) {
+            document.querySelectorAll('.staff-tab').forEach(btn => {
+                btn.className = 'staff-tab bg-gray-100 text-gray-700 hover:bg-gray-200 px-3.5 py-2 rounded-full transition';
+            });
+            event.target.className = 'staff-tab active-tab bg-brandGreen text-white px-3.5 py-2 rounded-full shadow-sm transition';
+            renderStaffGrid(category);
+        }
+
+        // Modal Controls
+        function openLoginModal() {
+            document.getElementById('loginModal').classList.remove('hidden');
+        }
+
+        function closeLoginModal() {
+            document.getElementById('loginModal').classList.add('hidden');
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Auto-fill Teacher ID when dropdown changes
+        function autoFillLogin(id) {
+            if(id) {
+                document.getElementById('teacherId').value = id;
+            }
+        }
+
+        // Login Submit Handler
+        function handleLogin(e) {
+            e.preventDefault();
+            const inputId = document.getElementById('teacherId').value.trim().toUpperCase();
+            const teacher = staffData.find(s => s.id === inputId) || staffData[0]; // fallback to first teacher if custom string entered
+
+            // Populate Teacher Portal
+            document.getElementById('portalTeacherPhoto').src = teacher.photo;
+            document.getElementById('portalTeacherName').textContent = teacher.name;
+            document.getElementById('portalTeacherDesignation').textContent = teacher.designation;
+            document.getElementById('portalTeacherSubject').textContent = `${teacher.subject} | ID: ${teacher.id}`;
+            document.getElementById('portalTeacherCategory').textContent = teacher.category.toUpperCase();
+
+            // Render Routine
+            const routineContainer = document.getElementById('portalRoutineList');
+            routineContainer.innerHTML = '';
+            teacher.routine.forEach(r => {
+                const item = document.createElement('div');
+                item.className = 'flex items-center justify-between p-3 bg-emerald-50/60 rounded-xl border border-emerald-100';
+                item.innerHTML = `
+                    <div>
+                        <div class="font-bold text-gray-800 text-sm">${r.class} - ${r.subject}</div>
+                        <div class="text-xs text-emerald-800"><i class="fa-regular fa-clock mr-1"></i> ${r.period}</div>
+                    </div>
+                    <span class="bg-brandGreen text-white text-xs px-2.5 py-1 rounded-lg">कक्षा लिइँदै</span>
+                `;
+                routineContainer.appendChild(item);
+            });
+
+            closeLoginModal();
+            document.getElementById('teacherPortal').classList.remove('hidden');
+        }
+
+        function logoutTeacher() {
+            document.getElementById('teacherPortal').classList.add('hidden');
+        }
+
+        // Initialize Page
+        window.onload = function() {
+            renderStaffGrid('all');
+        };
+    </script>
+</body>
+</html>
