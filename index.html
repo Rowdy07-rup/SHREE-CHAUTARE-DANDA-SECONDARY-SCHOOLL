@@ -243,26 +243,7 @@
             </div>
         </div>
     </div>
-<!-- Top Utility Bar with Staff Login -->
-<div class="bg-pine-dark text-white text-xs py-2 px-4 border-b border-pine-light hidden sm:block relative z-10">
-    <div class="max-w-7xl mx-auto flex justify-between items-center">
-        <!-- Contact Info (Left Side) -->
-        <div class="flex items-center space-x-6">
-            <span><i class="fas fa-map-marker-alt text-marigold mr-2"></i>बा.नं. १० भकुण्डे, बागलुङ जिल्ला, नेपाल</span>
-            <span><i class="fas fa-phone-alt text-marigold mr-2"></i>+९७७ ९८४५०८०४२८</span>
-            <span><i class="fas fa-envelope text-marigold mr-2"></i>info@chautaredanda.edu.np</span>
-        </div>
 
-       <!-- Staff Quick Login Form -->
-<div class="flex items-center space-x-2">
-    <div class="flex items-center space-x-2">
-        <input type="text" id="teacherId" placeholder="शिक्षक ID" class="px-2 py-1 text-xs text-gray-800 rounded focus:outline-none w-24">
-        <input type="password" id="teacherPassword" placeholder="पासवर्ड" class="px-2 py-1 text-xs text-gray-800 rounded focus:outline-none w-24">
-        <button type="button" onclick="handleHeaderLogin()" class="bg-marigold hover:bg-marigold-hover text-pine-dark font-bold px-3 py-1 rounded text-xs transition">
-            <i class="fas fa-sign-in-alt mr-1"></i> लगइन
-        </button>
-    </div>
-</div>
     <!-- Main Navigation Bar -->
     <header class="bg-pine sticky top-0 z-40 shadow-lg border-b-2 border-marigold">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1284,18 +1265,7 @@
             // Photo slider only runs while the About page is visible
             if (typeof ppSyncWithView === 'function') ppSyncWithView(viewId);
         }
-        // Handle Top Right Teacher Login
-function handleHeaderLogin() {
-    const teacherId = document.getElementById('teacherId').value.trim();
-    const password = document.getElementById('teacherPassword').value.trim();
 
-    if (teacherId && password) {
-        // Redirect directly to teacherlogin.html page
-        window.location.href = `teacherlogin.html?id=${encodeURIComponent(teacherId)}`;
-    } else {
-        alert('कृपया शिक्षक ID र पासवर्ड राख्नुहोस्।');
-    }
-}
         // Mobile Menu Toggle
         function toggleMobileMenu() {
             const drawer = document.getElementById('mobile-drawer');
