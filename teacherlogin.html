@@ -30,7 +30,19 @@
                 }
             }
         }
-    </script>
+   <script>
+    // Auto-populate ID if passed from index.html URL
+    window.addEventListener('DOMContentLoaded', () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get('id');
+        if (id) {
+            const idInput = document.getElementById('loginTeacherId'); // Update ID to match your input in teacherlogin.html
+            if (idInput) {
+                idInput.value = id;
+            }
+        }
+    });
+</script> </script>
     <style>
         body {
             font-family: 'Mukta', 'Noto Sans Devanagari', sans-serif;
