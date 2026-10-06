@@ -253,16 +253,14 @@
             <span><i class="fas fa-envelope text-marigold mr-2"></i>info@chautaredanda.edu.np</span>
         </div>
 
-        <!-- Staff Quick Login Form (Top Right) -->
-        <div class="flex items-center space-x-2">
-            <form id="headerLoginForm" onsubmit="handleHeaderLogin(event)" class="flex items-center space-x-2">
-                <input type="text" id="teacherId" placeholder="शिक्षक ID" required class="px-2 py-1 text-xs text-gray-800 rounded focus:outline-none w-24">
-                <input type="password" id="teacherPassword" placeholder="पासवर्ड" required class="px-2 py-1 text-xs text-gray-800 rounded focus:outline-none w-24">
-                <button type="submit" class="bg-marigold hover:bg-marigold-hover text-pine-dark font-bold px-3 py-1 rounded text-xs transition">
-                    <i class="fas fa-sign-in-alt mr-1"></i> लगइन
-                </button>
-            </form>
-        </div>
+       <!-- Staff Quick Login Form -->
+<div class="flex items-center space-x-2">
+    <div class="flex items-center space-x-2">
+        <input type="text" id="teacherId" placeholder="शिक्षक ID" class="px-2 py-1 text-xs text-gray-800 rounded focus:outline-none w-24">
+        <input type="password" id="teacherPassword" placeholder="पासवर्ड" class="px-2 py-1 text-xs text-gray-800 rounded focus:outline-none w-24">
+        <button type="button" onclick="handleHeaderLogin()" class="bg-marigold hover:bg-marigold-hover text-pine-dark font-bold px-3 py-1 rounded text-xs transition">
+            <i class="fas fa-sign-in-alt mr-1"></i> लगइन
+        </button>
     </div>
 </div>
     <!-- Main Navigation Bar -->
